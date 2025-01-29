@@ -80,17 +80,25 @@ class RegisterController extends Controller
             'local_delivery_city' => 'nullable|string|max:255',
         ]);
 
+        $licenseFrontPath = 'drivers/' . time() . '_front.' . $request->file('license_photo_front')->extension();
+        $licenseBackPath = 'drivers/' . time() . '_back.' . $request->file('license_photo_back')->extension();
+        $vehiclePhotoPath = 'vehicles/' . time() . '_vehicle.' . $request->file('vehicle_photo')->extension();
+
+        $request->file('license_photo_front')->move(public_path('drivers'), $licenseFrontPath);
+        $request->file('license_photo_back')->move(public_path('drivers'), $licenseBackPath);
+        $request->file('vehicle_photo')->move(public_path('vehicles'), $vehiclePhotoPath);
+
         $driver = new Driver([
             'user_id' => $user->id,
-            'license_photo_front' => $request->file('license_photo_front')->store('drivers'),
-            'license_photo_back' => $request->file('license_photo_back')->store('drivers'),
+            'license_photo_front' => $licenseFrontPath,
+            'license_photo_back' => $licenseBackPath,
             'vehicle_make' => $request->vehicle_make,
             'vehicle_model' => $request->vehicle_model,
             'vehicle_year' => $request->vehicle_year,
             'vehicle_plate' => $request->vehicle_plate,
             'vehicle_color' => $request->vehicle_color,
             'vehicle_seats' => $request->vehicle_seats,
-            'vehicle_photo' => $request->file('vehicle_photo')->store('vehicles'),
+            'vehicle_photo' => $vehiclePhotoPath,
             'services' => json_encode($request->services),
             'packages' => json_encode($request->packages),
             'local_delivery_city' => $request->local_delivery_city,
@@ -110,10 +118,16 @@ class RegisterController extends Controller
             'availability_hours' => 'required|array',
         ]);
 
+        $idPhotoPath = 'local_delivery/' . time() . '_id.' . $request->file('id_photo')->extension();
+        $proofPath = 'local_delivery/' . time() . '_proof.' . $request->file('proof_of_domicile')->extension();
+
+        $request->file('id_photo')->move(public_path('local_delivery'), $idPhotoPath);
+        $request->file('proof_of_domicile')->move(public_path('local_delivery'), $proofPath);
+
         LocalDelivery::create([
             'user_id' => $user->id,
-            'id_photo' => $request->file('id_photo')->store('local_delivery'),
-            'proof_of_domicile' => $request->file('proof_of_domicile')->store('local_delivery'),
+            'id_photo' => $idPhotoPath,
+            'proof_of_domicile' => $proofPath,
             'means_of_transport' => $request->means_of_transport,
             'transport_details' => json_encode($request->transport_details),
             'availability_days' => json_encode($request->availability_days),
@@ -132,13 +146,16 @@ class RegisterController extends Controller
             'availability' => 'required|array',
         ]);
 
+        $ownershipProofPath = 'businesses/' . time() . '_proof.' . $request->file('ownership_proof')->extension();
+        $request->file('ownership_proof')->move(public_path('businesses'), $ownershipProofPath);
+
         Business::create([
             'user_id' => $user->id,
             'trade_name' => $request->trade_name,
             'business_address' => $request->business_address,
             'business_number' => $request->business_number,
             'co_manager_details' => json_encode($request->co_manager_details),
-            'ownership_proof' => $request->file('ownership_proof')->store('businesses'),
+            'ownership_proof' => $ownershipProofPath,
             'availability' => json_encode($request->availability),
         ]);
     }
@@ -153,13 +170,16 @@ class RegisterController extends Controller
             'ownership_proof' => 'required|image|max:2048',
         ]);
 
+        $ownershipProofPath = 'partner_homes/' . time() . '_proof.' . $request->file('ownership_proof')->extension();
+        $request->file('ownership_proof')->move(public_path('partner_homes'), $ownershipProofPath);
+
         PartnerHome::create([
             'user_id' => $user->id,
             'home_name' => $request->home_name,
             'home_address' => $request->home_address,
             'managers' => json_encode($request->managers),
             'availability' => json_encode($request->availability),
-            'ownership_proof' => $request->file('ownership_proof')->store('partner_homes'),
+            'ownership_proof' => $ownershipProofPath,
         ]);
     }
 }
