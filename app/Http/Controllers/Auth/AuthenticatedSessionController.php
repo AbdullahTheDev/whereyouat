@@ -29,7 +29,30 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(RouteServiceProvider::HOME);
+
+        $route = 'home';
+
+        if(Auth::user()->role == 'driver'){
+            $route = 'driver.dashboard';
+        }else if(Auth::user()->role == 'local_delivery'){
+            $route = 'local_delivery.dashboard';
+        }else if(Auth::user()->role == 'business'){
+            $route = 'business.dashboard';
+        }else if(Auth::user()->role == 'partner_home'){
+            $route = 'partner_home.dashboard';
+        }else if(Auth::user()->role == 'company'){
+            $route = 'company.dashboard';
+        }else if(Auth::user()->role == 'general_user'){
+            $route = 'general_user.dashboard';
+        }else if(Auth::user()->role == 'admin'){
+            $route = 'admin.dashboard';
+        }
+
+        if($route != ''){
+            return redirect()->route($route);
+        }
+
+        return redirect()->intended(redirect()->route($route));
     }
 
     /**

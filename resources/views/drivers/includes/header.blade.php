@@ -139,9 +139,12 @@
                 </div>
             </li>
             <li class="nav-item nav-logout d-none d-lg-block">
-                <a class="nav-link" href="#">
+              <form action="{{ route('logout') }}" method="post">
+                @csrf
+                <button type="submit" class="nav-link">
                     <i class="mdi mdi-power"></i>
-                </a>
+                </button>
+              </form>
             </li>
             <li class="nav-item nav-settings d-none d-lg-block">
                 <a class="nav-link" href="#">
