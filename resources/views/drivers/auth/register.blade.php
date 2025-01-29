@@ -14,6 +14,7 @@
                             <h6 class="font-weight-light">Signing up is easy. It only takes a few steps</h6>
                             <form class="pt-3" enctype="multipart/form-data" method="POST" action="{{ route('register') }}">
                                 @csrf
+                                <input type="hidden" name="role" id="role" value="driver">
                                 <div class="form-group">
                                     <input type="text" class="form-control form-control-lg @error('name') is-invalid @enderror" name="name" id="fullName"
                                         placeholder="Full Name" value="{{ old('name') }}" required>
@@ -60,54 +61,54 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control form-control-lg @error('vehicleMake') is-invalid @enderror" name="vehicleMake" id="vehicleMake"
-                                        placeholder="Vehicle Make" value="{{ old('vehicleMake') }}" required>
-                                    @error('vehicleMake')
+                                    <input type="text" class="form-control form-control-lg @error('vehicle_make') is-invalid @enderror" name="vehicle_make" id="vehicle_make"
+                                        placeholder="Vehicle Make" value="{{ old('vehicle_make') }}" required>
+                                    @error('vehicle_make')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control form-control-lg @error('vehicleModel') is-invalid @enderror" name="vehicleModel" id="vehicleModel"
-                                        placeholder="Vehicle Model" value="{{ old('vehicleModel') }}" required>
-                                    @error('vehicleModel')
+                                    <input type="text" class="form-control form-control-lg @error('vehicle_model') is-invalid @enderror" name="vehicle_model" id="vehicle_model"
+                                        placeholder="Vehicle Model" value="{{ old('vehicle_model') }}" required>
+                                    @error('vehicle_model')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <input type="number" class="form-control form-control-lg @error('vehicleYear') is-invalid @enderror" name="vehicleYear" id="vehicleYear"
-                                        placeholder="Vehicle Year" value="{{ old('vehicleYear') }}" required>
-                                    @error('vehicleYear')
+                                    <input type="number" class="form-control form-control-lg @error('vehicle_year') is-invalid @enderror" name="vehicle_year" id="vehicle_year"
+                                        placeholder="Vehicle Year" value="{{ old('vehicle_year') }}" required>
+                                    @error('vehicle_year')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control form-control-lg @error('vehiclePlate') is-invalid @enderror" name="vehiclePlate" id="vehiclePlate"
-                                        placeholder="Vehicle Plate" value="{{ old('vehiclePlate') }}" required>
-                                    @error('vehiclePlate')
+                                    <input type="text" class="form-control form-control-lg @error('vehicle_plate') is-invalid @enderror" name="vehicle_plate" id="vehicle_plate"
+                                        placeholder="Vehicle Plate" value="{{ old('vehicle_plate') }}" required>
+                                    @error('vehicle_plate')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control form-control-lg @error('vehicleColor') is-invalid @enderror" name="vehicleColor" id="vehicleColor"
-                                        placeholder="Vehicle Color" value="{{ old('vehicleColor') }}" required>
-                                    @error('vehicleColor')
+                                    <input type="text" class="form-control form-control-lg @error('vehicle_color') is-invalid @enderror" name="vehicle_color" id="vehicle_color"
+                                        placeholder="Vehicle Color" value="{{ old('vehicle_color') }}" required>
+                                    @error('vehicle_color')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <input type="number" class="form-control form-control-lg @error('vehicleSeats') is-invalid @enderror" name="vehicleSeats" id="vehicleSeats"
-                                        placeholder="Number of Seats" value="{{ old('vehicleSeats') }}" required>
-                                    @error('vehicleSeats')
+                                    <input type="number" class="form-control form-control-lg @error('vehicle_seats') is-invalid @enderror" name="vehicle_seats" id="vehicle_seats"
+                                        placeholder="Number of Seats" value="{{ old('vehicle_seats') }}" required>
+                                    @error('vehicle_seats')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
@@ -115,9 +116,9 @@
                                 </div>
                                 <div class="form-group">
                                     <label>License Photo (Front)</label>
-                                    <input type="file" class="form-control form-control-lg @error('licensePhotoFront') is-invalid @enderror" name="licensePhotoFront"
+                                    <input type="file" class="form-control form-control-lg @error('license_photo_front') is-invalid @enderror" name="license_photo_front"
                                         required>
-                                    @error('licensePhotoFront')
+                                    @error('license_photo_front')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
@@ -125,9 +126,9 @@
                                 </div>
                                 <div class="form-group">
                                     <label>License Photo (Back)</label>
-                                    <input type="file" class="form-control form-control-lg @error('licensePhotoBack') is-invalid @enderror" name="licensePhotoBack"
+                                    <input type="file" class="form-control form-control-lg @error('license_photo_back') is-invalid @enderror" name="license_photo_back"
                                         required>
-                                    @error('licensePhotoBack')
+                                    @error('license_photo_back')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
@@ -135,8 +136,8 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Vehicle Photo</label>
-                                    <input type="file" class="form-control form-control-lg @error('vehiclePhoto') is-invalid @enderror" name="vehiclePhoto" required>
-                                    @error('vehiclePhoto')
+                                    <input type="file" class="form-control form-control-lg @error('vehicle_photo') is-invalid @enderror" name="vehicle_photo" required>
+                                    @error('vehicle_photo')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
