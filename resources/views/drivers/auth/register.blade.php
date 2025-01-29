@@ -15,76 +15,165 @@
                             <form class="pt-3" enctype="multipart/form-data" method="POST" action="{{ route('register') }}">
                                 @csrf
                                 <div class="form-group">
-                                    <input type="text" class="form-control form-control-lg" name="name" id="fullName"
-                                        placeholder="Full Name" required>
+                                    <input type="text" class="form-control form-control-lg @error('name') is-invalid @enderror" name="name" id="fullName"
+                                        placeholder="Full Name" value="{{ old('name') }}" required>
+                                    @error('name')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
-                                    <input type="email" class="form-control form-control-lg" name="email" id="email"
-                                        placeholder="Email" required>
+                                    <input type="email" class="form-control form-control-lg @error('email') is-invalid @enderror" name="email" id="email"
+                                        placeholder="Email" value="{{ old('email') }}" required>
+                                    @error('email')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
-                                    <input type="password" class="form-control form-control-lg" name="password" id="password"
+                                    <input type="password" class="form-control form-control-lg @error('password') is-invalid @enderror" name="password" id="password"
                                         placeholder="Password" required>
+                                    @error('password')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
-                                    <input type="password" class="form-control form-control-lg" name="password_confirmation" id="password_confirmation"
+                                    <input type="password" class="form-control form-control-lg @error('password_confirmation') is-invalid @enderror" name="password_confirmation" id="password_confirmation"
                                         placeholder="Confirm Password" required>
+                                    @error('password_confirmation')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control form-control-lg" name="vehicleMake" id="vehicleMake"
-                                        placeholder="Vehicle Make" required>
+                                    <input type="text" class="form-control form-control-lg @error('phone') is-invalid @enderror" name="phone" id="phone"
+                                        placeholder="Phone" value="{{ old('phone') }}" required>
+                                    @error('phone')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control form-control-lg" name="vehicleModel" id="vehicleModel"
-                                        placeholder="Vehicle Model" required>
+                                    <input type="text" class="form-control form-control-lg @error('vehicleMake') is-invalid @enderror" name="vehicleMake" id="vehicleMake"
+                                        placeholder="Vehicle Make" value="{{ old('vehicleMake') }}" required>
+                                    @error('vehicleMake')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
-                                    <input type="number" class="form-control form-control-lg" name="vehicleYear" id="vehicleYear"
-                                        placeholder="Vehicle Year" required>
+                                    <input type="text" class="form-control form-control-lg @error('vehicleModel') is-invalid @enderror" name="vehicleModel" id="vehicleModel"
+                                        placeholder="Vehicle Model" value="{{ old('vehicleModel') }}" required>
+                                    @error('vehicleModel')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control form-control-lg" name="vehiclePlate" id="vehiclePlate"
-                                        placeholder="Vehicle Plate" required>
+                                    <input type="number" class="form-control form-control-lg @error('vehicleYear') is-invalid @enderror" name="vehicleYear" id="vehicleYear"
+                                        placeholder="Vehicle Year" value="{{ old('vehicleYear') }}" required>
+                                    @error('vehicleYear')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control form-control-lg" name="vehicleColor" id="vehicleColor"
-                                        placeholder="Vehicle Color" required>
+                                    <input type="text" class="form-control form-control-lg @error('vehiclePlate') is-invalid @enderror" name="vehiclePlate" id="vehiclePlate"
+                                        placeholder="Vehicle Plate" value="{{ old('vehiclePlate') }}" required>
+                                    @error('vehiclePlate')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
-                                    <input type="number" class="form-control form-control-lg" name="vehicleSeats" id="vehicleSeats"
-                                        placeholder="Number of Seats" required>
+                                    <input type="text" class="form-control form-control-lg @error('vehicleColor') is-invalid @enderror" name="vehicleColor" id="vehicleColor"
+                                        placeholder="Vehicle Color" value="{{ old('vehicleColor') }}" required>
+                                    @error('vehicleColor')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <input type="number" class="form-control form-control-lg @error('vehicleSeats') is-invalid @enderror" name="vehicleSeats" id="vehicleSeats"
+                                        placeholder="Number of Seats" value="{{ old('vehicleSeats') }}" required>
+                                    @error('vehicleSeats')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
                                     <label>License Photo (Front)</label>
-                                    <input type="file" class="form-control form-control-lg" name="licensePhotoFront"
+                                    <input type="file" class="form-control form-control-lg @error('licensePhotoFront') is-invalid @enderror" name="licensePhotoFront"
                                         required>
+                                    @error('licensePhotoFront')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
                                     <label>License Photo (Back)</label>
-                                    <input type="file" class="form-control form-control-lg" name="licensePhotoBack"
+                                    <input type="file" class="form-control form-control-lg @error('licensePhotoBack') is-invalid @enderror" name="licensePhotoBack"
                                         required>
+                                    @error('licensePhotoBack')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
                                     <label>Vehicle Photo</label>
-                                    <input type="file" class="form-control form-control-lg" name="vehiclePhoto" required>
+                                    <input type="file" class="form-control form-control-lg @error('vehiclePhoto') is-invalid @enderror" name="vehiclePhoto" required>
+                                    @error('vehiclePhoto')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
-                                    <select class="form-select form-select-lg" name="services" multiple required>
+                                    <select class="form-select form-select-lg @error('services') is-invalid @enderror" name="services" multiple required>
                                         <option value="ride-sharing">Ride Sharing</option>
                                         <option value="parcel-delivery">Parcel Delivery</option>
                                         <option value="taxi-service">Taxi Service</option>
                                     </select>
+                                    @error('services')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
-                                    <select class="form-select form-select-lg" name="packages" multiple required>
+                                    <select class="form-select form-select-lg @error('packages') is-invalid @enderror" name="packages" multiple required>
                                         <option value="standard">Standard</option>
                                         <option value="premium">Premium</option>
                                         <option value="express">Express</option>
                                     </select>
+                                    @error('packages')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control form-control-lg" name="localDeliveryCity"
-                                        placeholder="Local Delivery City (Optional)">
+                                    <input type="text" class="form-control form-control-lg @error('localDeliveryCity') is-invalid @enderror" name="localDeliveryCity"
+                                        placeholder="Local Delivery City (Optional)" value="{{ old('localDeliveryCity') }}">
+                                    @error('localDeliveryCity')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                                 <div class="mb-4">
                                     <div class="form-check">
