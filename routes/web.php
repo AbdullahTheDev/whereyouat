@@ -19,6 +19,10 @@ Route::get('/', function () {
     return view('drivers.auth.register');
 });
 
+Route::get('/driver/dashboard', function () {
+    return view('drivers.index');
+})->name('driver.dashboard');
+
 Route::post('/register', [RegisterController::class, 'register'])->name('register');
 
 // Route::get('/dashboard', function () {
