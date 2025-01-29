@@ -23,44 +23,48 @@ class RegisterController extends Controller
 
     public function register(Request $request)
     {
-        // Validate common user fields
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'phone' => 'required|string|max:20',
-            'password' => 'required|string|min:6|confirmed',
-            'role' => ['required', Rule::in(['driver', 'local_delivery', 'business', 'partner_home', 'general_user'])],
-        ]);
+        try {
+            // Validate common user fields
+            $request->validate([
+                'name' => 'required|string|max:255',
+                'email' => 'required|string|email|max:255|unique:users',
+                'phone' => 'required|string|max:20',
+                'password' => 'required|string|min:6|confirmed',
+                'role' => ['required', Rule::in(['driver', 'local_delivery', 'business', 'partner_home', 'general_user'])],
+            ]);
 
-        // Create user
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'phone' => $request->phone,
-            'password' => Hash::make($request->password),
-            'role' => $request->role,
-        ]);
+            // Create user
+            $user = User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'phone' => $request->phone,
+                'password' => Hash::make($request->password),
+                'role' => $request->role,
+            ]);
 
-        // Store additional information based on role
-        switch ($request->role) {
-            case 'driver':
-                $this->registerDriver($request, $user);
-                break;
-            case 'local_delivery':
-                $this->registerLocalDelivery($request, $user);
-                break;
-            case 'business':
-                $this->registerBusiness($request, $user);
-                break;
-            case 'partner_home':
-                $this->registerPartnerHome($request, $user);
-                break;
+            // Store additional information based on role
+            switch ($request->role) {
+                case 'driver':
+                    $this->registerDriver($request, $user);
+                    break;
+                case 'local_delivery':
+                    $this->registerLocalDelivery($request, $user);
+                    break;
+                case 'business':
+                    $this->registerBusiness($request, $user);
+                    break;
+                case 'partner_home':
+                    $this->registerPartnerHome($request, $user);
+                    break;
+            }
+
+            // Log in the user automatically after registration
+            auth()->login($user);
+            return redirect()->back()->with('success', 'Driver registered successfully!');
+        } catch (\Exception $e) {
+            // Error Message
+            return redirect()->back()->with('error', $e->getMessage());
         }
-
-        // Log in the user automatically after registration
-        auth()->login($user);
-
-        return redirect()->route('dashboard')->with('success', 'Registration successful.');
     }
 
     private function registerDriver(Request $request, User $user)
