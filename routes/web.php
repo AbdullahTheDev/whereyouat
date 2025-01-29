@@ -25,6 +25,13 @@ Route::get('/driver/dashboard', function () {
 
 Route::post('/register', [RegisterController::class, 'register'])->name('register');
 
+Route::prefix('admin')->group(function () {
+    Route::get('/dashboard', function () {
+        return view('admin.index');
+    })->name('admin.dashboard');
+});
+
+
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');
