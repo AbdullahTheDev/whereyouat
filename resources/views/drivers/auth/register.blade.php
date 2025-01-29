@@ -144,7 +144,7 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <select class="form-select form-select-lg @error('services') is-invalid @enderror" name="services" multiple required>
+                                    <select class="form-select form-select-lg @error('services') is-invalid @enderror" name="services[]" multiple required>
                                         <option value="ride-sharing">Ride Sharing</option>
                                         <option value="parcel-delivery">Parcel Delivery</option>
                                         <option value="taxi-service">Taxi Service</option>
@@ -156,7 +156,7 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <select class="form-select form-select-lg @error('packages') is-invalid @enderror" name="packages" multiple required>
+                                    <select class="form-select form-select-lg @error('packages') is-invalid @enderror" name="packages[]" multiple required>
                                         <option value="standard">Standard</option>
                                         <option value="premium">Premium</option>
                                         <option value="express">Express</option>
@@ -168,9 +168,9 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control form-control-lg @error('localDeliveryCity') is-invalid @enderror" name="localDeliveryCity"
-                                        placeholder="Local Delivery City (Optional)" value="{{ old('localDeliveryCity') }}">
-                                    @error('localDeliveryCity')
+                                    <input type="text" class="form-control form-control-lg @error('local_delivery_city') is-invalid @enderror" name="local_delivery_city"
+                                        placeholder="Local Delivery City (Optional)" value="{{ old('local_delivery_city') }}">
+                                    @error('local_delivery_city')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>

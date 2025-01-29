@@ -11,6 +11,7 @@ use App\Models\Business;
 use App\Models\PartnerHome;
 use App\Models\Company;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 
@@ -23,7 +24,7 @@ class RegisterController extends Controller
 
     public function register(Request $request)
     {
-        return $request->all();
+        // return $request->all();
         try {
             // Validate common user fields
             $request->validate([
@@ -34,6 +35,7 @@ class RegisterController extends Controller
                 'role' => ['required', Rule::in(['driver', 'local_delivery', 'business', 'partner_home', 'general_user'])],
             ]);
 
+            DB::beginTransaction();
             // Create user
             $user = User::create([
                 'name' => $request->name,
@@ -58,11 +60,13 @@ class RegisterController extends Controller
                     $this->registerPartnerHome($request, $user);
                     break;
             }
+            DB::commit();
 
             // Log in the user automatically after registration
             auth()->login($user);
             return redirect()->back()->with('success', 'Driver registered successfully!');
         } catch (\Exception $e) {
+            DB::rollBack();
             // Error Message
             return redirect()->back()->with('error', $e->getMessage());
         }
