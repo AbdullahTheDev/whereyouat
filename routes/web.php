@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('drivers.layouts.app');
+    return view('drivers.index');
 });
 
 Route::get('/dashboard', function () {
