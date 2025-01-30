@@ -26,7 +26,8 @@ Route::get('/', [GeneralController::class, 'index'])->name('main');
 Route::prefix('driver')->group(function () {
     Route::get('/register', function () {
         return view('drivers.auth.register');
-    });
+    })->name('driver.register');
+    
     Route::get('/dashboard', [DriverController::class, 'index'])->name('driver.dashboard');
 });
 
