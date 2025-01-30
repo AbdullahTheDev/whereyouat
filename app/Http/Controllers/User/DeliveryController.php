@@ -21,7 +21,7 @@ class DeliveryController extends Controller
 
     function trackDelivery() {
         $deliveries = DistanceDelivery::where('user_id', Auth::id())->get();
-        
+
         return view('generalUsers.delivery.track.index', compact('deliveries'));
     }
 
@@ -55,9 +55,11 @@ class DeliveryController extends Controller
                 ]);
             }
 
-            return redirect()->route('generalUsers.delivery.track')->with('success', 'Delivery created successfully');
+
+            return redirect()->route('user.delivery.distance.stripe');
+
         }catch(Exception $e) {
-            return $e->getMessage();
+            return redirect()->back()->with('error', $e->getMessage());
         } 
     }
 }

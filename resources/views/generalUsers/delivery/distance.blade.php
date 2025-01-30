@@ -88,7 +88,7 @@
                                 <div class="row mt-3">
                                     <div class="col-md-12">
                                         <label>Total Price</label>
-                                        <input type="text" id="total-price" class="form-control" readonly />
+                                        <input type="text" name="total_price" id="total-price" class="form-control" readonly />
                                     </div>
                                 </div>
                                 <button type="submit" class="btn btn-success mt-3">Next</button>

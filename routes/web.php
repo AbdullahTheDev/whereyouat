@@ -8,6 +8,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Driver\DriverController;
 use App\Http\Controllers\Driver\TripController;
 use App\Http\Controllers\GeneralController;
+use App\Http\Controllers\Payment\StripeDeliveryController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\User\DeliveryController;
 use App\Http\Controllers\User\UserController;
@@ -53,6 +54,9 @@ Route::prefix('user')->middleware('auth')->group(function () {
         Route::get('/track', [DeliveryController::class, 'trackDelivery'])->name('user.delivery.track');
 
         Route::post('/distance', [DeliveryController::class, 'distanceDeliveryStore'])->name('user.delivery.distance.store');
+
+        Route::get('distance/stripe', [StripeDeliveryController::class, 'distanceDeliveryStripe'])->name('user.delivery.distance.stripe');
+        Route::post('distance/stripe', [StripeDeliveryController::class, 'stripePost'])->name('user.delivery.distance.stripe.post');
 
     });
 });
