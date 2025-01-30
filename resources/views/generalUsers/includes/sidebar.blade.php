@@ -9,13 +9,13 @@
           </div>
           <div class="nav-profile-text d-flex flex-column">
             <span class="font-weight-bold mb-2">{{ Auth::user()->name }}</span>
-            <span class="text-secondary text-small">Driver</span>
+            <span class="text-secondary text-small">User</span>
           </div>
           <i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i>
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{{ route('driver.dashboard') }}">
+        <a class="nav-link" href="{{ route('user.dashboard') }}">
           <span class="menu-title">Dashboard</span>
           <i class="mdi mdi-home menu-icon"></i>
         </a>

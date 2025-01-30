@@ -24,11 +24,11 @@
   </head>
   <body>
 
-      @include('drivers.includes.header')
+      @include('generalUsers.includes.header')
 
       <div class="container-fluid page-body-wrapper">
         
-        @include('drivers.includes.sidebar')
+        @include('generalUsers.includes.sidebar')
         
 
         @yield('content')
