@@ -46,7 +46,7 @@ class StripeDeliveryController extends Controller
             }
         }
         try {
-            $amount = $delivery->amount;
+            $amount = $delivery->total_price;
             Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
 
             // Create Stripe charge
@@ -69,7 +69,7 @@ class StripeDeliveryController extends Controller
                     'payment_method' => 'STRIPE'
                 ]);
 
-                return redirect()->route('generalUsers.delivery.track')->with('success', 'Payment successful! Delivery created.');
+                return redirect()->route('user.delivery.track')->with('success', 'Payment successful! Delivery created.');
             } else {
                 $delivery->update([
                     'payment_details' => json_encode($charge),
@@ -78,8 +78,6 @@ class StripeDeliveryController extends Controller
             }
 
             return redirect()->back()->with('error', 'Payment failed. Please try again.');
-
-            return redirect()->route('generalUsers.delivery.track')->with('success', 'Delivery created successfully');
         } catch (Exception $e) {
             return redirect()->back()->with('error', $e->getMessage());
         }

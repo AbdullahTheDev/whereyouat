@@ -88,7 +88,8 @@
                                 <div class="row mt-3">
                                     <div class="col-md-12">
                                         <label>Total Price</label>
-                                        <input type="text" name="total_price" id="total-price" class="form-control" readonly />
+                                        <input type="text" id="total-price" class="form-control" readonly />
+                                        <input type="hidden" name="total_price" id="total-price" class="form-control" readonly />
                                     </div>
                                 </div>
                                 <button type="submit" class="btn btn-success mt-3">Next</button>
@@ -132,6 +133,7 @@
                 });
                 total += total * taxRate;
                 document.getElementById("total-price").value = total.toFixed(2) + " CAD";
+                document.getElementById("total-price").value = total.toFixed(2);
             }
 
             document.getElementById("add-package").addEventListener("click", function() {

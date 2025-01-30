@@ -14,7 +14,7 @@
                             <p>{{ Session::get('success') }}</p>
                         </div>
                     @endif
-                    <form id='checkout-form' method='post' action="{{ route('stripe.post') }}">
+                    <form id='checkout-form' method='post' action="{{ route('user.delivery.distance.stripe.post') }}">
                         @csrf
                         <input type="hidden" name="id" id="id" value="{{ $delivery->id }}">
                         <input type='hidden' name='stripeToken' id='stripe-token-id'>
@@ -22,7 +22,7 @@
                         <div id="card-element" class="form-control"></div>
                         <button id='pay-btn' class="btn btn-success mt-3" type="button"
                             style="margin-top: 20px; width: 100%;padding: 7px;" onclick="createToken()">PAY
-                            ${{ number_format($delivery->total_price) }}</button>
+                            ${{ number_format((float)$delivery->total_price, 2) }}</button>
                         <form>
                 </div>
             </div>

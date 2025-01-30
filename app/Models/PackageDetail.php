@@ -9,7 +9,7 @@ class PackageDetail extends Model
 {
     use HasFactory;
 
-    protected $timestamps = false;
+    public $timestamps = false;
 
     protected $fillable = [
         'delivery_id',
