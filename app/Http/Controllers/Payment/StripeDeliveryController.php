@@ -15,7 +15,7 @@ class StripeDeliveryController extends Controller
         return view('generalUsers.delivery.payment.distance_delivery');
     }
 
-    public function stripePost(Request $request)
+    public function distanceDeliveryStripePost(Request $request)
     {
         try {
             $amount = $request->amount;
@@ -25,7 +25,7 @@ class StripeDeliveryController extends Controller
                 "amount" => $amount * 100,
                 "currency" => "usd",
                 "source" => $request->stripeToken,
-                "description" => ""
+                "description" => "Distance Delivery fee"
             ]);
 
             return redirect()->route('generalUsers.delivery.track')->with('success', 'Delivery created successfully');
