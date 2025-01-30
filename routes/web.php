@@ -49,6 +49,7 @@ Route::prefix('user')->group(function () {
     Route::prefix('delivery')->group(function () {
         Route::get('/distance', [DeliveryController::class, 'distanceDelivery'])->name('user.delivery.distance');
         Route::get('/vicinity', [DeliveryController::class, 'vicinityDelivery'])->name('user.delivery.vicinity');
+        Route::get('/track', [DeliveryController::class, 'trackDelivery'])->name('user.delivery.track');
     });
 });
 

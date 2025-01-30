@@ -29,13 +29,13 @@
         <div class="collapse" id="ui-basic">
           <ul class="nav flex-column sub-menu">
             <li class="nav-item">
-              <a class="nav-link" href="{{ route('user.deliver.distance') }}">Distance Delivery</a>
+              <a class="nav-link" href="{{ route('user.delivery.distance') }}">Distance Delivery</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{{ route('user.deliver.vicinity') }}">Vicinity Delivery</a>
+              <a class="nav-link" href="{{ route('user.delivery.vicinity') }}">Vicinity Delivery</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{{ route('user.deliver.track') }}">Track Delivery</a>
+              <a class="nav-link" href="{{ route('user.delivery.track') }}">Track Delivery</a>
             </li>
           </ul>
         </div>

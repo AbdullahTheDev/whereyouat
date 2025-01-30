@@ -7,5 +7,11 @@ use Illuminate\Http\Request;
 
 class DeliveryController extends Controller
 {
-    //
+    function distanceDelivery() {
+        return view('generalUsers.delivery.distance');
+    }
+
+    function vicinityDelivery() {
+        return view('generalUsers.delivery.vicinity');
+    }
 }
