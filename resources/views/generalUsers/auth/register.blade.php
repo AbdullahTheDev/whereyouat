@@ -1,4 +1,4 @@
-@extends('drivers.auth.app')
+@extends('generalUsers.auth.app')
 
 @section('content')
     <div class="container-scroller">
@@ -14,7 +14,7 @@
                             <h6 class="font-weight-light">Signing up is easy. It only takes a few steps</h6>
                             <form class="pt-3" enctype="multipart/form-data" method="POST" action="{{ route('register') }}">
                                 @csrf
-                                <input type="hidden" name="role" id="role" value="generalUser">
+                                <input type="hidden" name="role" id="role" value="general_user">
                                 <div class="form-group">
                                     <input type="text" class="form-control form-control-lg @error('name') is-invalid @enderror" name="name" id="fullName"
                                         placeholder="Full Name" value="{{ old('name') }}" required>

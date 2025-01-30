@@ -35,6 +35,13 @@ class RegisterController extends Controller
                 'role' => ['required', Rule::in(['driver', 'local_delivery', 'business', 'partner_home', 'general_user'])],
             ]);
 
+            if ($request->role == 'general_user') {
+                $request->validate([
+                    'address' => 'required|string|max:255',
+                    'date_of_birth' => 'required|date',
+                    'terms_approved' => 'required|boolean',
+                ]);
+            }
             DB::beginTransaction();
             // Create user
             $user = User::create([
@@ -43,28 +50,42 @@ class RegisterController extends Controller
                 'phone' => $request->phone,
                 'password' => Hash::make($request->password),
                 'role' => $request->role,
+                'terms_approved' => $request->terms_approved,
             ]);
 
+            $route = '';
             // Store additional information based on role
             switch ($request->role) {
                 case 'driver':
                     $this->registerDriver($request, $user);
+                    $route = 'driver.dashboard';
                     break;
                 case 'local_delivery':
                     $this->registerLocalDelivery($request, $user);
+                    $route = 'local_delivery.dashboard';
                     break;
                 case 'business':
                     $this->registerBusiness($request, $user);
+                    $route = 'business.dashboard';
                     break;
                 case 'partner_home':
                     $this->registerPartnerHome($request, $user);
+                    break;
+                case 'general_user':
+                    UserProfile::create([
+                        'user_id' => $user->id,
+                        'address' => $request->address,
+                        'date_of_birth' => $request->date_of_birth,
+                        'approved_terms' => $request->terms_approved,
+                    ]);
+                    $route = 'user.dashboard';
                     break;
             }
             DB::commit();
 
             // Log in the user automatically after registration
             auth()->login($user);
-            return redirect()->back()->with('success', 'Driver registered successfully!');
+            return redirect()->route($route)->with('success', 'Registration completed successfully!');
         } catch (\Exception $e) {
             DB::rollBack();
             // Error Message
