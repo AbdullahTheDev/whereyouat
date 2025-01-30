@@ -4,35 +4,34 @@
     <div class="main-panel">
         <div class="content-wrapper">
             <div class="page-header">
-                <h3 class="page-title"> Form elements </h3>
-                <nav aria-label="breadcrumb">
+                <h3 class="page-title"> Distance Delivery </h3>
+                {{-- <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="#">Forms</a></li>
                         <li class="breadcrumb-item active" aria-current="page">Form elements</li>
                     </ol>
-                </nav>
+                </nav> --}}
             </div>
             <div class="row">
                 <div class="col-12 grid-margin">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title">Horizontal Two column</h4>
-                            <form class="form-sample">
-                                <p class="card-description"> Personal info </p>
+                            <h4 class="card-title">Have A Package Delivered</h4>
+                            <form id="delivery-form" class="form-sample">
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group row">
-                                            <label class="col-sm-3 col-form-label">First Name</label>
+                                            <label class="col-sm-3 col-form-label">Departure City</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" />
+                                                <input type="text" name="departure_city" class="form-control" required />
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group row">
-                                            <label class="col-sm-3 col-form-label">Last Name</label>
+                                            <label class="col-sm-3 col-form-label">Arrival City</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" />
+                                                <input type="text" name="arrival_city" class="form-control" required />
                                             </div>
                                         </div>
                                     </div>
@@ -40,174 +39,117 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group row">
-                                            <label class="col-sm-3 col-form-label">Gender</label>
+                                            <label class="col-sm-3 col-form-label">Transaction Date</label>
                                             <div class="col-sm-9">
-                                                <select class="form-select">
-                                                    <option>Male</option>
-                                                    <option>Female</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group row">
-                                            <label class="col-sm-3 col-form-label">Date of Birth</label>
-                                            <div class="col-sm-9">
-                                                <input class="form-control" placeholder="dd/mm/yyyy" />
+                                                <input type="date" name="transaction_date" class="form-control"
+                                                    required />
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group row">
-                                            <label class="col-sm-3 col-form-label">Category</label>
-                                            <div class="col-sm-9">
-                                                <select class="form-select">
-                                                    <option>Category1</option>
-                                                    <option>Category2</option>
-                                                    <option>Category3</option>
-                                                    <option>Category4</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group row">
-                                            <label class="col-sm-3 col-form-label">Membership</label>
-                                            <div class="col-sm-4">
-                                                <div class="form-check">
-                                                    <label class="form-check-label">
-                                                        <input type="radio" class="form-check-input"
-                                                            name="membershipRadios" id="membershipRadios1" value=""
-                                                            checked> Free </label>
+                                <div class="row mb-4">
+                                    <div class="col-md-12">
+                                        <label class="col-form-label">Package Details</label>
+                                        <div id="package-container">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <div class="form-group">
+                                                        <select name="package_type[]" class="form-select package-type" required>
+                                                            <option value="mail_envelope">Mail Envelope</option>
+                                                            <option value="parcel_envelope">Parcel Envelope</option>
+                                                            <option value="mini_carton">Mini Carton</option>
+                                                            <option value="other">Other Format</option>
+                                                        </select>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-sm-5">
-                                                <div class="form-check">
-                                                    <label class="form-check-label">
-                                                        <input type="radio" class="form-check-input"
-                                                            name="membershipRadios" id="membershipRadios2"
-                                                            value="option2"> Professional </label>
+                                                <div class="col-6">
+                                                    <div class="form-group">
+                                                        <input type="number" name="package_quantity[]"
+                                                            class="form-control package-quantity" min="1" value="1"
+                                                            required />
+                                                    </div>
                                                 </div>
-                                            </div>
+                                            </div>                                            
                                         </div>
-                                    </div>
-                                </div>
-                                <p class="card-description"> Address </p>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group row">
-                                            <label class="col-sm-3 col-form-label">Address 1</label>
-                                            <div class="col-sm-9">
-                                                <input type="text" class="form-control" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group row">
-                                            <label class="col-sm-3 col-form-label">State</label>
-                                            <div class="col-sm-9">
-                                                <input type="text" class="form-control" />
-                                            </div>
-                                        </div>
+                                        <button type="button" id="add-package" class="btn btn-primary">Add Another
+                                            Package</button>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group row">
-                                            <label class="col-sm-3 col-form-label">Address 2</label>
-                                            <div class="col-sm-9">
-                                                <input type="text" class="form-control" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group row">
-                                            <label class="col-sm-3 col-form-label">Postcode</label>
-                                            <div class="col-sm-9">
-                                                <input type="text" class="form-control" />
-                                            </div>
-                                        </div>
+                                    <div class="col-md-12">
+                                        <label>Delivery Mode</label>
+                                        <select name="delivery_mode" class="form-control" required>
+                                            <option value="direct">Direct to Driver</option>
+                                            <option value="partner">Partner Area</option>
+                                        </select>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group row">
-                                            <label class="col-sm-3 col-form-label">City</label>
-                                            <div class="col-sm-9">
-                                                <input type="text" class="form-control" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group row">
-                                            <label class="col-sm-3 col-form-label">Country</label>
-                                            <div class="col-sm-9">
-                                                <select class="form-select">
-                                                    <option>America</option>
-                                                    <option>Italy</option>
-                                                    <option>Russia</option>
-                                                    <option>Britain</option>
-                                                </select>
-                                            </div>
-                                        </div>
+                                <div class="row mt-3">
+                                    <div class="col-md-12">
+                                        <label>Total Price</label>
+                                        <input type="text" id="total-price" class="form-control" readonly />
                                     </div>
                                 </div>
+                                <button type="submit" class="btn btn-success mt-3">Next</button>
                             </form>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 grid-margin stretch-card">
-                    <div class="card">
-                        <div class="card-body">
-                            <h4 class="card-title">Select 2</h4>
-                            <div class="form-group">
-                                <label>Single select box using select 2</label>
-                                <select class="js-example-basic-single" style="width:100%">
-                                    <option value="AL">Alabama</option>
-                                    <option value="WY">Wyoming</option>
-                                    <option value="AM">America</option>
-                                    <option value="CA">Canada</option>
-                                    <option value="RU">Russia</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label>Multiple select using select 2</label>
-                                <select class="js-example-basic-multiple" multiple="multiple" style="width:100%">
-                                    <option value="AL">Alabama</option>
-                                    <option value="WY">Wyoming</option>
-                                    <option value="AM">America</option>
-                                    <option value="CA">Canada</option>
-                                    <option value="RU">Russia</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 grid-margin stretch-card">
-                    <div class="card">
-                        <div class="card-body">
-                            <h4 class="card-title">Typeahead</h4>
-                            <p class="card-description"> A simple suggestion engine </p>
-                            <div class="form-group row">
-                                <div class="col">
-                                    <label>Basic</label>
-                                    <div id="the-basics">
-                                        <input class="typeahead" type="text" placeholder="States of USA">
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <label>Bloodhound</label>
-                                    <div id="bloodhound">
-                                        <input class="typeahead" type="text" placeholder="States of USA">
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+@endsection
+
+@section('script')
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            function calculatePrice() {
+                let total = 0;
+                let taxRate = 0.13;
+                let basePrices = {
+                    mail_envelope: {
+                        partner: 35,
+                        direct: 30
+                    },
+                    parcel_envelope: {
+                        partner: 40,
+                        direct: 35
+                    },
+                    mini_carton: {
+                        partner: 55,
+                        direct: 50
+                    },
+                    other: {
+                        partner: 75,
+                        direct: 65
+                    }
+                };
+                let deliveryMode = document.querySelector("select[name='delivery_mode']").value;
+                document.querySelectorAll(".package-type").forEach((type, index) => {
+                    let quantity = document.querySelectorAll(".package-quantity")[index].value;
+                    total += basePrices[type.value][deliveryMode] * quantity;
+                });
+                total += total * taxRate;
+                document.getElementById("total-price").value = total.toFixed(2) + " CAD";
+            }
+
+            document.getElementById("add-package").addEventListener("click", function() {
+                let container = document.getElementById("package-container");
+                let newPackage = document.createElement("div");
+                newPackage.classList.add("form-group");
+                newPackage.innerHTML = `
+                <select name="package_type[]" class="form-control package-type" required>
+                    <option value="mail_envelope">Mail Envelope</option>
+                    <option value="parcel_envelope">Parcel Envelope</option>
+                    <option value="mini_carton">Mini Carton</option>
+                    <option value="other">Other Format</option>
+                </select>
+                <input type="number" name="package_quantity[]" class="form-control package-quantity" min="1" value="1" required />
+            `;
+                container.appendChild(newPackage);
+            });
+
+            document.querySelector("#delivery-form").addEventListener("input", calculatePrice);
+        });
+    </script>
 @endsection
