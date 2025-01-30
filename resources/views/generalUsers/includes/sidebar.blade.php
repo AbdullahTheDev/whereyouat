@@ -22,20 +22,20 @@
       </li>
       <li class="nav-item">
         <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
-          <span class="menu-title">Basic UI Elements</span>
+          <span class="menu-title">Delivery</span>
           <i class="menu-arrow"></i>
           <i class="mdi mdi-crosshairs-gps menu-icon"></i>
         </a>
         <div class="collapse" id="ui-basic">
           <ul class="nav flex-column sub-menu">
             <li class="nav-item">
-              <a class="nav-link" href="pages/ui-features/buttons.html">Buttons</a>
+              <a class="nav-link" href="{{ route('user.deliver.distance') }}">Distance Delivery</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="pages/ui-features/dropdowns.html">Dropdowns</a>
+              <a class="nav-link" href="{{ route('user.deliver.vicinity') }}">Vicinity Delivery</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="pages/ui-features/typography.html">Typography</a>
+              <a class="nav-link" href="{{ route('user.deliver.track') }}">Track Delivery</a>
             </li>
           </ul>
         </div>

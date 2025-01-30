@@ -9,6 +9,7 @@ use App\Http\Controllers\Driver\DriverController;
 use App\Http\Controllers\Driver\TripController;
 use App\Http\Controllers\GeneralController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\User\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -42,7 +43,7 @@ Route::prefix('user')->group(function () {
         return view('generalUsers.auth.register');
     })->name('user.register');
 
-    Route::get('/dashboard', [DriverController::class, 'index'])->name('user.dashboard');
+    Route::get('/dashboard', [UserController::class, 'index'])->name('user.dashboard');
 
 });
 
