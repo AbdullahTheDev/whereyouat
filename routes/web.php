@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Driver\DriverController;
+use App\Http\Controllers\Driver\TripController;
 use App\Http\Controllers\GeneralController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -27,8 +28,13 @@ Route::prefix('driver')->group(function () {
     Route::get('/register', function () {
         return view('drivers.auth.register');
     })->name('driver.register');
-    
+
     Route::get('/dashboard', [DriverController::class, 'index'])->name('driver.dashboard');
+
+    Route::prefix('trips')->group(function () {
+        Route::get('/announce', [TripController::class, 'announce'])->name('driver.trips.announce');
+        Route::get('/history', [TripController::class, 'history'])->name('driver.trips.history');
+    });
 });
 
 
