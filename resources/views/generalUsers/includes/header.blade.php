@@ -21,6 +21,7 @@
                 </div>
             </form>
         </div>
+        <div id="google_translate_element"></div>
         <ul class="navbar-nav navbar-nav-right">
             <li class="nav-item nav-profile dropdown">
                 <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-bs-toggle="dropdown"

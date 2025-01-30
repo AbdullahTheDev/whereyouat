@@ -25,6 +25,36 @@
     <!-- Toastr CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
+    <style>
+        /* Custom styles for the Google Translate widget */
+        #google_translate_element {
+            display: inline-block;
+            margin-top: 20px;
+            /* Add your custom styles here */
+        }
+
+        .goog-te-combo {
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 5px;
+        }
+
+        .goog-logo-link {
+            display: none !important;
+        }
+
+        .goog-te-gadget {
+            color: transparent !important;
+        }
+
+        body {
+            top: 0 !important;
+        }
+
+        #google_translate_element a {
+            display: none;
+        }
+    </style>
 </head>
 
 <body>
@@ -93,6 +123,8 @@
     </script>
 
     @yield('script')
+
+    @include('layouts.translation')
 </body>
 
 </html>

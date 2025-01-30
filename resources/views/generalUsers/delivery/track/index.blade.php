@@ -23,18 +23,20 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td> 1 </td>
-                                        <td> Herman Beck </td>
-                                        <td>
-                                            <div class="progress">
-                                                <div class="progress-bar bg-success" role="progressbar" style="width: 25%"
-                                                    aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                            </div>
-                                        </td>
-                                        <td> $ 77.99 </td>
-                                        <td> May 15, 2015 </td>
-                                    </tr>
+                                    @foreach ($deliveries as $key => $delivery)
+                                        <tr>
+                                            <td> {{ $key + 1 }} </td>
+                                            <td> {{ $delivery->transaction_date }} </td>
+                                            <td>
+                                                {{ $delivery->departure_city }}
+                                            </td>
+                                            <td>
+                                                {{ $delivery->arrival_city }}
+                                            </td>
+                                            <td> $ {{ number_format($delivery->amount) }} </td>
+                                            <td> {{ $delivery->status }} </td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

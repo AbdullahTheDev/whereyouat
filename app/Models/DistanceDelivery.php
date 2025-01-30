@@ -22,4 +22,9 @@ class DistanceDelivery extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function packageDetails()
+    {
+        return $this->hasMany(PackageDetail::class);
+    }
 }
