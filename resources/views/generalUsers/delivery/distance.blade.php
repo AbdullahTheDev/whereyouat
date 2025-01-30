@@ -17,7 +17,8 @@
                     <div class="card">
                         <div class="card-body">
                             <h4 class="card-title">Have A Package Delivered</h4>
-                            <form id="delivery-form" class="form-sample">
+                            <form action="{{ route('user.delivery.distance.store') }}" method="POST" id="delivery-form" class="form-sample">
+                                @csrf
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group row">

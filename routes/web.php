@@ -26,7 +26,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [GeneralController::class, 'index'])->name('main');
 
-Route::prefix('driver')->group(function () {
+Route::prefix('driver')->middleware('auth')->group(function () {
     Route::get('/register', function () {
         return view('drivers.auth.register');
     })->name('driver.register');
@@ -39,7 +39,8 @@ Route::prefix('driver')->group(function () {
     });
 });
 
-Route::prefix('user')->group(function () {
+
+Route::prefix('user')->middleware('auth')->group(function () {
     Route::get('/register', function () {
         return view('generalUsers.auth.register');
     })->name('user.register');
@@ -50,13 +51,16 @@ Route::prefix('user')->group(function () {
         Route::get('/distance', [DeliveryController::class, 'distanceDelivery'])->name('user.delivery.distance');
         Route::get('/vicinity', [DeliveryController::class, 'vicinityDelivery'])->name('user.delivery.vicinity');
         Route::get('/track', [DeliveryController::class, 'trackDelivery'])->name('user.delivery.track');
+
+        Route::post('/distance', [DeliveryController::class, 'distanceDeliveryStore'])->name('user.delivery.distance.store');
+
     });
 });
 
 
 Route::post('/register', [RegisterController::class, 'register'])->name('register');
 
-Route::prefix('admin')->group(function () {
+Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
 });
 
