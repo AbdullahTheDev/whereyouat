@@ -55,8 +55,8 @@ Route::prefix('user')->middleware('auth')->group(function () {
 
         Route::post('/distance', [DeliveryController::class, 'distanceDeliveryStore'])->name('user.delivery.distance.store');
 
-        Route::get('distance/stripe', [StripeDeliveryController::class, 'distanceDeliveryStripe'])->name('user.delivery.distance.stripe');
-        Route::post('distance/stripe', [StripeDeliveryController::class, 'stripePost'])->name('user.delivery.distance.stripe.post');
+        Route::get('distance/stripe/{id?}', [StripeDeliveryController::class, 'distanceDeliveryStripe'])->name('user.delivery.distance.stripe');
+        Route::post('distance/stripe', [StripeDeliveryController::class, 'distanceDeliveryStripePost'])->name('user.delivery.distance.stripe.post');
 
     });
 });

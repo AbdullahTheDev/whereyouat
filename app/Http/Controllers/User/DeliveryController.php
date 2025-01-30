@@ -55,8 +55,9 @@ class DeliveryController extends Controller
                 ]);
             }
 
+            session()->put('distance_delivery', $delivery->id);
 
-            return redirect()->route('user.delivery.distance.stripe');
+            return redirect()->route('user.delivery.distance.stripe', $delivery->id);
 
         }catch(Exception $e) {
             return redirect()->back()->with('error', $e->getMessage());
