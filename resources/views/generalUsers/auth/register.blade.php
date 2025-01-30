@@ -83,7 +83,7 @@
                                 <div class="mb-4">
                                     <div class="form-check">
                                         <label class="form-check-label text-muted">
-                                            <input type="checkbox" class="form-check-input" name="terms_approved" required> I agree to all Terms &
+                                            <input type="checkbox" value="1" class="form-check-input" name="terms_approved" required> I agree to all Terms &
                                             Conditions
                                         </label>
                                     </div>
