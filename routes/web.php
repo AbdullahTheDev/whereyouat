@@ -9,6 +9,7 @@ use App\Http\Controllers\Driver\DriverController;
 use App\Http\Controllers\Driver\TripController;
 use App\Http\Controllers\GeneralController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\User\DeliveryController;
 use App\Http\Controllers\User\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -45,6 +46,10 @@ Route::prefix('user')->group(function () {
 
     Route::get('/dashboard', [UserController::class, 'index'])->name('user.dashboard');
 
+    Route::prefix('delivery')->group(function () {
+        Route::get('/distance', [DeliveryController::class, 'distanceDelivery'])->name('user.delivery.distance');
+        Route::get('/vicinity', [DeliveryController::class, 'vicinityDelivery'])->name('user.delivery.vicinity');
+    });
 });
 
 
