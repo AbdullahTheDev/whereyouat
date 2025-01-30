@@ -1,0 +1,25 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class DistanceDelivery extends Model
+{
+    use HasFactory;
+
+    protected $fillable = [
+        'user_id',
+        'departure_city',
+        'arrival_city',
+        'transaction_date',
+        'delivery_mode',
+        'total_price'
+    ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+}
