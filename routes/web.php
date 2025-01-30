@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Driver\DriverController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -19,19 +21,21 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('drivers.auth.register');
+    return view('welcome');
 });
 
-Route::get('/driver/dashboard', function () {
-    return view('drivers.index');
-})->name('driver.dashboard');
+Route::prefix('driver')->group(function () {
+    Route::get('/register', function () {
+        return view('drivers.auth.register');
+    });
+    Route::get('/dashboard', [DriverController::class, 'index'])->name('driver.dashboard');
+});
+
 
 Route::post('/register', [RegisterController::class, 'register'])->name('register');
 
 Route::prefix('admin')->group(function () {
-    Route::get('/dashboard', function () {
-        return view('admin.index');
-    })->name('admin.dashboard');
+    Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
 });
 
 
