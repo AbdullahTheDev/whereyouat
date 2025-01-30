@@ -37,6 +37,15 @@ Route::prefix('driver')->group(function () {
     });
 });
 
+Route::prefix('user')->group(function () {
+    Route::get('/register', function () {
+        return view('user.auth.register');
+    })->name('user.register');
+
+    Route::get('/dashboard', [DriverController::class, 'index'])->name('user.dashboard');
+
+});
+
 
 Route::post('/register', [RegisterController::class, 'register'])->name('register');
 

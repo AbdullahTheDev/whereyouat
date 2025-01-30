@@ -27,9 +27,9 @@
                     <a class="dropdown-item" href="{{ route('driver.register') }}">
                         <i class="mdi mdi-cached me-2 text-success"></i> Register as Driver</a>
                     <div class="dropdown-divider"></div>
-                    {{-- <a class="dropdown-item" href="{{ route('user.register') }}">
+                    <a class="dropdown-item" href="{{ route('user.register') }}">
                         <i class="mdi mdi-logout me-2 text-primary"></i> Register as User
-                    </a> --}}
+                    </a>
                 </div>
             </li>
             
