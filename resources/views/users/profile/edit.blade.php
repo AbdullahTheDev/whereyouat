@@ -8,7 +8,7 @@
             </div>
             <div class="row">
                 <div class="col-12">
-                    <form action="{{ route('user.profile.update') }}" method="POST" class="forms-sample" enctype="multipart/form-data">
+                    <form autocomplete="off" action="{{ route('user.profile.update') }}" method="POST" class="forms-sample" enctype="multipart/form-data">
                         @csrf
                         <div class="card">
                             <div class="card-body">
@@ -30,23 +30,23 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="current_password">Current Password</label>
-                                    <input type="password" class="form-control" name="current_password" value="" id="current_password"
+                                    <input type="password" class="form-control" autocomplete="new-password" name="current_password" value="" id="current_password"
                                         placeholder="Password">
                                 </div>
                                 <div class="form-group">
                                     <label for="password">New Password</label>
-                                    <input type="password" class="form-control" name="password" value="" id="password"
+                                    <input type="password" class="form-control" autocomplete="new-password" name="password" value="" id="password"
                                         placeholder="Password">
                                 </div>
                                 <div class="form-group">
                                     <label for="confirm_password">Confirm Password</label>
-                                    <input type="password" class="form-control" name="confirm_password" value="" id="confirm_password"
+                                    <input type="password" class="form-control" autocomplete="new-password" name="confirm_password" value="" id="confirm_password"
                                         placeholder="Password">
                                 </div>
                                 <button type="submit" class="btn btn-gradient-primary me-2">Update</button>
                             </div>
                         </div>
-                        <div class="card">
+                        <div class="card mt-4">
                             <div class="card-body">
                                 <h4 class="card-title">Profile Information</h4>
 
