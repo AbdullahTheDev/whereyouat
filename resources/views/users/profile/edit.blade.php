@@ -53,7 +53,7 @@
                                     <label for="profile_photo">Profile Photo</label>
                                     <div class="profile-photo-preview mb-2">
                                         <img id="profileImage"
-                                            src="{{ $user->profile_photo ? asset('users_profile/' . $user->profile_photo) : asset('users_profile/default-profile.png') }}"
+                                            src="{{ $userProfile->profile_photo ? asset('users_profile/' . $userProfile->profile_photo) : asset('users_profile/default-profile.png') }}"
                                             alt="Profile Photo" class="img-fluid rounded-circle" width="120">
                                     </div>
                                     <input type="file" class="form-control" id="profile_photo" name="profile_photo"
@@ -62,12 +62,12 @@
 
                                 <div class="form-group">
                                     <label for="address">Address</label>
-                                    <input type="text" class="form-control" value="{{ $user->address }}" id="address"
+                                    <input type="text" class="form-control" value="{{ $userProfile->address }}" id="address"
                                         placeholder="Address">
                                 </div>
                                 <div class="form-group">
                                     <label for="date_of_birth">Date Of Birth</label>
-                                    <input type="date" class="form-control" value="{{ $user->date_of_birth }}"
+                                    <input type="date" class="form-control" value="{{ $userProfile->date_of_birth }}"
                                         id="date_of_birth" placeholder="Date Of Birth">
                                 </div>
                                 <button type="submit" class="btn btn-gradient-primary me-2">Update</button>
