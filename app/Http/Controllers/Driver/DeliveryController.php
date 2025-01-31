@@ -80,6 +80,7 @@ class DeliveryController extends Controller
 
         Notification::create([
             'user_id' => $delivery->user_id,
+            'type' => 'Distance Delivery',
             'title' => 'Delivery Accepted',
             'message' => 'Your delivery has been accepted',
             'status' => 1

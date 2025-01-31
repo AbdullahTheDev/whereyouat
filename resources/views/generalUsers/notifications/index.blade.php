@@ -1,4 +1,4 @@
-@extends('user.layouts.app')
+@extends('generalUsers.layouts.app')
 
 @section('content')
     <div class="container-fluid page-body-wrapper">
