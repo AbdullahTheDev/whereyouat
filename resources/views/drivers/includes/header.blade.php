@@ -117,7 +117,9 @@
                         <div class="dropdown-divider"></div>
                     @endforeach
                     @if ($notifications->count() > 0)
-                        <h6 class="p-3 mb-0 text-center">See all notifications</h6>
+                        <h6 class="p-3 mb-0 text-center">
+                            <a href="{{ route('driver.notifications') }}">See all notifications</a>
+                        </h6>
                     @else
                         <h6 class="p-3 mb-0 text-center">No notifications</h6>
                     @endif

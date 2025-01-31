@@ -51,6 +51,8 @@ Route::prefix('driver')->middleware('auth')->group(function () {
         Route::post('/distance/status', [DriverDeliveryController::class, 'distaneDeliveryStatus'])->name('driver.delivery.distance.status');
 
     });
+
+    Route::get('/notifications', function () { return view('drivers.notifications'); })->name('driver.notifications');
 });
 
 
