@@ -7,7 +7,7 @@
                 <h3 class="page-title"> Track Deliveries </h3>
             </div>
             <div class="row">
-                <div class="col-lg-12 grid-margin stretch-card">
+                <div class="col-12 col-md-6 grid-margin stretch-card">
                     @foreach ($activeDeliveries as $delivery)
                         <div class="card">
                             <div class="card-body">
@@ -22,28 +22,33 @@
                                         <span>{{ \Carbon\Carbon::parse($delivery->transation_date)->format('Y-m-d h:i A') }}</span>
                                     </div>
                                 </div>
-                                @foreach ($delivery->packageDetails as $packageDetail)
-                                    <div class="d-flex mt-5 align-items-top">
-                                        <img src="{{ asset('assets/images/faces/face3.jpg') }}"
-                                            class="img-sm rounded-circle me-3" alt="image">
-                                        <div class="mb-0 flex-grow">
-                                            <div>
-                                                <h5 class="me-2 mb-2">{{ strtoupper(str_replace('_', ' ', $packageDetail->package_type)) }}</h5>
-                                                <span>
-                                                    @if($packageDetail->package_type == 'mini_carton' || $packageDetail->package_type == 'other')
-                                                    Weight: {{ $packageDetail->qty }} KG
-                                                    @else
-                                                    Quantiry: {{ $packageDetail->qty }}
-                                                    @endif
-                                                </span>
+                                <div class="mb-2 mt-3">
+                                    <h4>Package Details</h4>
+                                </div>
+                                    @foreach ($delivery->packageDetails as $packageDetail)
+                                            <div class="d-flex mt-3 align-items-top px-4">
+                                                <div class="mb-0 flex-grow">
+                                                    <div class="d-flex">
+                                                        <h6 class="me-2 mb-2">
+                                                            {{ strtoupper(str_replace('_', ' ', $packageDetail->package_type)) }}
+                                                        </h6>
+                                                        <span class="text-muted font-weight-light">
+                                                            @if ($packageDetail->package_type == 'mini_carton' || $packageDetail->package_type == 'other')
+                                                                Weight: {{ $packageDetail->qty }} KG
+                                                            @else
+                                                                Quantity: {{ $packageDetail->qty }}
+                                                            @endif
+                                                        </span>
+                                                    </div>
+                                                    <p class="mb-0 font-weight-light">{{ $packageDetail->description }}</p>
+                                                </div>
                                             </div>
-                                            <p class="mb-0 font-weight-light">{{ $packageDetail->description }}</p>
-                                        </div>
-                                        <div class="ms-auto">
-                                            <i class="mdi mdi-heart-outline text-muted"></i>
-                                        </div>
+                                    @endforeach
+                                    <div class="mt-4 mb-0">
+                                        <form action="{{ route('driver.delivery.distance') }}" method="post">
+                                            <button class="btn btn-primary">Accept for $ {{ number_format($delivery->total_price, 2) }}</button>
+                                        </form>
                                     </div>
-                                @endforeach
                             </div>
                         </div>
                     @endforeach

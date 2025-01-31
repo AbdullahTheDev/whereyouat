@@ -36,6 +36,7 @@ class DeliveryController extends Controller
                 'total_price' => 'required',
                 'package_type' => 'required',
                 'package_quantity' => 'required',
+                'package_description' => 'required',
             ]);
 
             $delivery = DistanceDelivery::create([
@@ -52,6 +53,7 @@ class DeliveryController extends Controller
                     'delivery_id' => $delivery->id,
                     'package_type' => $value,
                     'qty' => $request->package_quantity[$key],
+                    'description' => $request->package_description[$key],
                 ]);
             }
 

@@ -15,6 +15,7 @@ class PackageDetail extends Model
         'delivery_id',
         'package_type',
         'qty',
+        'description'
     ];
 
     public function delivery()
