@@ -63,11 +63,11 @@
 
 <body>
 
-    @include('generalUsers.includes.header')
+    @include('users.includes.header')
 
     <div class="container-fluid page-body-wrapper">
 
-        @include('generalUsers.includes.sidebar')
+        @include('users.includes.sidebar')
 
 
         @yield('content')

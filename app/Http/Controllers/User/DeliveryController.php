@@ -12,17 +12,17 @@ use Illuminate\Support\Facades\Auth;
 class DeliveryController extends Controller
 {
     function distanceDelivery() {
-        return view('generalUsers.delivery.distance');
+        return view('users.delivery.distance');
     }
 
     function vicinityDelivery() {
-        return view('generalUsers.delivery.vicinity');
+        return view('users.delivery.vicinity');
     }
 
     function trackDelivery() {
         $deliveries = DistanceDelivery::where('user_id', Auth::id())->latest()->get();
 
-        return view('generalUsers.delivery.track.index', compact('deliveries'));
+        return view('users.delivery.track.index', compact('deliveries'));
     }
 
 

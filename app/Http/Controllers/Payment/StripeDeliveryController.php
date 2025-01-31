@@ -21,13 +21,13 @@ class StripeDeliveryController extends Controller
         if ($id) {
             $delivery = DistanceDelivery::find($id);
             if ($delivery == null) {
-                return redirect()->route('generalUsers.delivery.track')->with('error', 'Delivery not found');
+                return redirect()->route('users.delivery.track')->with('error', 'Delivery not found');
             }
             if ($delivery->user_id != Auth::id()) {
-                return redirect()->route('generalUsers.delivery.track')->with('error', 'Delivery not found');
+                return redirect()->route('users.delivery.track')->with('error', 'Delivery not found');
             }
         }
-        return view('generalUsers.delivery.payment.distance_delivery', compact('delivery'));
+        return view('users.delivery.payment.distance_delivery', compact('delivery'));
     }
 
     public function distanceDeliveryStripePost(Request $request)
@@ -39,10 +39,10 @@ class StripeDeliveryController extends Controller
         if ($id) {
             $delivery = DistanceDelivery::find($id);
             if ($delivery == null) {
-                return redirect()->route('generalUsers.delivery.track')->with('error', 'Delivery not found');
+                return redirect()->route('users.delivery.track')->with('error', 'Delivery not found');
             }
             if ($delivery->user_id != Auth::id()) {
-                return redirect()->route('generalUsers.delivery.track')->with('error', 'Delivery not found');
+                return redirect()->route('users.delivery.track')->with('error', 'Delivery not found');
             }
         }
         try {

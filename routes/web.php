@@ -59,7 +59,7 @@ Route::prefix('driver')->middleware('auth')->group(function () {
 
 Route::prefix('user')->middleware('auth')->group(function () {
     Route::get('/register', function () {
-        return view('generalUsers.auth.register');
+        return view('users.auth.register');
     })->name('user.register');
 
     Route::get('/dashboard', [UserController::class, 'index'])->name('user.dashboard');
@@ -75,7 +75,7 @@ Route::prefix('user')->middleware('auth')->group(function () {
         Route::post('distance/stripe', [StripeDeliveryController::class, 'distanceDeliveryStripePost'])->name('user.delivery.distance.stripe.post');
 
     });
-    Route::get('/notifications', function () { return view('generalUsers.notifications.index'); })->name('user.notifications');
+    Route::get('/notifications', function () { return view('users.notifications.index'); })->name('user.notifications');
 });
 
 
