@@ -37,7 +37,8 @@
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">Departure Address</label>
                                             <div class="col-sm-9">
-                                                <input type="text" name="departure_address" class="form-control" required />
+                                                <input type="text" name="departure_address" class="form-control"
+                                                    required />
                                             </div>
                                         </div>
                                     </div>
@@ -45,7 +46,8 @@
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">Arrival Address</label>
                                             <div class="col-sm-9">
-                                                <input type="text" name="arrival_address" class="form-control" required />
+                                                <input type="text" name="arrival_address" class="form-control"
+                                                    required />
                                             </div>
                                         </div>
                                     </div>
@@ -130,11 +132,19 @@
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             function calculatePrice() {
-                let total = 7;
+                let total = 0;
+                let price = 7;
                 let taxRate = 0.13;
 
-                document.getElementById("fixed-price-show").innerHTML = "$" + (total * 100).toFixed(2);
+
+                document.querySelectorAll(".package-type").forEach((type, index) => {
+                    let quantity = document.querySelectorAll(".package-quantity")[index].value;
+
+                    total += price * quantity;
+                    
+                });
                 
+                document.getElementById("fixed-price-show").innerHTML = "$" + total.toFixed(2);
                 total += total * taxRate;
                 document.getElementById("total-price-show").value = total.toFixed(2) + " CAD";
                 document.getElementById("total-price").value = total.toFixed(2);
