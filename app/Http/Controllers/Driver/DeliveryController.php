@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Driver;
 use App\Http\Controllers\Controller;
 use App\Models\DistanceDelivery;
 use App\Models\Driver;
+use App\Models\Notification;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -59,6 +60,13 @@ class DeliveryController extends Controller
             $delivery->accepted = 1;
             $delivery->driver_id = Auth::id();
             $delivery->save();
+
+            Notification::create([
+                'user_id' => $delivery->user_id,
+                'title' => 'Delivery Accepted',
+                'message' => 'Your delivery has been accepted',
+                'status' => 1
+            ]);
 
             return redirect()->route('driver.delivery.distance')->with('success', 'Delivery accepted successfully');
         } catch (Exception $e) {

@@ -4,7 +4,7 @@
     <div class="main-panel">
         <div class="content-wrapper">
             <div class="page-header">
-                <h3 class="page-title"> Track Deliveries </h3>
+                <h3 class="page-title"> Available Deliveries </h3>
             </div>
             <div class="row">
                 <div class="col-12 col-md-6 grid-margin stretch-card">
@@ -54,9 +54,16 @@
                             </div>
                         </div>
                     @endforeach
-
                 </div>
             </div>
+            @if($activeDeliveries->count() == 0)
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">No Active Deliveries</h4>
+                        <p class="card-text">There are no active deliveries.</p>
+                    </div>
+                </div>
+            @endif
         </div>
     </div>
 @endsection
