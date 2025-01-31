@@ -20,6 +20,7 @@
                                         <th> Arrival City </th>
                                         <th> Amount </th>
                                         <th> Status </th>
+                                        <th> Rider Status </th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -41,6 +42,15 @@
                                                 <label class="badge badge-gradient-info">ON THE WAY</label>
                                                 @else
                                                 <label class="badge badge-gradient-danger">REJECTED</label>
+                                                @endif
+                                            </td>
+                                            <td>
+                                                @if ($delivery->accepted == 1) 
+                                                <label class="badge badge-gradient-info">ACCEPTED</label>
+                                                @elseif ($delivery->status == 2) 
+                                                <label class="badge badge-gradient-success">DELIVERED</label>
+                                                @else
+                                                <label class="badge badge-gradient-secondary">OPEN</label>
                                                 @endif
                                             </td>
                                         </tr>
