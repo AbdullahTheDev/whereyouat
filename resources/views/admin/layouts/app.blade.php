@@ -93,6 +93,12 @@
             @endif
         });
     </script>
+
+    @yield('script')
+
+    @include('layouts.translation')
+
+    @include('layouts.notifications')
 </body>
 
 </html>
