@@ -50,6 +50,9 @@
             <li class="nav-item">
               <a class="nav-link" href="{{ route('driver.delivery.vicinity') }}">Vicinity Delivery</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ route('driver.delivery.distance.your') }}">My Deliveries</a>
+            </li>
           </ul>
         </div>
       </li>

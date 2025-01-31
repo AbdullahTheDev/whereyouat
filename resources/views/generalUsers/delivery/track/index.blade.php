@@ -37,9 +37,9 @@
                                             <td> $ {{ number_format($delivery->total_price, 2) }} </td>
                                             <td>
                                                 @if ($delivery->status == 1) 
-                                                <label class="badge badge-gradient-success">DONE</label>
-                                                @elseif ($delivery->status == 2) 
                                                 <label class="badge badge-gradient-info">ON THE WAY</label>
+                                                @elseif ($delivery->status == 2) 
+                                                <label class="badge badge-gradient-success">DONE</label>
                                                 @else
                                                 <label class="badge badge-gradient-danger">REJECTED</label>
                                                 @endif
