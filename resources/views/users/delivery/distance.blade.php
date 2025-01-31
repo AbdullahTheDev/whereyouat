@@ -61,6 +61,15 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <label>Delivery Mode</label>
+                                        <select name="delivery_mode" id="delivery-mode" class="form-select" required>
+                                            <option value="direct">Direct to Driver</option>
+                                            <option value="partner">Partner Area</option>
+                                        </select>
+                                    </div>
+                                </div>
                                 <div class="row mb-4">
                                     <div class="col-md-12">
                                         <label class="col-form-label">Package Details</label>
@@ -87,8 +96,8 @@
                                                 <div class="col-12">
                                                     <div class="form-group">
                                                         <input type="text" name="package_description[]"
-                                                            class="form-control"
-                                                            placeholder="Package Description" required />
+                                                            class="form-control" placeholder="Package Description"
+                                                            required />
                                                     </div>
                                                 </div>
                                             </div>
@@ -97,17 +106,27 @@
                                             Package</button>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <label>Delivery Mode</label>
-                                        <select name="delivery_mode" class="form-select" required>
-                                            <option value="direct">Direct to Driver</option>
-                                            <option value="partner">Partner Area</option>
-                                        </select>
-                                    </div>
-                                </div>
+
                                 <div class="row mt-3">
                                     <div class="col-md-12">
+                                        <div>
+                                            <p>
+                                                <span>Online Booking</span>
+                                                <span id="online-booking-price-show">$0.00</span>
+                                            </p>
+                                            <p>
+                                                <span>Fixed Price</span>
+                                                <span id="fixed-price-show">$0.00</span>
+                                            </p>
+                                            <p>
+                                                <span>Carrier Price</span>
+                                                <span id="carrier-booking-price-show">$0.00</span>
+                                            </p>
+                                            <p>
+                                                <span>Tax</span>
+                                                <span id="tax-show">%0</span>
+                                            </p>
+                                        </div>
                                         <label>Total Price</label>
                                         <input type="text" id="total-price-show" class="form-control" readonly />
                                         <input type="hidden" name="total_price" id="total-price" class="form-control"
@@ -130,32 +149,78 @@
             function calculatePrice() {
                 let total = 0;
                 let taxRate = 0.13;
-                let basePrices = {
+                let basePricesDirect = {
                     mail_envelope: {
-                        partner: 35,
-                        direct: 30
+                        online: 15,
+                        carrier: 15,
+                        total: 30
                     },
                     parcel_envelope: {
-                        partner: 40,
-                        direct: 35
+                        online: 15,
+                        carrier: 15,
+                        total: 30
                     },
                     mini_carton: {
-                        partner: 55,
-                        direct: 50
+                        online: 25,
+                        carrier: 40,
+                        total: 65
                     },
                     other: {
-                        partner: 75,
-                        direct: 65
+                        online: 25,
+                        carrier: 40,
+                        total: 65
+                    }
+                };
+                let basePricesPartner = {
+                    mail_envelope: {
+                        online: 10,
+                        fixed: 5,
+                        carrier: 20,
+                        total: 35
+                    },
+                    parcel_envelope: {
+                        online: 10,
+                        fixed: 5,
+                        carrier: 20,
+                        total: 35
+                    },
+                    mini_carton: {
+                        online: 20,
+                        fixed: 5,
+                        carrier: 30,
+                        total: 55
+                    },
+                    other: {
+                        online: 10,
+                        fixed: 5,
+                        carrier: 20,
+                        total: 35
                     }
                 };
                 let deliveryMode = document.querySelector("select[name='delivery_mode']").value;
                 document.querySelectorAll(".package-type").forEach((type, index) => {
                     let quantity = document.querySelectorAll(".package-quantity")[index].value;
-                    total += basePrices[type.value][deliveryMode] * quantity;
+
+                    if (deliveryMode == 'partner') {
+                        total += basePricesPartner[type.value]['total'] * quantity;
+
+                        document.getElementById("online-booking-price-show").innerHTML = "$" + (basePricesPartner[type.value]['online'] * quantity).toFixed(2);
+                        document.getElementById("fixed-price-show").innerHTML = "$" + (basePricesPartner[type.value]['fixed'] * quantity).toFixed(2);
+                        document.getElementById("carrier-booking-price-show").innerHTML = "$" + (basePricesPartner[type.value]['carrier'] * quantity).toFixed(2);
+                    } else {
+                        total += basePricesDirect[type.value]['total'] * quantity;
+
+                        document.getElementById("online-booking-price-show").innerHTML = "$" + (basePricesPartner[type.value]['online'] * quantity).toFixed(2);
+                        document.getElementById("carrier-booking-price-show").innerHTML = "$" + (basePricesPartner[type.value]['carrier'] * quantity).toFixed(2);
+                    }
                 });
                 total += total * taxRate;
                 document.getElementById("total-price-show").value = total.toFixed(2) + " CAD";
                 document.getElementById("total-price").value = total.toFixed(2);
+
+                document.getElementById("tax-show").innerHTML = "%" + (taxRate * 100).toFixed(2);
+
+
             }
 
             document.getElementById("add-package").addEventListener("click", function() {
