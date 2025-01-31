@@ -94,58 +94,45 @@
                 <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#"
                     data-bs-toggle="dropdown">
                     <i class="mdi mdi-bell-outline"></i>
-                    <span class="count-symbol bg-danger"></span>
+                    @if ($notifications->count() > 0)
+                        <span class="count-symbol bg-danger"></span>
+                    @endif
                 </a>
                 <div class="dropdown-menu dropdown-menu-end navbar-dropdown preview-list"
                     aria-labelledby="notificationDropdown">
                     <h6 class="p-3 mb-0">Notifications</h6>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item preview-item">
-                        <div class="preview-thumbnail">
-                            <div class="preview-icon bg-success">
-                                <i class="mdi mdi-calendar"></i>
+                    @foreach ($notifications as $notification)
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item preview-item">
+                            {{-- <div class="preview-thumbnail">
+                                <div class="preview-icon bg-success">
+                                    <i class="mdi mdi-calendar"></i>
+                                </div>
+                            </div> --}}
+                            <div
+                                class="preview-item-content d-flex align-items-start flex-column justify-content-center">
+                                <h6 class="preview-subject font-weight-normal mb-1">{{ $notification->title }}</h6>
+                                <p class="text-gray ellipsis mb-0"> {{ $notification->message }} </p>
                             </div>
-                        </div>
-                        <div class="preview-item-content d-flex align-items-start flex-column justify-content-center">
-                            <h6 class="preview-subject font-weight-normal mb-1">Event today</h6>
-                            <p class="text-gray ellipsis mb-0"> Just a reminder that you have an event today </p>
-                        </div>
-                    </a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item preview-item">
-                        <div class="preview-thumbnail">
-                            <div class="preview-icon bg-warning">
-                                <i class="mdi mdi-cog"></i>
-                            </div>
-                        </div>
-                        <div class="preview-item-content d-flex align-items-start flex-column justify-content-center">
-                            <h6 class="preview-subject font-weight-normal mb-1">Settings</h6>
-                            <p class="text-gray ellipsis mb-0"> Update dashboard </p>
-                        </div>
-                    </a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item preview-item">
-                        <div class="preview-thumbnail">
-                            <div class="preview-icon bg-info">
-                                <i class="mdi mdi-link-variant"></i>
-                            </div>
-                        </div>
-                        <div class="preview-item-content d-flex align-items-start flex-column justify-content-center">
-                            <h6 class="preview-subject font-weight-normal mb-1">Launch Admin</h6>
-                            <p class="text-gray ellipsis mb-0"> New admin wow! </p>
-                        </div>
-                    </a>
-                    <div class="dropdown-divider"></div>
-                    <h6 class="p-3 mb-0 text-center">See all notifications</h6>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                    @endforeach
+                    @if ($notifications->count() > 0)
+                        <h6 class="p-3 mb-0 text-center">
+                            <a href="{{ route('user.notifications') }}">See all notifications</a>
+                        </h6>
+                    @else
+                        <h6 class="p-3 mb-0 text-center">No notifications</h6>
+                    @endif
                 </div>
             </li>
             <li class="nav-item nav-logout d-none d-lg-block">
-              <form action="{{ route('logout') }}" method="post">
-                @csrf
-                <button type="submit" class="nav-link">
-                    <i class="mdi mdi-power"></i>
-                </button>
-              </form>
+                <form action="{{ route('logout') }}" method="post">
+                    @csrf
+                    <button type="submit" class="nav-link">
+                        <i class="mdi mdi-power"></i>
+                    </button>
+                </form>
             </li>
             <li class="nav-item nav-settings d-none d-lg-block">
                 <a class="nav-link" href="#">
