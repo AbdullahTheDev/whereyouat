@@ -13,6 +13,7 @@ class UserProfile extends Model
         'user_id',
         'address',
         'date_of_birth',
-        'approved_terms'
+        'approved_terms',
+        'profile_photo'
     ];
 }
