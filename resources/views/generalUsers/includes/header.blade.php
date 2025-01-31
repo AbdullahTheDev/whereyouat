@@ -103,7 +103,7 @@
                     <h6 class="p-3 mb-0">Notifications</h6>
                     @foreach ($notifications as $notification)
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item preview-item">
+                        <a class="dropdown-item preview-item" style="position: relative;">
                             {{-- <div class="preview-thumbnail">
                                 <div class="preview-icon bg-success">
                                     <i class="mdi mdi-calendar"></i>
@@ -114,9 +114,8 @@
                                 <h6 class="preview-subject font-weight-normal mb-1">{{ $notification->title }}</h6>
                                 <p class="text-gray ellipsis mb-0"> {{ $notification->message }} </p>
                             </div>
+                            <button class="mark-as-read" style="position: absolute; top: 5%; right: 1%; border: none; background: none;" data-id="{{ $notification->id }}">✅</button>
                         </a>
-                        <button class="btn btn-sm btn-danger mark-as-read" data-id="{{ $notification->id }}">Mark as
-                            Read</button>
                         <div class="dropdown-divider"></div>
                     @endforeach
                     @if ($notifications->count() > 0)

@@ -15,9 +15,9 @@
                 .then(response => response.json())
                 .then(data => {
                     if (data.success) {
-                        this.closest("div").remove(); // Remove the notification from the UI
+                        location.reload(); // Reload the page to update notifications
                     } else {
-                        alert("Failed to mark notification as read.");
+                        toastr.error("Failed to mark notification as read.");
                     }
                 })
                 .catch(error => console.error("Error:", error));

@@ -9,6 +9,7 @@ use App\Http\Controllers\Driver\DeliveryController as DriverDeliveryController;
 use App\Http\Controllers\Driver\DriverController;
 use App\Http\Controllers\Driver\TripController;
 use App\Http\Controllers\GeneralController;
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\Payment\StripeDeliveryController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\User\DeliveryController;
@@ -84,6 +85,9 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
     Route::get('/notifications', function () { return view('admin.notifications.index'); })->name('admin.notifications');
 });
+
+
+Route::post('/notifications/mark-as-read', [NotificationController::class, 'markAsRead'])->name('notifications.markAsRead');
 
 
 
