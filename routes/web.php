@@ -51,10 +51,11 @@ Route::prefix('driver')->middleware('auth')->group(function () {
 
         Route::post('/distance/accept', [DriverDeliveryController::class, 'distaneDeliveryAccept'])->name('driver.delivery.distance.accept');
         Route::post('/distance/status', [DriverDeliveryController::class, 'distaneDeliveryStatus'])->name('driver.delivery.distance.status');
-
     });
 
-    Route::get('/notifications', function () { return view('drivers.notifications'); })->name('driver.notifications');
+    Route::get('/notifications', function () {
+        return view('drivers.notifications');
+    })->name('driver.notifications');
 });
 
 
@@ -67,16 +68,24 @@ Route::prefix('user')->middleware('auth')->group(function () {
 
     Route::prefix('delivery')->group(function () {
         Route::get('/distance', [DeliveryController::class, 'distanceDelivery'])->name('user.delivery.distance');
-        Route::get('/vicinity', [DeliveryController::class, 'vicinityDelivery'])->name('user.delivery.vicinity');
-        Route::get('/track', [DeliveryController::class, 'trackDelivery'])->name('user.delivery.track');
-
         Route::post('/distance', [DeliveryController::class, 'distanceDeliveryStore'])->name('user.delivery.distance.store');
 
         Route::get('distance/stripe/{id?}', [StripeDeliveryController::class, 'distanceDeliveryStripe'])->name('user.delivery.distance.stripe');
         Route::post('distance/stripe', [StripeDeliveryController::class, 'distanceDeliveryStripePost'])->name('user.delivery.distance.stripe.post');
 
+
+        Route::get('/vicinity', [DeliveryController::class, 'vicinityDelivery'])->name('user.delivery.vicinity');
+        Route::post('/vicinity', [DeliveryController::class, 'vicinityDeliveryStore'])->name('user.delivery.vicinity.store');
+
+        Route::get('vicinity/stripe/{id?}', [StripeDeliveryController::class, 'vicinityDeliveryStripe'])->name('user.delivery.vicinity.stripe');
+        Route::post('vicinity/stripe', [StripeDeliveryController::class, 'vicinityDeliveryStripePost'])->name('user.delivery.vicinity.stripe.post');
+
+
+        Route::get('/track', [DeliveryController::class, 'trackDelivery'])->name('user.delivery.track');
     });
-    Route::get('/notifications', function () { return view('users.notifications.index'); })->name('user.notifications');
+    Route::get('/notifications', function () {
+        return view('users.notifications.index');
+    })->name('user.notifications');
 
     Route::get('/profile', [UserProfileController::class, 'edit'])->name('user.profile.edit');
     Route::post('/profile', [UserProfileController::class, 'update'])->name('user.profile.update');
@@ -88,7 +97,9 @@ Route::post('/register', [RegisterController::class, 'register'])->name('registe
 
 Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
-    Route::get('/notifications', function () { return view('admin.notifications.index'); })->name('admin.notifications');
+    Route::get('/notifications', function () {
+        return view('admin.notifications.index');
+    })->name('admin.notifications');
 });
 
 
@@ -102,19 +113,19 @@ Route::get('login', [AuthenticatedSessionController::class, 'create'])
 Route::post('login', [AuthenticatedSessionController::class, 'store']);
 
 Route::get('forgot-password', [PasswordResetLinkController::class, 'create'])
-->name('password.request');
+    ->name('password.request');
 
 Route::post('forgot-password', [PasswordResetLinkController::class, 'store'])
-->name('password.email');
+    ->name('password.email');
 
 Route::get('reset-password/{token}', [NewPasswordController::class, 'create'])
-->name('password.reset');
+    ->name('password.reset');
 
 Route::post('reset-password', [NewPasswordController::class, 'store'])
-->name('password.store');
+    ->name('password.store');
 
 Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
-                ->name('logout');
+    ->name('logout');
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');
