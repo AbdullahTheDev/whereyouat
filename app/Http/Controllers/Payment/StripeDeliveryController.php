@@ -66,14 +66,16 @@ class StripeDeliveryController extends Controller
                 $delivery->update([
                     'status' => 1, // Payment completed
                     'payment_details' => json_encode($charge), // Store response details
-                    'payment_method' => 'STRIPE'
+                    'payment_method' => 'STRIPE',
+                    'payment_status' => 'SUCCESS'
                 ]);
 
                 return redirect()->route('user.delivery.track')->with('success', 'Payment successful! Delivery created.');
             } else {
                 $delivery->update([
                     'payment_details' => json_encode($charge),
-                    'payment_method' => 'STRIPE'
+                    'payment_method' => 'STRIPE',
+                    'payment_status' => 'FAILED'
                 ]);
             }
 

@@ -18,7 +18,8 @@ class DistanceDelivery extends Model
         'total_price',
         'status',
         'payment_details',
-        'payment_method'
+        'payment_method',
+        'payment_status'
     ];
 
     public function user()
