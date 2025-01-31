@@ -74,6 +74,7 @@ Route::prefix('user')->middleware('auth')->group(function () {
         Route::post('distance/stripe', [StripeDeliveryController::class, 'distanceDeliveryStripePost'])->name('user.delivery.distance.stripe.post');
 
     });
+    Route::get('/notifications', function () { return view('generalUsers.notifications'); })->name('user.notifications');
 });
 
 
@@ -81,6 +82,7 @@ Route::post('/register', [RegisterController::class, 'register'])->name('registe
 
 Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
+    Route::get('/notifications', function () { return view('admin.notifications'); })->name('admin.notifications');
 });
 
 
