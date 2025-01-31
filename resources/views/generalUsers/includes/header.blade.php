@@ -115,6 +115,8 @@
                                 <p class="text-gray ellipsis mb-0"> {{ $notification->message }} </p>
                             </div>
                         </a>
+                        <button class="btn btn-sm btn-danger mark-as-read" data-id="{{ $notification->id }}">Mark as
+                            Read</button>
                         <div class="dropdown-divider"></div>
                     @endforeach
                     @if ($notifications->count() > 0)
