@@ -8,45 +8,37 @@
         </div>
         <div class="row">
             <div class="col-lg-12 grid-margin stretch-card">
+                @foreach ($activeDeliveries as $deliveries)
+                    
+                @endforeach
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">All Deliveries</h4>
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th> # </th>
-                                    <th> Transaction Date </th>
-                                    <th> Departure City </th>
-                                    <th> Arrival City </th>
-                                    <th> Amount </th>
-                                    <th> Status </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($deliveries as $key => $delivery)
-                                    <tr>
-                                        <td> {{ $key + 1 }} </td>
-                                        <td> {{ $delivery->transaction_date }} </td>
-                                        <td>
-                                            {{ $delivery->departure_city }}
-                                        </td>
-                                        <td>
-                                            {{ $delivery->arrival_city }}
-                                        </td>
-                                        <td> $ {{ number_format($delivery->total_price, 2) }} </td>
-                                        <td>
-                                            @if ($delivery->status == 1) 
-                                            <label class="badge badge-gradient-success">DONE</label>
-                                            @elseif ($delivery->status == 2) 
-                                            <label class="badge badge-gradient-info">ON THE WAY</label>
-                                            @else
-                                            <label class="badge badge-gradient-danger">REJECTED</label>
-                                            @endif
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+                        <h4 class="card-title"></h4>
+                        <div class="d-flex">
+                            <div class="d-flex align-items-center me-4 text-muted font-weight-light">
+                                <i class="mdi mdi-account-outline icon-sm me-2"></i>
+                                <span>jack Menqu</span>
+                            </div>
+                            <div class="d-flex align-items-center text-muted font-weight-light">
+                                <i class="mdi mdi-clock icon-sm me-2"></i>
+                                <span>October 3rd, 2018</span>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            
+                        </div>
+                        <div class="d-flex mt-5 align-items-top">
+                            <img src="{{ asset('assets/images/faces/face3.jpg') }}" class="img-sm rounded-circle me-3"
+                                alt="image">
+                            <div class="mb-0 flex-grow">
+                                <h5 class="me-2 mb-2">School Website - Authentication Module.</h5>
+                                <p class="mb-0 font-weight-light">It is a long established fact that a reader will be
+                                    distracted by the readable content of a page.</p>
+                            </div>
+                            <div class="ms-auto">
+                                <i class="mdi mdi-heart-outline text-muted"></i>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

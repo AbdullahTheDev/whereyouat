@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Driver\DeliveryController as DriverDeliveryController;
 use App\Http\Controllers\Driver\DriverController;
 use App\Http\Controllers\Driver\TripController;
 use App\Http\Controllers\GeneralController;
@@ -37,6 +38,12 @@ Route::prefix('driver')->middleware('auth')->group(function () {
     Route::prefix('trips')->group(function () {
         Route::get('/announce', [TripController::class, 'announce'])->name('driver.trips.announce');
         Route::get('/history', [TripController::class, 'history'])->name('driver.trips.history');
+    });
+
+    Route::prefix('delivery')->group(function () {
+        Route::get('/distance', [DriverDeliveryController::class, 'distanceDelivery'])->name('driver.delivery.distance');
+        Route::get('/vicinity', [DriverDeliveryController::class, 'vicinityDelivery'])->name('driver.delivery.vicinity');
+        Route::get('/track', [DriverDeliveryController::class, 'trackDelivery'])->name('driver.delivery.track');
     });
 });
 
