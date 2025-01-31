@@ -21,9 +21,8 @@ class DeliveryController extends Controller
         if(!in_array('distance-delivery', $services)){
             return redirect()->route('driver.dashboard')->with('error', 'You do not have permission to access this page');
         }
-        $activeDeliveries = DistanceDelivery::where('status', 1)->latest()->get();
+        $activeDeliveries = DistanceDelivery::where('status', 1)->where('accepted', 0)->latest()->get();
         
-        // return $activeDeliveries[0]->packageDetails;
         return view('drivers.delivery.distance_delivery', compact('activeDeliveries'));
     }
 

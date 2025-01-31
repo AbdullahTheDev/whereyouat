@@ -19,7 +19,8 @@ class DistanceDelivery extends Model
         'status',
         'payment_details',
         'payment_method',
-        'payment_status'
+        'payment_status',
+        'accepted'
     ];
 
     public function user()

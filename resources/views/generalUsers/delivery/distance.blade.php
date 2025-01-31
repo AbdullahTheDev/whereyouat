@@ -87,7 +87,7 @@
                                                 <div class="col-12">
                                                     <div class="form-group">
                                                         <input type="text" name="package_description[]"
-                                                            class="form-control package-quantity"
+                                                            class="form-control"
                                                             placeholder="Package Description" required />
                                                     </div>
                                                 </div>
@@ -109,7 +109,7 @@
                                 <div class="row mt-3">
                                     <div class="col-md-12">
                                         <label>Total Price</label>
-                                        <input type="text" id="total-price" class="form-control" readonly />
+                                        <input type="text" id="total-price-show" class="form-control" readonly />
                                         <input type="hidden" name="total_price" id="total-price" class="form-control"
                                             readonly />
                                     </div>
@@ -154,7 +154,7 @@
                     total += basePrices[type.value][deliveryMode] * quantity;
                 });
                 total += total * taxRate;
-                document.getElementById("total-price").value = total.toFixed(2) + " CAD";
+                document.getElementById("total-price-show").value = total.toFixed(2) + " CAD";
                 document.getElementById("total-price").value = total.toFixed(2);
             }
 
@@ -181,7 +181,7 @@
                     </div>
                     <div class="col-12">
                         <div class="form-group">
-                            <input type="text" name="package_description[]" class="form-control package-quantity" placeholder="Package Description" required />
+                            <input type="text" name="package_description[]" class="form-control" placeholder="Package Description" required />
                         </div>
                         <button type="button" class="btn btn-danger btn-sm remove-package" style="position: absolute; top: -17px; right: -19px;">✖</button>
                     </div>
