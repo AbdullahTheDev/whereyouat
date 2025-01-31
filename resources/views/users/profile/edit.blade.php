@@ -4,49 +4,64 @@
     <div class="main-panel">
         <div class="content-wrapper">
             <div class="page-header">
-                <h3 class="page-title"> Form elements </h3>
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">Forms</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Form elements</li>
-                    </ol>
-                </nav>
+                <h3 class="page-title"> Profile </h3>
             </div>
             <div class="row">
                 <div class="col-md-6 grid-margin stretch-card">
-                    <div class="card">
-                        <div class="card-body">
-                            <h4 class="card-title">Default form</h4>
-                            <p class="card-description"> Basic form layout </p>
-                            <form class="forms-sample">
+                    <form class="forms-sample">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Basic Information</h4>
                                 <div class="form-group">
-                                    <label for="exampleInputUsername1">Username</label>
-                                    <input type="text" class="form-control" id="exampleInputUsername1"
+                                    <label for="name">Name</label>
+                                    <input type="text" class="form-control" value="{{ $user->name }}" id="name"
                                         placeholder="Username">
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Email address</label>
-                                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+                                    <label for="email">Email address</label>
+                                    <input type="email" class="form-control" value="{{ $user->email }}" id="email"
+                                        placeholder="Email">
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputPassword1">Password</label>
-                                    <input type="password" class="form-control" id="exampleInputPassword1"
+                                    <label for="phone">Phone</label>
+                                    <input type="text" class="form-control" value="{{ $user->phone }}" id="phone"
+                                        placeholder="Phone">
+                                </div>
+                                <div class="form-group">
+                                    <label for="current_password">Current Password</label>
+                                    <input type="password" class="form-control" value="" id="current_password"
                                         placeholder="Password">
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputConfirmPassword1">Confirm Password</label>
-                                    <input type="password" class="form-control" id="exampleInputConfirmPassword1"
+                                    <label for="password">New Password</label>
+                                    <input type="password" class="form-control" value="" id="password"
                                         placeholder="Password">
                                 </div>
-                                <div class="form-check form-check-flat form-check-primary">
-                                    <label class="form-check-label">
-                                        <input type="checkbox" class="form-check-input"> Remember me </label>
+                                <div class="form-group">
+                                    <label for="confirm_password">Confirm Password</label>
+                                    <input type="password" class="form-control" value="" id="confirm_password"
+                                        placeholder="Password">
                                 </div>
-                                <button type="submit" class="btn btn-gradient-primary me-2">Submit</button>
-                                <button class="btn btn-light">Cancel</button>
-                            </form>
+                                <button type="submit" class="btn btn-gradient-primary me-2">Update</button>
+                            </div>
                         </div>
-                    </div>
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Profile Information</h4>
+                                <div class="form-group">
+                                    <label for="address">Address</label>
+                                    <input type="text" class="form-control" value="{{ $user->address }}" id="address"
+                                        placeholder="Address">
+                                </div>
+                                <div class="form-group">
+                                    <label for="date_of_birth">Date Of Birth</label>
+                                    <input type="date" class="form-control" value="{{ $user->date_of_birth }}" id="date_of_birth"
+                                        placeholder="Date Of Birth">
+                                </div>
+                                <button type="submit" class="btn btn-gradient-primary me-2">Update</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

@@ -13,6 +13,7 @@ use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\Payment\StripeDeliveryController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\User\DeliveryController;
+use App\Http\Controllers\User\ProfileController as UserProfileController;
 use App\Http\Controllers\User\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -76,6 +77,10 @@ Route::prefix('user')->middleware('auth')->group(function () {
 
     });
     Route::get('/notifications', function () { return view('users.notifications.index'); })->name('user.notifications');
+
+    Route::get('/profile', [UserProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [UserProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [UserProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
 
