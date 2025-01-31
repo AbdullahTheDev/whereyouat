@@ -61,13 +61,6 @@ class DeliveryController extends Controller
             $delivery->driver_id = Auth::id();
             $delivery->save();
 
-            Notification::create([
-                'user_id' => $delivery->user_id,
-                'title' => 'Delivery Accepted',
-                'message' => 'Your delivery has been accepted',
-                'status' => 1
-            ]);
-
             return redirect()->route('driver.delivery.distance')->with('success', 'Delivery accepted successfully');
         } catch (Exception $e) {
             return redirect()->back()->with('error', $e->getMessage());
@@ -84,6 +77,13 @@ class DeliveryController extends Controller
         $delivery = DistanceDelivery::find($request->delivery_id);
         $delivery->status = $request->status;
         $delivery->save();
+
+        Notification::create([
+            'user_id' => $delivery->user_id,
+            'title' => 'Delivery Accepted',
+            'message' => 'Your delivery has been accepted',
+            'status' => 1
+        ]);
 
         return response()->json(['success' => true, 'message' => 'Status updated successfully!']);
     }
