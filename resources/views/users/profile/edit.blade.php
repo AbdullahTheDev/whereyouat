@@ -8,39 +8,39 @@
             </div>
             <div class="row">
                 <div class="col-12">
-                    <form action="{{ route('user.profile.update') }}" method="POST" class="forms-sample">
+                    <form action="{{ route('user.profile.update') }}" method="POST" class="forms-sample" enctype="multipart/form-data">
                         @csrf
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="card-title">Basic Information</h4>
                                 <div class="form-group">
                                     <label for="name">Name</label>
-                                    <input type="text" class="form-control" value="{{ $user->name }}" id="name"
+                                    <input type="text" class="form-control" name="name" value="{{ $user->name }}" id="name"
                                         placeholder="Username">
                                 </div>
                                 <div class="form-group">
                                     <label for="email">Email address</label>
-                                    <input type="email" class="form-control" value="{{ $user->email }}" id="email"
+                                    <input type="email" class="form-control" name="email" value="{{ $user->email }}" id="email"
                                         placeholder="Email">
                                 </div>
                                 <div class="form-group">
                                     <label for="phone">Phone</label>
-                                    <input type="text" class="form-control" value="{{ $user->phone }}" id="phone"
+                                    <input type="text" class="form-control" name="phone" value="{{ $user->phone }}" id="phone"
                                         placeholder="Phone">
                                 </div>
                                 <div class="form-group">
                                     <label for="current_password">Current Password</label>
-                                    <input type="password" class="form-control" value="" id="current_password"
+                                    <input type="password" class="form-control" name="current_password" value="" id="current_password"
                                         placeholder="Password">
                                 </div>
                                 <div class="form-group">
                                     <label for="password">New Password</label>
-                                    <input type="password" class="form-control" value="" id="password"
+                                    <input type="password" class="form-control" name="password" value="" id="password"
                                         placeholder="Password">
                                 </div>
                                 <div class="form-group">
                                     <label for="confirm_password">Confirm Password</label>
-                                    <input type="password" class="form-control" value="" id="confirm_password"
+                                    <input type="password" class="form-control" name="confirm_password" value="" id="confirm_password"
                                         placeholder="Password">
                                 </div>
                                 <button type="submit" class="btn btn-gradient-primary me-2">Update</button>
@@ -63,12 +63,12 @@
 
                                 <div class="form-group">
                                     <label for="address">Address</label>
-                                    <input type="text" class="form-control" value="{{ $userProfile->address }}" id="address"
+                                    <input type="text" class="form-control" name="address" value="{{ $userProfile->address }}" id="address"
                                         placeholder="Address">
                                 </div>
                                 <div class="form-group">
                                     <label for="date_of_birth">Date Of Birth</label>
-                                    <input type="date" class="form-control" value="{{ $userProfile->date_of_birth }}"
+                                    <input type="date" class="form-control" name="date_of_birth" value="{{ $userProfile->date_of_birth }}"
                                         id="date_of_birth" placeholder="Date Of Birth">
                                 </div>
                                 <button type="submit" class="btn btn-gradient-primary me-2">Update</button>
