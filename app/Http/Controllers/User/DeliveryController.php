@@ -20,7 +20,7 @@ class DeliveryController extends Controller
     }
 
     function trackDelivery() {
-        $deliveries = DistanceDelivery::where('user_id', Auth::id())->get();
+        $deliveries = DistanceDelivery::where('user_id', Auth::id())->latest()->get();
 
         return view('generalUsers.delivery.track.index', compact('deliveries'));
     }
