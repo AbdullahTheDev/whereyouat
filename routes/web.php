@@ -44,6 +44,9 @@ Route::prefix('driver')->middleware('auth')->group(function () {
         Route::get('/distance', [DriverDeliveryController::class, 'distanceDelivery'])->name('driver.delivery.distance');
         Route::get('/vicinity', [DriverDeliveryController::class, 'vicinityDelivery'])->name('driver.delivery.vicinity');
         Route::get('/track', [DriverDeliveryController::class, 'trackDelivery'])->name('driver.delivery.track');
+
+        Route::post('/distance/accept', [DriverDeliveryController::class, 'distaneDeliveryAccept'])->name('driver.delivery.distance.accept');
+
     });
 });
 

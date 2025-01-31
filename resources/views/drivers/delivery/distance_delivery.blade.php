@@ -45,7 +45,9 @@
                                             </div>
                                     @endforeach
                                     <div class="mt-4 mb-0">
-                                        <form action="{{ route('driver.delivery.distance') }}" method="post">
+                                        <form action="{{ route('driver.delivery.distance.accept') }}" method="post">
+                                            @csrf
+                                            <input type="hidden" name="delivery_id" id="" value="{{ $delivery->id }}">
                                             <button class="btn btn-primary">Accept for $ {{ number_format($delivery->total_price, 2) }}</button>
                                         </form>
                                     </div>

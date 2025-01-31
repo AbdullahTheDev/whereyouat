@@ -33,4 +33,9 @@ class DistanceDelivery extends Model
     {
         return $this->hasMany(PackageDetail::class, 'delivery_id');
     }
+
+    public function driver()
+    {
+        return $this->belongsTo(Driver::class);
+    }
 }
