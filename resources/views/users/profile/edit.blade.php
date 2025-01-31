@@ -8,7 +8,8 @@
             </div>
             <div class="row">
                 <div class="col-12">
-                    <form class="forms-sample">
+                    <form action="{{ route('user.profile.update') }}" method="POST" class="forms-sample">
+                        @csrf
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="card-title">Basic Information</h4>
