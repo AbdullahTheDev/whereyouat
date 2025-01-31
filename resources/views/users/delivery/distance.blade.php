@@ -135,10 +135,10 @@
                                 </div>
                                 <button type="submit" class="btn btn-success mt-3">Next</button>
                             </form>
-                            <div class="container mt-3">
+                            <div class="mt-3">
                                 <div class="alert alert-light border rounded p-4 shadow-sm">
                                     <h5 class="mb-3"><i class="fas fa-info-circle"></i> Delivery Pricing Details</h5>
-                                    <p class="mb-2"><strong>For mail-envelope delivery by partner space:</strong></p>
+                                    <p class="mb-2"><strong>For mail/parcel-envelope delivery by partner space:</strong></p>
                                     <ul class="mb-3">
                                         <li>10 CAD for online booking</li>
                                         <li>05 CAD for Departure and Arrival Partner Spaces</li>
@@ -148,13 +148,31 @@
                             
                                     <hr>
                             
-                                    <p class="mb-2"><strong>For mini-carton delivery:</strong></p>
+                                    <p class="mb-2"><strong>For mini-carton/other delivery by partner space:</strong></p>
                                     <ul>
                                         <li>20 CAD for online booking</li>
                                         <li>05 CAD for partner spaces</li>
                                         <li>30 CAD for the carrier driver</li>
                                     </ul>
                                     <p><strong>Total:</strong> 55 CAD + 13% tax</p>
+
+                                    <hr>
+
+                                    <p class="mb-2"><strong>For mail/parcel-envelope delivery by direct driver:</strong></p>
+                                    <ul class="mb-3">
+                                        <li>15 CAD for online booking</li>
+                                        <li>15 CAD for the carrier driver</li>
+                                    </ul>
+                                    <p><strong>Total:</strong> 30 CAD + 13% tax</p>
+                            
+                                    <hr>
+                            
+                                    <p class="mb-2"><strong>For mini-carton/other delivery by direct driver:</strong></p>
+                                    <ul>
+                                        <li>25 CAD for online booking</li>
+                                        <li>40 CAD for the carrier driver</li>
+                                    </ul>
+                                    <p><strong>Total:</strong> 40 CAD + 13% tax</p>
                                 </div>
                             </div>
                         </div>
