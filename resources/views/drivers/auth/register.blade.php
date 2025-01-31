@@ -146,8 +146,8 @@
                                 <div class="form-group">
                                     <select class="form-select form-select-lg @error('services') is-invalid @enderror" name="services[]" multiple required>
                                         <option value="ride-sharing">Ride Sharing</option>
-                                        <option value="parcel-delivery">Parcel Delivery</option>
-                                        <option value="taxi-service">Taxi Service</option>
+                                        <option value="distance-delivery">Distance Delivery</option>
+                                        <option value="vicinity-delivery">Vicinity Delivery</option>
                                     </select>
                                     @error('services')
                                         <span class="invalid-feedback" role="alert">

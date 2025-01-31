@@ -29,6 +29,6 @@ class DistanceDelivery extends Model
 
     public function packageDetails()
     {
-        return $this->hasMany(PackageDetail::class);
+        return $this->hasMany(PackageDetail::class, 'delivery_id');
     }
 }
