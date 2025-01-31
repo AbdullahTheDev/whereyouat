@@ -7,7 +7,7 @@
                 <h3 class="page-title"> Profile </h3>
             </div>
             <div class="row">
-                <div class="col-md-6 grid-margin stretch-card">
+                <div class="col-12">
                     <form class="forms-sample">
                         <div class="card">
                             <div class="card-body">

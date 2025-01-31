@@ -78,9 +78,9 @@ Route::prefix('user')->middleware('auth')->group(function () {
     });
     Route::get('/notifications', function () { return view('users.notifications.index'); })->name('user.notifications');
 
-    Route::get('/profile', [UserProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [UserProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [UserProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/profile', [UserProfileController::class, 'edit'])->name('user.profile.edit');
+    Route::patch('/profile', [UserProfileController::class, 'update'])->name('user.profile.update');
+    Route::delete('/profile', [UserProfileController::class, 'destroy'])->name('user.profile.destroy');
 });
 
 
