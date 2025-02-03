@@ -55,7 +55,11 @@
                                                 @endif
                                             </td>
                                             <td>
+                                                @if ($delivery->accepted == 1 || $delivery->status == 2) 
                                                 <a class="btn btn-sm btn-primary" href="{{ route('user.delivery.vicinity.driver', $delivery->id) }}">View</a>
+                                                @else
+                                                - -
+                                                @endif
                                             </td>
                                         </tr>
                                     @endforeach

@@ -73,6 +73,27 @@
                             </div>
                         </div>
                     </div>
+                    <!-- Bootstrap Confirmation Modal -->
+                    <div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="confirmModalLabel">Confirm Acceptance</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    Are you sure you want to accept this delivery for
+                                    ${{ number_format($delivery->total_price, 2) }}?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                    <button type="button" class="btn btn-primary" id="confirmAccept">Yes, Accept</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 @endforeach
             </div>
             @if ($activeDeliveries->count() == 0)
@@ -83,24 +104,6 @@
                     </div>
                 </div>
             @endif
-        </div>
-    </div>
-    <!-- Bootstrap Confirmation Modal -->
-    <div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="confirmModalLabel">Confirm Acceptance</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    Are you sure you want to accept this delivery for ${{ number_format($delivery->total_price, 2) }}?
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-primary" id="confirmAccept">Yes, Accept</button>
-                </div>
-            </div>
         </div>
     </div>
 @endsection
