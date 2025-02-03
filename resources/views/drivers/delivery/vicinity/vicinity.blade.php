@@ -8,6 +8,18 @@
             </div>
             <div class="row">
                 @foreach ($activeDeliveries as $delivery)
+                    @php
+                        $packageNames = [];
+                        foreach ($delivery->packageDetails as $package) {
+                            $packageNames[] = $package->package_type;
+                            echo $package->package_type . "<br/>";
+                        }
+                        // Skip this delivery if the driver does NOT support all required packages
+                        // if (array_diff($packageNames, $packages)) {
+                        //     continue;
+                        // }
+                    @endphp
+                    {{-- {{ $packageNames }} --}}
                     <div class="col-12 col-md-6 grid-margin stretch-card">
                         <div class="card">
                             <div class="card-body">

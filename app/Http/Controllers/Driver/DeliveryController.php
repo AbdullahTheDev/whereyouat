@@ -40,9 +40,14 @@ class DeliveryController extends Controller
         if (!in_array('vicinity-delivery', $services)) {
             return redirect()->route('driver.dashboard')->with('error', 'You do not have permission to access this page');
         }
+        $driverPackages = json_decode($driver->packages);
+        $packages = [];
+        foreach ($driverPackages as $package) {
+            $packages[] = $package;
+        }
         $activeDeliveries = VicinityDelivery::where('status', 1)->where('accepted', 0)->latest()->get();
 
-        return view('drivers.delivery.vicinity.vicinity', compact('activeDeliveries'));
+        return view('drivers.delivery.vicinity.vicinity', compact('activeDeliveries', 'packages'));
     }
 
     function yourDelivery()
