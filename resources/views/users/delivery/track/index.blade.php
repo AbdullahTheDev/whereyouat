@@ -11,52 +11,8 @@
                     <div class="card">
                         <div class="card-body">
                             <h4 class="card-title">All Deliveries</h4>
-                            <table class="table table-bordered">
-                                <thead>
-                                    <tr>
-                                        <th> # </th>
-                                        <th> Transaction Date </th>
-                                        <th> Departure City </th>
-                                        <th> Arrival City </th>
-                                        <th> Amount </th>
-                                        <th> Status </th>
-                                        <th> Rider Status </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($deliveries as $key => $delivery)
-                                        <tr>
-                                            <td> {{ $key + 1 }} </td>
-                                            <td> {{ $delivery->transaction_date }} </td>
-                                            <td>
-                                                {{ $delivery->departure_city }}
-                                            </td>
-                                            <td>
-                                                {{ $delivery->arrival_city }}
-                                            </td>
-                                            <td> $ {{ number_format($delivery->total_price, 2) }} </td>
-                                            <td>
-                                                @if ($delivery->status == 1) 
-                                                <label class="badge badge-gradient-info">ON THE WAY</label>
-                                                @elseif ($delivery->status == 2) 
-                                                <label class="badge badge-gradient-success">DONE</label>
-                                                @else
-                                                <label class="badge badge-gradient-danger">REJECTED</label>
-                                                @endif
-                                            </td>
-                                            <td>
-                                                @if ($delivery->accepted == 1) 
-                                                <label class="badge badge-gradient-info">ACCEPTED</label>
-                                                @elseif ($delivery->status == 2) 
-                                                <label class="badge badge-gradient-success">DELIVERED</label>
-                                                @else
-                                                <label class="badge badge-gradient-secondary">OPEN</label>
-                                                @endif
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
+                            <a class="btn btn-primary" href="{{ route('user.delivery.track.distance') }}">Distance Deliveries</a>
+                            <a class="btn btn-primary" href="{{ route('user.delivery.track.vicinity') }}">Vicinity Deliveries</a>
                         </div>
                     </div>
                 </div>

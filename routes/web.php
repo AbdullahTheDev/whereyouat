@@ -82,6 +82,8 @@ Route::prefix('user')->middleware('auth')->group(function () {
 
 
         Route::get('/track', [DeliveryController::class, 'trackDelivery'])->name('user.delivery.track');
+        Route::get('/track/distance', [DeliveryController::class, 'distanceTrackDelivery'])->name('user.delivery.track.distance');
+        Route::get('/track/vicinity', [DeliveryController::class, 'vicinityTrackDelivery'])->name('user.delivery.track.vicinity');
     });
     Route::get('/notifications', function () {
         return view('users.notifications.index');
