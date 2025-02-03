@@ -4,7 +4,10 @@
     <div class="main-panel">
         <div class="content-wrapper">
             <div class="page-header">
-                <h3 class="page-title"> Available Deliveries </h3>
+                <div>
+                    <h3 class="page-title"> Available Deliveries </h3>
+                    <small class="mt-1 text-muted d-block">You will see only the deliveries which have the packages you support</small>
+                </div>
             </div>
             <div class="row">
                 @foreach ($activeDeliveries as $delivery)
