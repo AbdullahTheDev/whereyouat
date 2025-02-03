@@ -125,12 +125,14 @@
                                                         $packages[] = $package;
                                                     }
                                                 @endphp
-                                                <option {{ in_array('standard', $packages) ? 'selected' : '' }}
-                                                    value="standard">Standard</option>
-                                                <option {{ in_array('premium', $packages) ? 'selected' : '' }}
-                                                    value="premium">Premium</option>
-                                                <option {{ in_array('express', $packages) ? 'selected' : '' }}
-                                                    value="express">Express</option>
+                                                <option {{ in_array('mail-envelope', $packages) ? 'selected' : '' }}
+                                                    value="mail-envelope">Mail Envelope</option>
+                                                <option {{ in_array('wrapped-package', $packages) ? 'selected' : '' }}
+                                                    value="wrapped-package">Wrapped Package</option>
+                                                <option {{ in_array('mini-carton', $packages) ? 'selected' : '' }}
+                                                    value="mini-carton">Mini Carton</option>
+                                                <option {{ in_array('extra-formats', $packages) ? 'selected' : '' }}
+                                                    value="extra-formats">Extra Formats</option>
                                             </select>
                                         </div>
                                         <button type="submit" class="btn btn-gradient-primary me-2">Update</button>
