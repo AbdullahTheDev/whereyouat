@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Driver\DeliveryController as DriverDeliveryController;
 use App\Http\Controllers\Driver\DriverController;
+use App\Http\Controllers\Driver\ProfileController as DriverProfileController;
 use App\Http\Controllers\Driver\TripController;
 use App\Http\Controllers\GeneralController;
 use App\Http\Controllers\NotificationController;
@@ -62,6 +63,10 @@ Route::prefix('driver')->middleware('auth')->group(function () {
     Route::get('/notifications', function () {
         return view('drivers.notifications');
     })->name('driver.notifications');
+
+    Route::get('/profile', [DriverProfileController::class, 'edit'])->name('driver.profile.edit');
+    Route::post('/profile', [DriverProfileController::class, 'update'])->name('driver.profile.update');
+    Route::delete('/profile', [DriverProfileController::class, 'destroy'])->name('driver.profile.destroy');
 });
 
 

@@ -15,7 +15,7 @@ class ProfileController extends Controller
     {
         $user = Auth::user();
         $driver = Driver::where('user_id', $user->id)->first();
-        return view('users.profile.edit', compact('user', 'driver'));
+        return view('drivers.profile.edit', compact('user', 'driver'));
     }
 
     function update(Request $request)

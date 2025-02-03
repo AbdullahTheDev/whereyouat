@@ -27,11 +27,15 @@
                     </div>
                 </a>
                 <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
-                    <a class="dropdown-item" href="#">
-                        <i class="mdi mdi-cached me-2 text-success"></i> Activity Log </a>
+                    <a class="dropdown-item" href="{{ route('driver.profile.edit') }}">
+                        <i class="mdi mdi-cached me-2 text-success"></i> Profile </a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">
-                        <i class="mdi mdi-logout me-2 text-primary"></i> Signout </a>
+                    <a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('logout-form-header').submit();">
+                        <form action="{{ route('logout') }}" id="logout-form-header" method="post">
+                            @csrf
+                        </form>
+                        <i class="mdi mdi-logout me-2 text-primary"></i> Signout
+                    </a>
                 </div>
             </li>
             <li class="nav-item dropdown">
