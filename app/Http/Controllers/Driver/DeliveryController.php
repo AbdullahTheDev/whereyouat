@@ -45,6 +45,25 @@ class DeliveryController extends Controller
         return view('drivers.delivery.vicinity_delivery', compact('activeDeliveries'));
     }
 
+    function yourDelivery()
+    {
+        $driver = Driver::where('user_id', Auth::id())->first();
+        $driverServices = json_decode($driver->services);
+        $services = [];
+        foreach ($driverServices as $service) {
+            $services[] = $service;
+        }
+        $distance = false;
+        $vicinity = false;
+        if (in_array('distance-delivery', $services)) {
+            $distance = true;
+        }
+        if (in_array('vicinity-delivery', $services)) {
+            $vicinity = true;
+        }
+
+        return view('drivers.delivery.my_deliveries', compact('distance', 'vicinity'));
+    }
     function yourDistanceDelivery()
     {
         $driver = Driver::where('user_id', Auth::id())->first();
@@ -58,7 +77,22 @@ class DeliveryController extends Controller
         }
         $yourDeliveries = DistanceDelivery::where('driver_id', Auth::id())->get();
 
-        return view('drivers.delivery.my_distance_deliveries', compact('yourDeliveries'));
+        return view('drivers.delivery.distance.my_distance_deliveries', compact('yourDeliveries'));
+    }
+    function yourVicinityDelivery()
+    {
+        $driver = Driver::where('user_id', Auth::id())->first();
+        $driverServices = json_decode($driver->services);
+        $services = [];
+        foreach ($driverServices as $service) {
+            $services[] = $service;
+        }
+        if (!in_array('vicinity-delivery', $services)) {
+            return redirect()->route('driver.dashboard')->with('error', 'You do not have permission to access this page');
+        }
+        $yourDeliveries = VicinityDelivery::where('driver_id', Auth::id())->get();
+
+        return view('drivers.delivery.vicinity.my_distance_deliveries', compact('yourDeliveries'));
     }
 
     function distaneDeliveryAccept(Request $request)
