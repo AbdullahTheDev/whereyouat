@@ -97,6 +97,42 @@
                                             <input type="text" name="vehicle_seats" class="form-control"
                                                 value="{{ $driver->vehicle_seats }}" required>
                                         </div>
+                                        <div class="form-group">
+                                            <select class="form-select form-select-lg" name="services[]" multiple
+                                                required>
+                                                @php
+                                                    $driverServices = json_decode($driver->services);
+                                                    $services = [];
+                                                    foreach ($driverServices as $service) {
+                                                        $services[] = $service;
+                                                    }
+                                                @endphp
+                                                <option {{ in_array('ride-sharing', $services) ? 'selected' : '' }}
+                                                    value="ride-sharing">Ride Sharing</option>
+                                                <option {{ in_array('distance-delivery', $services) ? 'selected' : '' }}
+                                                    value="distance-delivery">Distance Delivery</option>
+                                                <option {{ in_array('vicinity-delivery', $services) ? 'selected' : '' }}
+                                                    value="vicinity-delivery">Vicinity Delivery</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <select class="form-select form-select-lg" name="packages[]" multiple
+                                                required>
+                                                @php
+                                                    $driverPackages = json_decode($driver->packages);
+                                                    $packages = [];
+                                                    foreach ($driverPackages as $package) {
+                                                        $packages[] = $package;
+                                                    }
+                                                @endphp
+                                                <option {{ in_array('standard', $packages) ? 'selected' : '' }}
+                                                    value="standard">Standard</option>
+                                                <option {{ in_array('premium', $packages) ? 'selected' : '' }}
+                                                    value="premium">Premium</option>
+                                                <option {{ in_array('express', $packages) ? 'selected' : '' }}
+                                                    value="express">Express</option>
+                                            </select>
+                                        </div>
                                         <button type="submit" class="btn btn-gradient-primary me-2">Update</button>
                                     </div>
                                 </div>
