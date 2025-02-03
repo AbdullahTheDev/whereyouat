@@ -6,7 +6,8 @@
             <div class="page-header">
                 <div>
                     <h3 class="page-title"> Available Deliveries </h3>
-                    <small class="mt-1 text-muted d-block">You will see only the deliveries which have the packages you support</small>
+                    <small class="mt-1 text-muted d-block">You will see only the deliveries which have the packages you
+                        support</small>
                 </div>
             </div>
             <div class="row">
@@ -15,9 +16,7 @@
                         $packageNames = [];
                         foreach ($delivery->packageDetails as $package) {
                             $packageNames[] = $package->package_type;
-                            // echo $package->package_type . "<br/>";
                         }
-                        // Skip this delivery if the driver does NOT support all required packages
                         if (array_diff($packageNames, $packages)) {
                             continue;
                         }
@@ -61,11 +60,14 @@
                                     </div>
                                 @endforeach
                                 <div class="mt-4 mb-0">
-                                    <form action="{{ route('driver.delivery.vicinity.accept') }}" method="post">
+                                    <form id="acceptDeliveryForm" action="{{ route('driver.delivery.vicinity.accept') }}"
+                                        method="post">
                                         @csrf
-                                        <input type="hidden" name="delivery_id" id="" value="{{ $delivery->id }}">
-                                        <button class="btn btn-primary">Accept for $
-                                            {{ number_format($delivery->total_price, 2) }}</button>
+                                        <input type="hidden" name="delivery_id" value="{{ $delivery->id }}">
+                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                            data-bs-target="#confirmModal">
+                                            Accept for ${{ number_format($delivery->total_price, 2) }}
+                                        </button>
                                     </form>
                                 </div>
                             </div>
@@ -83,4 +85,29 @@
             @endif
         </div>
     </div>
+    <!-- Bootstrap Confirmation Modal -->
+    <div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="confirmModalLabel">Confirm Acceptance</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to accept this delivery for ${{ number_format($delivery->total_price, 2) }}?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" id="confirmAccept">Yes, Accept</button>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection
+@section('script')
+    <script>
+        document.getElementById('confirmAccept').addEventListener('click', function() {
+            document.getElementById('acceptDeliveryForm').submit();
+        });
+    </script>
 @endsection
