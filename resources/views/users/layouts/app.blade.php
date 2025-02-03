@@ -29,6 +29,13 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
+    {{-- jQuery --}}
+    <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
+    
+    {{-- Datatables --}}
+    <link rel="stylesheet" href="//cdn.datatables.net/2.2.1/css/dataTables.dataTables.min.css">
+    <script src="//cdn.datatables.net/2.2.1/js/dataTables.min.js"></script>
+
     <style>
         /* Custom styles for the Google Translate widget */
         #google_translate_element {

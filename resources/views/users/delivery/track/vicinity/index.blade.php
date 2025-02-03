@@ -11,13 +11,13 @@
                     <div class="card">
                         <div class="card-body">
                             <h4 class="card-title">All Deliveries</h4>
-                            <table class="table table-bordered">
+                            <table class="table table-bordered" id="myTable">
                                 <thead>
                                     <tr>
                                         <th> # </th>
                                         <th> Transaction Date </th>
-                                        <th> Departure City </th>
-                                        <th> Arrival City </th>
+                                        <th> Departure Address </th>
+                                        <th> Arrival Address </th>
                                         <th> Amount </th>
                                         <th> Status </th>
                                         <th> Rider Status </th>
@@ -29,10 +29,10 @@
                                             <td> {{ $key + 1 }} </td>
                                             <td> {{ $delivery->transaction_date }} </td>
                                             <td>
-                                                {{ $delivery->departure_city }}
+                                                {{ $delivery->departure_address }}
                                             </td>
                                             <td>
-                                                {{ $delivery->arrival_city }}
+                                                {{ $delivery->arrival_address }}
                                             </td>
                                             <td> $ {{ number_format($delivery->total_price, 2) }} </td>
                                             <td>
@@ -63,4 +63,9 @@
             </div>
         </div>
     </div>
+@endsection
+@section('script')
+    <script>
+        let table = new DataTable('#myTable');
+    </script>
 @endsection
