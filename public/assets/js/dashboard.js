@@ -211,12 +211,12 @@
 
 
 
-  if ($("#inline-datepicker").length) {
-    $('#inline-datepicker').datepicker({
-      enableOnReadonly: true,
-      todayHighlight: true,
-    });
-  }
+  // if ($("#inline-datepicker").length) {
+  //   $('#inline-datepicker').datepicker({
+  //     enableOnReadonly: true,
+  //     todayHighlight: true,
+  //   });
+  // }
   // if ($.cookie('purple-pro-banner') != "true") {
   //   document.querySelector('#proBanner').classList.add('d-flex');
   //   document.querySelector('.navbar').classList.remove('fixed-top');
