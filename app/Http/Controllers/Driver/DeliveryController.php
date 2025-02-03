@@ -26,7 +26,7 @@ class DeliveryController extends Controller
         }
         $activeDeliveries = DistanceDelivery::where('status', 1)->where('accepted', 0)->latest()->get();
 
-        return view('drivers.delivery.distance_delivery', compact('activeDeliveries'));
+        return view('drivers.delivery.distance.distance', compact('activeDeliveries'));
     }
 
     function vicinityDelivery()
@@ -42,7 +42,7 @@ class DeliveryController extends Controller
         }
         $activeDeliveries = VicinityDelivery::where('status', 1)->where('accepted', 0)->latest()->get();
 
-        return view('drivers.delivery.vicinity_delivery', compact('activeDeliveries'));
+        return view('drivers.delivery.vicinity.vicinity', compact('activeDeliveries'));
     }
 
     function yourDelivery()

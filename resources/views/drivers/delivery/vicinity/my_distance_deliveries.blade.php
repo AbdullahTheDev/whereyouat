@@ -16,8 +16,8 @@
                                     <tr>
                                         <th> # </th>
                                         <th> Transaction Date </th>
-                                        <th> Departure City </th>
-                                        <th> Arrival City </th>
+                                        <th> Departure Address </th>
+                                        <th> Arrival Address </th>
                                         <th> Amount </th>
                                         <th> Status </th>
                                     </tr>
@@ -28,10 +28,10 @@
                                             <td> {{ $key + 1 }} </td>
                                             <td> {{ $delivery->transaction_date }} </td>
                                             <td>
-                                                {{ $delivery->departure_city }}
+                                                {{ $delivery->departure_address }}
                                             </td>
                                             <td>
-                                                {{ $delivery->arrival_city }}
+                                                {{ $delivery->arrival_address }}
                                             </td>
                                             <td> $ {{ number_format($delivery->total_price, 2) }} </td>
                                             <td>
@@ -66,7 +66,7 @@
                     let newStatus = this.value;
                     let statusMessage = document.getElementById("status-message-" + deliveryId);
 
-                    fetch("{{ route('driver.delivery.distance.status') }}", {
+                    fetch("{{ route('driver.delivery.vicinity.status') }}", {
                             method: "POST",
                             headers: {
                                 "Content-Type": "application/json",
