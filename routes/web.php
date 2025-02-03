@@ -52,8 +52,8 @@ Route::prefix('driver')->middleware('auth')->group(function () {
         Route::post('/distance/accept', [DriverDeliveryController::class, 'distaneDeliveryAccept'])->name('driver.delivery.distance.accept');
         Route::post('/distance/status', [DriverDeliveryController::class, 'distaneDeliveryStatus'])->name('driver.delivery.distance.status');
     
-        Route::post('/vicnity/accept', [DriverDeliveryController::class, 'vicnityDeliveryAccept'])->name('driver.delivery.vicnity.accept');
-        Route::post('/vicnity/status', [DriverDeliveryController::class, 'vicnityDeliveryStatus'])->name('driver.delivery.vicnity.status');
+        Route::post('/vicinity/accept', [DriverDeliveryController::class, 'vicinityDeliveryAccept'])->name('driver.delivery.vicinity.accept');
+        Route::post('/vicinity/status', [DriverDeliveryController::class, 'vicinityDeliveryStatus'])->name('driver.delivery.vicinity.status');
     
     });
 
