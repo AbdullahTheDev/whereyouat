@@ -26,6 +26,13 @@
     <link rel="shortcut icon" href="{{ asset('assets/images/favicon.png') }}" />
     <!-- Toastr CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    
+    {{-- jQuery --}}
+    <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
+
+    {{-- Datatables --}}
+    <link href="{{ asset('assets/js/datatables.min.css') }}" rel="stylesheet">
+    <script src="{{ asset('assets/js/datatables.min.js') }}"></script>
 
     <style>
         /* Custom styles for the Google Translate widget */
