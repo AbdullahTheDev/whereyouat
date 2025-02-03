@@ -19,7 +19,7 @@
                 <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-bs-toggle="dropdown"
                     aria-expanded="false">
                     <div class="nav-profile-img">
-                        <img src="{{ asset('assets/images/faces/face1.jpg') }}" alt="image">
+                        <img src="{{ Auth::user()->driver->profile_photo ? asset('drivers_profile/' . Auth::user()->driver->profile_photo) : asset('users_profile/default-profile.png') }}" alt="image">
                         <span class="availability-status online"></span>
                     </div>
                     <div class="nav-profile-text">
