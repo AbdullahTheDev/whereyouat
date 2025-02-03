@@ -11,7 +11,7 @@
                     @foreach ($activeDeliveries as $delivery)
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">{{ $delivery->departure_city }} to {{ $delivery->arrival_city }}</h4>
+                                <h4 class="card-title">{{ $delivery->departure_address }} to {{ $delivery->arrival_address }}</h4>
                                 <div class="d-flex">
                                     <div class="d-flex align-items-center me-4 text-muted font-weight-light">
                                         <i class="mdi mdi-account-outline icon-sm me-2"></i>
@@ -22,6 +22,7 @@
                                         <span>{{ \Carbon\Carbon::parse($delivery->transation_date)->format('Y-m-d h:i A') }}</span>
                                     </div>
                                 </div>
+                                <hr>
                                 <div class="mb-2 mt-3">
                                     <h4>Package Details</h4>
                                 </div>
