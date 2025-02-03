@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\DistanceDelivery;
 use App\Models\Driver;
 use App\Models\Notification;
+use App\Models\VicinityDelivery;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -30,7 +31,18 @@ class DeliveryController extends Controller
 
     function vicinityDelivery()
     {
-        return view('drivers.delivery.vicinity_delivery');
+        $driver = Driver::where('user_id', Auth::id())->first();
+        $driverServices = json_decode($driver->services);
+        $services = [];
+        foreach ($driverServices as $service) {
+            $services[] = $service;
+        }
+        if (!in_array('vicinity-delivery', $services)) {
+            return redirect()->route('driver.dashboard')->with('error', 'You do not have permission to access this page');
+        }
+        $activeDeliveries = VicinityDelivery::where('status', 1)->where('accepted', 0)->latest()->get();
+
+        return view('drivers.delivery.vicinity_delivery', compact('activeDeliveries'));
     }
 
     function yourDistanceDelivery()
