@@ -63,7 +63,7 @@ class DeliveryController extends Controller
             foreach ($request->package_type as $key => $value) {
                 PackageDetail::create([
                     'delivery_id' => $delivery->id,
-                    'package_type' => $value,
+                    'package_type' => str_replace('_', '-', $value),
                     'qty' => $request->package_quantity[$key],
                     'description' => $request->package_description[$key],
                 ]);
@@ -102,7 +102,7 @@ class DeliveryController extends Controller
             foreach ($request->package_type as $key => $value) {
                 PackageDetail::create([
                     'delivery_id' => $delivery->id,
-                    'package_type' => $value,
+                    'package_type' => str_replace('_', '-', $value),
                     'qty' => $request->package_quantity[$key],
                     'description' => $request->package_description[$key],
                 ]);

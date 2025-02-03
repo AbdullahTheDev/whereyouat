@@ -6,6 +6,9 @@
             <div class="page-header">
                 <h3 class="page-title"> Available Deliveries </h3>
             </div>
+            @php
+                print_r($packages);
+            @endphp
             <div class="row">
                 @foreach ($activeDeliveries as $delivery)
                     @php
@@ -15,11 +18,10 @@
                             echo $package->package_type . "<br/>";
                         }
                         // Skip this delivery if the driver does NOT support all required packages
-                        // if (array_diff($packageNames, $packages)) {
-                        //     continue;
-                        // }
+                        if (array_diff($packageNames, $packages)) {
+                            // continue;
+                        }
                     @endphp
-                    {{-- {{ $packageNames }} --}}
                     <div class="col-12 col-md-6 grid-margin stretch-card">
                         <div class="card">
                             <div class="card-body">
@@ -44,7 +46,7 @@
                                         <div class="mb-0 flex-grow">
                                             <div class="d-flex">
                                                 <h6 class="me-2 mb-2">
-                                                    {{ strtoupper(str_replace('_', ' ', $packageDetail->package_type)) }}
+                                                    {{ strtoupper(str_replace('-', ' ', $packageDetail->package_type)) }}
                                                 </h6>
                                                 <span class="text-muted font-weight-light">
                                                     @if ($packageDetail->package_type == 'mini_carton' || $packageDetail->package_type == 'other')

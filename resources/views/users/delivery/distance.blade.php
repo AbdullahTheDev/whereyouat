@@ -82,7 +82,7 @@
                                                             <option value="mail_envelope">Mail Envelope</option>
                                                             <option value="parcel_envelope">Parcel Envelope</option>
                                                             <option value="mini_carton">Mini Carton</option>
-                                                            <option value="other">Other Format</option>
+                                                            <option value="extra_formats">Other Format</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -205,7 +205,7 @@
                         carrier: 40,
                         total: 65
                     },
-                    other: {
+                    extra_formats: {
                         online: 25,
                         carrier: 40,
                         total: 65
@@ -230,7 +230,7 @@
                         carrier: 30,
                         total: 55
                     },
-                    other: {
+                    extra_formats: {
                         online: 10,
                         fixed: 5,
                         carrier: 20,
@@ -275,7 +275,7 @@
                                 <option value="mail_envelope">Mail Envelope</option>
                                 <option value="parcel_envelope">Parcel Envelope</option>
                                 <option value="mini_carton">Mini Carton</option>
-                                <option value="other">Other Format</option>
+                                <option value="extra_formats">Other Format</option>
                             </select>
                         </div>
                     </div>

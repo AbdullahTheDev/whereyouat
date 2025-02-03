@@ -127,8 +127,8 @@
                                                 @endphp
                                                 <option {{ in_array('mail-envelope', $packages) ? 'selected' : '' }}
                                                     value="mail-envelope">Mail Envelope</option>
-                                                <option {{ in_array('wrapped-package', $packages) ? 'selected' : '' }}
-                                                    value="wrapped-package">Wrapped Package</option>
+                                                <option {{ in_array('parcel-package', $packages) ? 'selected' : '' }}
+                                                    value="parcel-envelope">Parcel Envelope</option>
                                                 <option {{ in_array('mini-carton', $packages) ? 'selected' : '' }}
                                                     value="mini-carton">Mini Carton</option>
                                                 <option {{ in_array('extra-formats', $packages) ? 'selected' : '' }}
