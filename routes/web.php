@@ -90,6 +90,10 @@ Route::prefix('user')->middleware('auth')->group(function () {
         Route::get('/track', [DeliveryController::class, 'trackDelivery'])->name('user.delivery.track');
         Route::get('/track/distance', [DeliveryController::class, 'distanceTrackDelivery'])->name('user.delivery.track.distance');
         Route::get('/track/vicinity', [DeliveryController::class, 'vicinityTrackDelivery'])->name('user.delivery.track.vicinity');
+
+        Route::get('/distance/driver-info/{id}', [DeliveryController::class, 'distanceDriver'])->name('user.delivery.distance.driver');
+        Route::get('/vicinity/driver-info/{id}', [DeliveryController::class, 'vicinityDriver'])->name('user.delivery.vicinity.driver');
+
     });
     Route::get('/notifications', function () {
         return view('users.notifications.index');
