@@ -148,7 +148,11 @@ class DeliveryController extends Controller
             if($delivery->user_id != Auth::id()){
                 return redirect()->back()->with('error', 'You do not have permission to access this delivery');
             }
-            $driver = User::findOrFail($delivery->driver_id);
+            $user = User::findOrFail($delivery->driver_id);
+            if(!$user){
+                return redirect()->back()->with('error', 'Driver not found');
+            }
+            $driver = Driver::where('user_id', $user->id)->first();
             if(!$driver){
                 return redirect()->back()->with('error', 'Driver not found');
             }
