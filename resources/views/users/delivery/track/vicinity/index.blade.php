@@ -21,6 +21,7 @@
                                         <th> Amount </th>
                                         <th> Status </th>
                                         <th> Rider Status </th>
+                                        <th> Rider Info </th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -52,6 +53,9 @@
                                                 @else
                                                 <label class="badge badge-gradient-secondary">OPEN</label>
                                                 @endif
+                                            </td>
+                                            <td>
+                                                <a href="{{ route('user.delivery.drivers.driver_info', $delivery->id) }}">View</a>
                                             </td>
                                         </tr>
                                     @endforeach
