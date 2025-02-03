@@ -66,6 +66,16 @@ class ProfileController extends Controller
                 $driver->vehicle_photo = $vehiclePhotoPath;
             }
 
+            if ($request->hasFile('profile_photo')) {
+                $file = $request->file('profile_photo');
+                $filename = 'profile_' . $user->id . '.' . $file->getClientOriginalExtension();
+                $file->move(public_path('drivers_profile'), $filename);
+                if ($driver->profile_photo && file_exists(public_path('drivers_profile/' . $driver->profile_photo))) {
+                    unlink(public_path('drivers_profile/' . $driver->profile_photo));
+                }
+                $driver->profile_photo = $filename;
+            }
+
             $driver->vehicle_make = $request->vehicle_make;
             $driver->vehicle_model = $request->vehicle_model;
             $driver->vehicle_year = $request->vehicle_year;

@@ -43,6 +43,16 @@
                                     <input type="password" class="form-control" autocomplete="new-password" name="confirm_password" value="" id="confirm_password"
                                         placeholder="Password">
                                 </div>
+                                <div class="form-group text-center">
+                                    <label for="profile_photo">Profile Photo</label>
+                                    <div class="profile-photo-preview mb-2">
+                                        <img id="profileImage"
+                                            src="{{ $driver->profile_photo ? asset('drivers_profile/' . $driver->profile_photo) : asset('users_profile/default-profile.png') }}"
+                                            alt="Profile Photo" class="img-fluid rounded-circle" width="120">
+                                    </div>
+                                    <input type="file" class="form-control" id="profile_photo" name="profile_photo"
+                                        accept="image/*">
+                                </div>
                                 <button type="submit" class="btn btn-gradient-primary me-2">Update</button>
                             </div>
                         </div>

@@ -24,6 +24,7 @@ class Driver extends Model
         'services',
         'packages',
         'local_delivery_city',
+        'profile_photo',
     ];
 
     protected $casts = [
