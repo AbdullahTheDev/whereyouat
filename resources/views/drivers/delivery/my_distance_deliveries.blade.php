@@ -11,7 +11,7 @@
                     <div class="card">
                         <div class="card-body">
                             <h4 class="card-title">All Deliveries</h4>
-                            <table class="table table-bordered">
+                            <table class="table table-bordered" id="myTable">
                                 <thead>
                                     <tr>
                                         <th> # </th>
@@ -96,5 +96,9 @@
                 });
             });
         });
+    </script>
+
+    <script>
+        let table = new DataTable('#myTable');
     </script>
 @endsection
