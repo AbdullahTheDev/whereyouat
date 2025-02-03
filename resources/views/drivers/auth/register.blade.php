@@ -157,9 +157,10 @@
                                 </div>
                                 <div class="form-group">
                                     <select class="form-select form-select-lg @error('packages') is-invalid @enderror" name="packages[]" multiple required>
-                                        <option value="standard">Standard</option>
-                                        <option value="premium">Premium</option>
-                                        <option value="express">Express</option>
+                                        <option value="mail-envelope">Mail Envelope</option>
+                                        <option value="wrapped-package">Wrapped Package</option>
+                                        <option value="mini-carton">Mini Carton</option>
+                                        <option value="extra-formats">Extra Formats</option>
                                     </select>
                                     @error('packages')
                                         <span class="invalid-feedback" role="alert">
