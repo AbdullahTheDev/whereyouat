@@ -100,4 +100,44 @@ class DeliveryController extends Controller
 
         return response()->json(['success' => true, 'message' => 'Status updated successfully!']);
     }
+
+    function vicinityDeliveryAccept(Request $request)
+    {
+        try {
+            $request->validate([
+                'delivery_id' => 'required|exists:vicinity_deliveries,id',
+            ]);
+
+            $delivery = VicinityDelivery::findOrFail($request->delivery_id);
+            $delivery->accepted = 1;
+            $delivery->driver_id = Auth::id();
+            $delivery->save();
+
+            return redirect()->route('driver.delivery.vicinity')->with('success', 'Delivery accepted successfully');
+        } catch (Exception $e) {
+            return redirect()->back()->with('error', $e->getMessage());
+        }
+    }
+
+    public function vicinityDeliveryStatus(Request $request)
+    {
+        $request->validate([
+            'delivery_id' => 'required|exists:vicinity_deliveries,id',
+            'status' => 'required|in:0,1,2'
+        ]);
+
+        $delivery = VicinityDelivery::find($request->delivery_id);
+        $delivery->status = $request->status;
+        $delivery->save();
+
+        Notification::create([
+            'user_id' => $delivery->user_id,
+            'type' => 'Vicinity Delivery',
+            'title' => 'Delivery Accepted',
+            'message' => 'Your delivery has been accepted',
+            'status' => 1
+        ]);
+
+        return response()->json(['success' => true, 'message' => 'Status updated successfully!']);
+    }
 }
