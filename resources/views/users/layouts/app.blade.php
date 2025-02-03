@@ -31,10 +31,10 @@
 
     {{-- jQuery --}}
     <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
-    
+
     {{-- Datatables --}}
-    <link rel="stylesheet" href="//cdn.datatables.net/2.2.1/css/dataTables.dataTables.min.css">
-    <script src="//cdn.datatables.net/2.2.1/js/dataTables.min.js"></script>
+    <link href="{{ asset('assets/js/datatables.min.css') }}" rel="stylesheet">
+    <script src="{{ asset('assets/js/datatables.min.js') }}"></script>
 
     <style>
         /* Custom styles for the Google Translate widget */
