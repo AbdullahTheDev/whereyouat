@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Models\DistanceDelivery;
+use App\Models\Driver;
 use App\Models\PackageDetail;
 use App\Models\VicinityDelivery;
 use Exception;
@@ -113,5 +114,42 @@ class DeliveryController extends Controller
         }catch(Exception $e) {
             return redirect()->back()->with('error', $e->getMessage());
         } 
+    }
+
+    function distanceDriver($id){
+        try{
+            $delivery = DistanceDelivery::findOrFail($id);
+            if(!$delivery){
+                return redirect()->back()->with('error', 'Delivery not found');
+            }
+            if($delivery->user_id != Auth::id()){
+                return redirect()->back()->with('error', 'You do not have permission to access this delivery');
+            }
+            $driver = Driver::findOrFail($delivery->driver_id);
+            if(!$driver){
+                return redirect()->back()->with('error', 'Driver not found');
+            }
+            return view('user.delivery.drivers.driver_info', compact('driver'));
+        }catch(Exception $e){
+            return redirect()->back()->with('error', $e->getMessage());
+        }
+    }
+    function vicinityDriver($id){
+        try{
+            $delivery = VicinityDelivery::findOrFail($id);
+            if(!$delivery){
+                return redirect()->back()->with('error', 'Delivery not found');
+            }
+            if($delivery->user_id != Auth::id()){
+                return redirect()->back()->with('error', 'You do not have permission to access this delivery');
+            }
+            $driver = Driver::findOrFail($delivery->driver_id);
+            if(!$driver){
+                return redirect()->back()->with('error', 'Driver not found');
+            }
+            return view('user.delivery.drivers.driver_info', compact('driver'));
+        }catch(Exception $e){
+            return redirect()->back()->with('error', $e->getMessage());
+        }
     }
 }
