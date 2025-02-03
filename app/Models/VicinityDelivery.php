@@ -30,7 +30,7 @@ class VicinityDelivery extends Model
 
     public function packageDetails()
     {
-        return $this->hasMany(PackageDetail::class, 'delivery_id');
+        return $this->hasMany(VicinityPackageDetail::class, 'delivery_id');
     }
 
     public function driver()

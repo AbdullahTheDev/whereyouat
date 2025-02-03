@@ -8,6 +8,7 @@ use App\Models\Driver;
 use App\Models\PackageDetail;
 use App\Models\User;
 use App\Models\VicinityDelivery;
+use App\Models\VicinityPackageDetail;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -100,7 +101,7 @@ class DeliveryController extends Controller
             ]);
 
             foreach ($request->package_type as $key => $value) {
-                PackageDetail::create([
+                VicinityPackageDetail::create([
                     'delivery_id' => $delivery->id,
                     'package_type' => str_replace('_', '-', $value),
                     'qty' => $request->package_quantity[$key],
