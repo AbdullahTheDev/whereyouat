@@ -55,7 +55,7 @@
                                                 @endif
                                             </td>
                                             <td>
-                                                <a href="{{ route('user.delivery.drivers.driver_info', $delivery->id) }}">View</a>
+                                                <a class="btn btn-sm btn-primary" href="{{ route('user.delivery.vicinity.driver', $delivery->id) }}">View</a>
                                             </td>
                                         </tr>
                                     @endforeach
