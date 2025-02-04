@@ -31,7 +31,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [GeneralController::class, 'index'])->name('main');
 
-Route::prefix('driver')->middleware('auth')->group(function () {
+Route::prefix('driver')->middleware(['auth', 'driver'])->group(function () {
     Route::get('/register', function () {
         return view('drivers.auth.register');
     })->name('driver.register');
@@ -70,7 +70,7 @@ Route::prefix('driver')->middleware('auth')->group(function () {
 });
 
 
-Route::prefix('user')->middleware('auth')->group(function () {
+Route::prefix('user')->middleware(['auth', 'user'])->group(function () {
     Route::get('/register', function () {
         return view('users.auth.register');
     })->name('user.register');
