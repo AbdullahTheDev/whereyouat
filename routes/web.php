@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\DriverController as AdminDriverController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
@@ -112,11 +113,17 @@ Route::prefix('user')->middleware(['auth', 'user'])->group(function () {
 
 Route::post('/register', [RegisterController::class, 'register'])->name('register');
 
-Route::prefix('admin')->middleware(['auth'])->group(function () {
+Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
     Route::get('/notifications', function () {
         return view('admin.notifications.index');
     })->name('admin.notifications');
+
+
+    Route::prefix('drivers')->group(function () {
+        Route::get('/all', [AdminDriverController::class, 'allDrivers'])->name('admin.drivers.all');
+        Route::get('/all/requests', [AdminDriverController::class, 'allRequests'])->name('admin.drivers.requests');
+    });
 });
 
 
