@@ -39,38 +39,52 @@
                                                     data-bs-target="#driverInfoModal-{{ $driver->id }}">
                                                     View
                                                 </button>
-                                                <div class="modal fade" id="driverInfoModal-{{ $driver->id }}"
-                                                    tabindex="-1" aria-labelledby="driverInfoModalLabel-{{ $driver->id }}"
-                                                    aria-hidden="true">
-                                                    <div class="modal-dialog">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title"
-                                                                    id="driverInfoModalLabel-{{ $driver->id }}">Driver
-                                                                    Information</h5>
-                                                                <button type="button" class="btn-close"
-                                                                    data-bs-dismiss="modal" aria-label="Close"></button>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                <p><strong>Name:</strong> {{ $driver->name }}</p>
-                                                                <p><strong>Email:</strong> {{ $driver->email }}</p>
-                                                                <p><strong>Phone:</strong> {{ $driver->phone }}</p>
-                                                                <hr>
-                                                                <h6>Vehicle Info</h6>
-                                                                <p><strong>Make:</strong> {{ $driver->vehicle_make }}</p>
-                                                                <p><strong>Model:</strong> {{ $driver->vehicle_model }}</p>
-                                                                <p><strong>Year:</strong> {{ $driver->vehicle_year }}</p>
-                                                                <p><strong>Plate Number:</strong> {{ $driver->vehicle_plate_number }}</p>
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <button type="button" class="btn btn-secondary"
-                                                                    data-bs-dismiss="modal">Close</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
                                             </td>
                                         </tr>
+                                        <div class="modal fade" id="driverInfoModal-{{ $driver->id }}"
+                                            tabindex="-1" aria-labelledby="driverInfoModalLabel-{{ $driver->id }}"
+                                            aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title"
+                                                            id="driverInfoModalLabel-{{ $driver->id }}">Driver
+                                                            Information</h5>
+                                                        <button type="button" class="btn-close"
+                                                            data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <p><strong>Name:</strong> {{ $driver->name }}</p>
+                                                        <p><strong>Email:</strong> {{ $driver->email }}</p>
+                                                        <p><strong>Phone:</strong> {{ $driver->phone }}</p>
+                                                        <hr>
+                                                        <h6>Vehicle Info</h6>
+                                                        <p><strong>Make:</strong> {{ $driver->vehicle_make }}</p>
+                                                        <p><strong>Model:</strong> {{ $driver->vehicle_model }}</p>
+                                                        <p><strong>Year:</strong> {{ $driver->vehicle_year }}</p>
+                                                        <p><strong>Plate Number:</strong> {{ $driver->vehicle_plate }}</p>
+                                                        <p><strong>Seats:</strong> {{ $driver->vehicle_seats }}</p>
+                                                        <p><strong>Color:</strong> {{ $driver->vehicle_color }}</p>
+                                                        <p><strong>Vehicle Photo:</strong></p>
+                                                        <a data-fancybox="gallery" href="{{ asset($driver->vehicle_photo) }}" >
+                                                            <img width="200" src="{{ asset($driver->vehicle_photo) }}" alt="">
+                                                        </a>
+                                                        <p><strong>License Front:</strong></p>
+                                                        <a data-fancybox="gallery" href="{{ asset($driver->license_photo_front) }}" >
+                                                            <img width="200" src="{{ asset($driver->license_photo_front) }}" alt="">
+                                                        </a>
+                                                        <p><strong>License Back:</strong></p>
+                                                        <a data-fancybox="gallery" href="{{ asset($driver->license_photo_back) }}" >
+                                                            <img width="200" src="{{ asset($driver->license_photo_back) }}" alt="">
+                                                        </a>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-bs-dismiss="modal">Close</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     @endforeach
                                 </tbody>
                             </table>
