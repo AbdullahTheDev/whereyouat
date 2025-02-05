@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\DriverController as AdminDriverController;
 use App\Http\Controllers\Admin\ProfileController as AdminProfileController;
+use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
@@ -122,7 +123,7 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
 
 
     Route::prefix('users')->group(function () {
-        Route::get('/all', [AdminDriverController::class, 'allUsers'])->name('admin.users.all');
+        Route::get('/all', [AdminUserController::class, 'allUsers'])->name('admin.users.all');
         
     });
     Route::prefix('drivers')->group(function () {

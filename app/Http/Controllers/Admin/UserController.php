@@ -10,7 +10,8 @@ class UserController extends Controller
 {
     function allUsers()
     {
-        $users = User::all();
+        $users = User::where('role', 'user')->get();
+        
         return view('admin.users.all_users', compact('users'));
     }
 }

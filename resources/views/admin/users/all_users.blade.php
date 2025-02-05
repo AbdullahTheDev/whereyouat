@@ -18,9 +18,8 @@
                                         <th> Name </th> 
                                         <th> Phone </th>
                                         <th> Email </th>
-                                        <th> Services Offered </th>
                                         <th> Registered Date </th>
-                                        <th> Rider Info </th>
+                                        <th> User Info </th>
                                     </tr>
                                 </thead>
                                 <tbody>
