@@ -121,6 +121,10 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     })->name('admin.notifications');
 
 
+    Route::prefix('users')->group(function () {
+        Route::get('/all', [AdminDriverController::class, 'allUsers'])->name('admin.users.all');
+        
+    });
     Route::prefix('drivers')->group(function () {
         Route::get('/all', [AdminDriverController::class, 'allDrivers'])->name('admin.drivers.all');
         Route::get('/import', [AdminDriverController::class, 'importDrivers'])->name('admin.drivers.import');

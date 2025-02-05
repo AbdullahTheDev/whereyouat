@@ -34,9 +34,6 @@
             <li class="nav-item">
               <a class="nav-link" href="{{ route('admin.drivers.import') }}">Import Drivers</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="pages/ui-features/typography.html">Typography</a>
-            </li>
           </ul>
         </div>
       </li>
