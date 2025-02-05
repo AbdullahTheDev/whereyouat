@@ -18,7 +18,7 @@ class DriversImport implements ToModel, WithHeadingRow
     public function model(array $row)
     {
         // Log::info($row);
-        $user = User::where('email', $row['email'])->first();
+        $user = User::where('email', $row['email_address'])->first();
 
         // If user exists, skip both user and driver creation
         if ($user) {
@@ -28,7 +28,7 @@ class DriversImport implements ToModel, WithHeadingRow
         // Create User
         $user = User::create([
             'name' => $row['name'] . " " . $row['surname'],
-            'email' => $row['email'],
+            'email' => $row['email_address'],
             'phone' => trim($row['telephone_number'], "'"), // Remove single quotes if present
             'password' => Hash::make($row['the_password_to_access_his_account_must_be_quite_easy_to_remember']),
             'role' => 'driver',
