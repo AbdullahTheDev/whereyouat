@@ -35,6 +35,7 @@ class ProfileController extends Controller
                 'name' => $request->name,
                 'email' => $request->email,
                 'phone' => $request->phone,
+                'date_of_birth' => $request->date_of_birth,
             ]);
 
             $userProfile = UserProfile::where('user_id', $user->id)->firstOrCreate([
@@ -60,7 +61,6 @@ class ProfileController extends Controller
 
             $userProfile->update([
                 'address' => $request->address,
-                'date_of_birth' => $request->date_of_birth,
             ]);
 
             // Check if the current password is provided and valid

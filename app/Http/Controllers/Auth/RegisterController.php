@@ -34,12 +34,12 @@ class RegisterController extends Controller
                 'date_of_birth' => 'required|date',
                 'password' => 'required|string|min:6|confirmed',
                 'role' => ['required', Rule::in(['driver', 'local_delivery', 'business', 'partner_home', 'general_user'])],
+                'terms_approved' => 'required|boolean',
             ]);
 
             if ($request->role == 'general_user') {
                 $request->validate([
                     'address' => 'required|string|max:255',
-                    'terms_approved' => 'required|boolean',
                 ]);
             }
             DB::beginTransaction();
@@ -75,8 +75,7 @@ class RegisterController extends Controller
                 case 'general_user':
                     UserProfile::create([
                         'user_id' => $user->id,
-                        'address' => $request->address,
-                        'approved_terms' => $request->terms_approved,
+                        'address' => $request->address
                     ]);
                     $route = 'user.dashboard';
                     break;

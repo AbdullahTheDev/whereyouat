@@ -68,7 +68,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="date_of_birth">Date Of Birth</label>
-                                    <input type="date" class="form-control" name="date_of_birth" value="{{ $userProfile->date_of_birth }}"
+                                    <input type="date" class="form-control" name="date_of_birth" value="{{ $user->date_of_birth }}"
                                         id="date_of_birth" placeholder="Date Of Birth">
                                 </div>
                                 <button type="submit" class="btn btn-gradient-primary me-2">Update</button>
