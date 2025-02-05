@@ -33,7 +33,7 @@
                                             <td>
                                                 {{ ucwords(implode(', ', str_replace('-', ' ',json_decode($driver->services, true)) ?? [])) ?: 'N/A' }}
                                             </td>                                            
-                                            <td> {{ \Carbon\Carbon::parse($driver->user->created_at) }} </td>
+                                            <td> {{ \Carbon\Carbon::parse($driver->user->created_at)->format('M j, Y | h:i A') }} </td>
                                             <td>
                                                 <button type="button" class="btn btn-info btn-sm" data-bs-toggle="modal"
                                                     data-bs-target="#driverInfoModal-{{ $driver->id }}">
