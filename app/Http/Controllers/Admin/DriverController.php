@@ -25,6 +25,7 @@ class DriverController extends Controller
 
     function importDriversPost(Request $request)
     {
+        // return  $request->file('file')->extension();
         try {
             $request->validate([
                 'file' => 'required|mimes:xls,xlsx,csv',

@@ -17,8 +17,7 @@
 
                                 <div class="form-group text-center">
                                     <label for="file">CSV File</label>
-                                    <input type="file" class="form-control" id="file" name="file"
-                                        accept="file/*">
+                                    <input type="file" class="form-control" id="file" name="file">
                                 </div>
 
                                 <button type="submit" class="btn btn-gradient-primary me-2">Import</button>
