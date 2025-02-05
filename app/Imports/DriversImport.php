@@ -18,10 +18,10 @@ class DriversImport implements ToModel
     {
         // Create User
         $user = User::create([
-            'name' => $row['name'],
-            'email' => $row['email'],
-            'phone' => $row['phone'],
-            'password' => Hash::make($row['password']),
+            'name' => $row['Name'] . " " . $row['Surname'],
+            'email' => $row['Email Address'],
+            'phone' => $row['Telephone Number'],
+            'password' => Hash::make($row['The password to access his account (must be quite easy to remember)']),
             'role' => 'driver',
             'terms_approved' => 1,
         ]);
@@ -29,15 +29,18 @@ class DriversImport implements ToModel
         // Create Driver and link with User
         return new Driver([
             'user_id' => $user->id,
-            'vehicle_make' => $row['vehicle_make'],
-            'vehicle_model' => $row['vehicle_model'],
-            'vehicle_year' => $row['vehicle_year'],
-            'vehicle_plate' => $row['vehicle_plate'],
-            'vehicle_color' => $row['vehicle_color'],
-            'vehicle_seats' => $row['vehicle_seats'],
-            'services' => json_encode(explode(',', $row['services'])),
-            'packages' => json_encode(explode(',', $row['packages'])),
-            'local_delivery_city' => $row['local_delivery_city'] ?? null,
+            'license_photo_front' => $row['Double sided photo of the driver’s license'], // Path from CSV
+            'license_photo_back' => $row['Double sided photo of the driver’s license'], // Path from CSV
+            'vehicle_make' => $row['Make'],
+            'vehicle_model' => $row['Model'],
+            'vehicle_year' => $row['Year of Release'],
+            'vehicle_plate' => $row['Number Plate'],
+            'vehicle_color' => $row['Color of the vehicle'],
+            'vehicle_seats' => $row['Seat Number'],
+            'vehicle_photo' => $row['Front-Facing Photo of the Vehicle'], // Path from CSV
+            'services' => json_encode(explode(',', $row['Services Provided'])),
+            'packages' => json_encode(explode(',', $row['What kind of package do you want to deliver?'])),
+            'local_delivery_city' => $row['If you have chosen to offer the local delivery service, please indicate your residential address or choose the city where you would like to operate as a local delivery service.'] ?? null,
         ]);
     }
 }
