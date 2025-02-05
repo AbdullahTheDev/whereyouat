@@ -42,7 +42,7 @@ class AuthenticatedSessionController extends Controller
             $route = 'partner_home.dashboard';
         }else if(Auth::user()->role == 'company'){
             $route = 'company.dashboard';
-        }else if(Auth::user()->role == 'general_user'){
+        }else if(Auth::user()->role == 'user'){
             $route = 'user.dashboard';
         }else if(Auth::user()->role == 'admin'){
             $route = 'admin.dashboard';

@@ -33,11 +33,11 @@ class RegisterController extends Controller
                 'phone' => 'required|string|max:20',
                 'date_of_birth' => 'required|date',
                 'password' => 'required|string|min:6|confirmed',
-                'role' => ['required', Rule::in(['driver', 'local_delivery', 'business', 'partner_home', 'general_user'])],
+                'role' => ['required', Rule::in(['driver', 'local_delivery', 'business', 'partner_home', 'user'])],
                 'terms_approved' => 'required|boolean',
             ]);
 
-            if ($request->role == 'general_user') {
+            if ($request->role == 'user') {
                 $request->validate([
                     'address' => 'required|string|max:255',
                 ]);
@@ -72,7 +72,7 @@ class RegisterController extends Controller
                 case 'partner_home':
                     $this->registerPartnerHome($request, $user);
                     break;
-                case 'general_user':
+                case 'user':
                     UserProfile::create([
                         'user_id' => $user->id,
                         'address' => $request->address
