@@ -29,7 +29,8 @@ class DriversImport implements ToModel, WithHeadingRow
         $user = User::create([
             'name' => $row['name'] . " " . $row['surname'],
             'email' => $row['email_address'],
-            'phone' => trim($row['telephone_number'], "'"), // Remove single quotes if present
+            'phone' => trim($row['telephone_number'], "'"),
+            'date_of_birth' => $row['date_of_birth'],
             'password' => Hash::make($row['the_password_to_access_his_account_must_be_quite_easy_to_remember']),
             'role' => 'driver',
             'terms_approved' => 1,

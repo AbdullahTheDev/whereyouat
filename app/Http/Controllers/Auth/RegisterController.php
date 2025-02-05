@@ -31,6 +31,7 @@ class RegisterController extends Controller
                 'name' => 'required|string|max:255',
                 'email' => 'required|string|email|max:255|unique:users',
                 'phone' => 'required|string|max:20',
+                'date_of_birth' => 'required|date',
                 'password' => 'required|string|min:6|confirmed',
                 'role' => ['required', Rule::in(['driver', 'local_delivery', 'business', 'partner_home', 'general_user'])],
             ]);
@@ -38,7 +39,6 @@ class RegisterController extends Controller
             if ($request->role == 'general_user') {
                 $request->validate([
                     'address' => 'required|string|max:255',
-                    'date_of_birth' => 'required|date',
                     'terms_approved' => 'required|boolean',
                 ]);
             }
@@ -48,6 +48,7 @@ class RegisterController extends Controller
                 'name' => $request->name,
                 'email' => $request->email,
                 'phone' => $request->phone,
+                'date_of_birth' => $request->date_of_birth,
                 'password' => Hash::make($request->password),
                 'role' => $request->role,
                 'terms_approved' => $request->terms_approved,
@@ -75,7 +76,6 @@ class RegisterController extends Controller
                     UserProfile::create([
                         'user_id' => $user->id,
                         'address' => $request->address,
-                        'date_of_birth' => $request->date_of_birth,
                         'approved_terms' => $request->terms_approved,
                     ]);
                     $route = 'user.dashboard';
