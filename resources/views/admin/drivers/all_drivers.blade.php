@@ -15,9 +15,9 @@
                                 <thead>
                                     <tr>
                                         <th> # </th>
-                                        <th> Name </th>
-                                        <th> Phone </th>
-                                        <th> Email </th>
+                                        <th> Name </th> 
+                                        {{-- <th> Phone </th>
+                                        <th> Email </th> --}}
                                         <th> Type </th>
                                         <th> Registered Date </th>
                                         <th> Rider Info </th>
@@ -28,10 +28,10 @@
                                         <tr>
                                             <td> {{ $key + 1 }} </td>
                                             <td> {{ $driver->user->name }} </td>
-                                            <td> {{ $driver->user->phone }} </td>
-                                            <td> {{ $driver->user->email }} </td>
+                                            {{-- <td> {{ $driver->user->phone }} </td>
+                                            <td> {{ $driver->user->email }} </td> --}}
                                             <td>
-                                                {{ implode(', ', str_replace('-', ' ',json_decode($driver->services, true)) ?? []) ?: 'N/A' }}
+                                                {{ ucwords(implode(', ', str_replace('-', ' ',json_decode($driver->services, true)) ?? [])) ?: 'N/A' }}
                                             </td>                                            
                                             <td> {{ \Carbon\Carbon::parse($driver->user->created_at) }} </td>
                                             <td>
@@ -54,9 +54,9 @@
                                                             data-bs-dismiss="modal" aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <p><strong>Name:</strong> {{ $driver->name }}</p>
-                                                        <p><strong>Email:</strong> {{ $driver->email }}</p>
-                                                        <p><strong>Phone:</strong> {{ $driver->phone }}</p>
+                                                        <p><strong>Name:</strong> {{ $driver->user->name }}</p>
+                                                        <p><strong>Email:</strong> {{ $driver->user->email }}</p>
+                                                        <p><strong>Phone:</strong> {{ $driver->user->phone }}</p>
                                                         <hr>
                                                         <h6>Vehicle Info</h6>
                                                         <p><strong>Make:</strong> {{ $driver->vehicle_make }}</p>

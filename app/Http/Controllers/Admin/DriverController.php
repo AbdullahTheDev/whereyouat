@@ -20,7 +20,7 @@ class DriverController extends Controller
 
     function importDrivers()
     {
-        return view('admin.drivers.add.import');
+        return view('admin.drivers.import.import');
     }
 
     function importDriversPost(Request $request)
