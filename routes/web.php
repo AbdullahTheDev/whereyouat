@@ -123,7 +123,8 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
 
     Route::prefix('drivers')->group(function () {
         Route::get('/all', [AdminDriverController::class, 'allDrivers'])->name('admin.drivers.all');
-        Route::get('/all/requests', [AdminDriverController::class, 'allRequests'])->name('admin.drivers.requests');
+        Route::get('/import', [AdminDriverController::class, 'importDrivers'])->name('admin.drivers.import');
+        Route::post('/import', [AdminDriverController::class, 'importDriversPost'])->name('admin.drivers.import.post');
     });
 
     
