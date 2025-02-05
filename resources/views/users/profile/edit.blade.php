@@ -117,7 +117,7 @@
         });
     </script>
     <script>
-        const apiKey = "46bc8355b7f3494ebcb210ce851ba1ad"; // Replace with your API key
+        const apiKey = "46bc8355b7f3494ebcb210ce851ba1ad";
         const input = document.getElementById("address-input");
         const list = document.getElementById("autocomplete-list");
 
