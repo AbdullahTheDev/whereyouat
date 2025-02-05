@@ -18,7 +18,7 @@
                                         <th> Name </th> 
                                         {{-- <th> Phone </th>
                                         <th> Email </th> --}}
-                                        <th> Type </th>
+                                        <th> Services Offered </th>
                                         <th> Registered Date </th>
                                         <th> Rider Info </th>
                                     </tr>
@@ -57,6 +57,11 @@
                                                         <p><strong>Name:</strong> {{ $driver->user->name }}</p>
                                                         <p><strong>Email:</strong> {{ $driver->user->email }}</p>
                                                         <p><strong>Phone:</strong> {{ $driver->user->phone }}</p>
+                                                        <hr>
+                                                        <h6>Packages Offered</h6>
+                                                        <p>
+                                                            {{ ucwords(implode(', ', str_replace('-', ' ',json_decode($driver->packages, true)) ?? [])) ?: 'N/A' }}
+                                                        </p>
                                                         <hr>
                                                         <h6>Vehicle Info</h6>
                                                         <p><strong>Make:</strong> {{ $driver->vehicle_make }}</p>
