@@ -57,6 +57,7 @@
                                                         <p><strong>Name:</strong> {{ $driver->user->name }}</p>
                                                         <p><strong>Email:</strong> {{ $driver->user->email }}</p>
                                                         <p><strong>Phone:</strong> {{ $driver->user->phone }}</p>
+                                                        <p><strong>Date Of Birth:</strong> {{ $driver->user->date_of_birth }}</p>
                                                         <hr>
                                                         <h6>Packages Offered</h6>
                                                         <p>
