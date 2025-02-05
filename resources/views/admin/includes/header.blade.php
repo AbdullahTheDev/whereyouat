@@ -19,7 +19,8 @@
                 <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-bs-toggle="dropdown"
                     aria-expanded="false">
                     <div class="nav-profile-img">
-                        <img src="{{ asset('assets/images/faces/face1.jpg') }}" alt="image">
+                        <img src="{{ Auth::user()->userProfile->profile_photo ? asset('users_profile/' . Auth::user()->userProfile->profile_photo) : asset('users_profile/default-profile.png') }}"
+                            alt="image">
                         <span class="availability-status online"></span>
                     </div>
                     <div class="nav-profile-text">
@@ -27,11 +28,15 @@
                     </div>
                 </a>
                 <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
-                    <a class="dropdown-item" href="#">
-                        <i class="mdi mdi-cached me-2 text-success"></i> Activity Log </a>
+                    <a class="dropdown-item" href="{{ route('admin.profile.edit') }}">
+                        <i class="mdi mdi-cached me-2 text-success"></i> Profile </a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">
-                        <i class="mdi mdi-logout me-2 text-primary"></i> Signout </a>
+                    <a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('logout-form-header').submit();">
+                        <form action="{{ route('logout') }}" id="logout-form-header" method="post">
+                            @csrf
+                        </form>
+                        <i class="mdi mdi-logout me-2 text-primary"></i> Signout
+                    </a>
                 </div>
             </li>
             <li class="nav-item dropdown">

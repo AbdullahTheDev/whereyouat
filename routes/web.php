@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\DriverController as AdminDriverController;
+use App\Http\Controllers\Admin\ProfileController as AdminProfileController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
@@ -124,6 +125,11 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
         Route::get('/all', [AdminDriverController::class, 'allDrivers'])->name('admin.drivers.all');
         Route::get('/all/requests', [AdminDriverController::class, 'allRequests'])->name('admin.drivers.requests');
     });
+
+    
+    Route::get('/profile', [AdminProfileController::class, 'edit'])->name('admin.profile.edit');
+    Route::post('/profile', [AdminProfileController::class, 'update'])->name('admin.profile.update');
+    Route::delete('/profile', [AdminProfileController::class, 'destroy'])->name('admin.profile.destroy');
 });
 
 
