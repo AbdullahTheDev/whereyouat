@@ -20,72 +20,86 @@ class LocalDriversImport implements ToModel, WithHeadingRow
     {
         \Log::info($row);
 
-        // $DOB = str_replace('.', '-', trim($row['date_of_birth'], "'"));
-        // // \Log::info($DOB);
-        // // Check if user exists
-        // $user = User::where('email', $row['email_address'])->first();
+        $timeFrom = Carbon::createFromFormat('h:i a', $row['from'])->format('h:i:s');
+        $timeTo = Carbon::createFromFormat('h:i a', $row['to'])->format('h:i:s');
 
-        // $userData = [
-        //     'name' => $row['name'] . " " . $row['surname'],
-        //     'phone' => trim($row['telephone_number'], "'"),
-        //     'date_of_birth' => $DOB,
-        //     'role' => 'driver',
-        //     'terms_approved' => 1,
-        //     'updated_at' => Carbon::createFromFormat('M j, Y @ h:i A', $row['submission_time']),
-        // ];
+        \Log::info($timeFrom);
+        \Log::info($timeTo);
+        
+        $DOB = str_replace('.', '-', trim($row['date_of_birth'], "'"));
+        // \Log::info($DOB);
+        // Check if user exists
+        $user = User::where('email', $row['email_address'])->first();
 
-        // if (!empty($row['the_password_to_access_his_account_must_be_quite_easy_to_remember'])) {
-        //     $userData['password'] = Hash::make($row['the_password_to_access_his_account_must_be_quite_easy_to_remember']);
-        // }
+        $userData = [
+            'name' => $row['name'] . " " . $row['surname'],
+            'phone' => trim($row['telephone_number'], "'"),
+            'date_of_birth' => $DOB,
+            'role' => 'driver',
+            'terms_approved' => 1,
+            'updated_at' => Carbon::createFromFormat('M j, Y @ h:i A', $row['submission_time']),
+        ];
 
-        // if ($user) {
-        //     // Update missing fields
-        //     foreach ($userData as $key => $value) {
-        //         if (is_null($user->$key) && !empty($value)) {
-        //             $user->$key = $value;
-        //         }
-        //     }
-        //     $user->save();
-        // } else {
-        //     // Create new user
-        //     $userData['email'] = $row['email_address'];
-        //     $userData['created_at'] = Carbon::createFromFormat('M j, Y @ h:i A', $row['submission_time']);
-        //     $user = User::create($userData);
-        // }
+        if (!empty($row['the_password_to_access_his_account_must_be_quite_easy_to_remember'])) {
+            $userData['password'] = Hash::make($row['the_password_to_access_his_account_must_be_quite_easy_to_remember']);
+        }
 
-        // // Check if driver exists
-        // $driver = LocalDriver::where('user_id', $user->id)->first();
+        if ($user) {
+            // Update missing fields
+            foreach ($userData as $key => $value) {
+                if (is_null($user->$key) && !empty($value)) {
+                    $user->$key = $value;
+                }
+            }
+            $user->save();
+        } else {
+            // Create new user
+            $userData['email'] = $row['email_address'];
+            $userData['created_at'] = Carbon::createFromFormat('M j, Y @ h:i A', $row['submission_time']);
+            $user = User::create($userData);
+        }
 
-        // $driverData = [
-        //     'user_id' => $user->id,
-        //     'license_photo_front' => $row['double_sided_photo_of_the_drivers_license'],
-        //     'license_photo_back' => $row['double_sided_photo_of_the_drivers_license'],
-        //     'vehicle_make' => $row['make'],
-        //     'vehicle_model' => $row['model'],
-        //     'vehicle_year' => $row['year_of_release'],
-        //     'vehicle_plate' => $row['number_plate'],
-        //     'vehicle_color' => $row['color_of_the_vehicle'],
-        //     'vehicle_seats' => $row['seat_number'],
-        //     'vehicle_photo' => $row['front_facing_photo_of_the_vehicle'],
-        //     'services' => json_encode(explode(',', $row['services_provided'])),
-        //     'packages' => json_encode(explode(',', $row['what_kind_of_package_do_you_want_to_deliver'])),
-        //     'local_delivery_city' => $row['if_you_have_chosen_to_offer_the_local_delivery_service_please_indicate_your_residential_address_or_choose_the_city_where_you_would_like_to_operate_as_a_local_delivery_service'] ?? null,
-        //     'updated_at' => Carbon::createFromFormat('M j, Y @ h:i A', $row['submission_time']),
-        // ];
+        // Check if driver exists
+        $driver = LocalDriver::where('user_id', $user->id)->first();
 
-        // if ($driver) {
-        //     // Update missing fields for Driver
-        //     foreach ($driverData as $key => $value) {
-        //         if (is_null($driver->$key) && !empty($value)) {
-        //             $driver->$key = $value;
-        //         }
-        //     }
-        //     $driver->save();
-        //     return $driver;
-        // } else {
-        //     // Create new driver record
-        //     $driverData['created_at'] = Carbon::createFromFormat('M j, Y @ h:i A', $row['submission_time']);
-        //     return new LocalDriver($driverData);
-        // }
+        $driverData = [
+            'user_id' => $user->id,
+            'photo_of_facial_id' => $row['photo_of_a_facial_id'],
+            'proof_of_domicile' => $row['proof_of_domicile'],
+            'vehicle_make' => $row['make'],
+            'vehicle_model' => $row['model'],
+            'vehicle_year' => $row['year_of_release'],
+            'vehicle_plate' => $row['number_plate'],
+            'vehicle_color' => $row['color_of_the_vehicle'],
+            'walk' => $row['do_you_walk_for_your_deliveries_or_use_a_means_of_transport'],
+            'mean_of_transport' => $row['what_is_your_means_of_transport'],
+            'address' => $row['full_residential_address'],
+            'city' => $row['city_and_residential_address_to_determine_your_preferred_area_of_activity'],
+            'availability_days' => json_encode(explode(',', $row['availability_days'])),
+            'time_from' => $timeFrom,
+            'time_to' => $timeTo,
+        ];
+
+        if ($driver) {
+            // Update missing fields for Driver
+            foreach ($driverData as $key => $value) {
+                if (is_null($driver->$key) && !empty($value)) {
+                    $driver->$key = $value;
+                }
+            }
+            $driver->save();
+            return $driver;
+        } else {
+            // Create new driver record
+            return new LocalDriver($driverData);
+        }
     }
 }
+
+
+// SQLSTATE[HY000]: General error: 1364 Field 'time_from' doesn't have a default value 
+// (Connection: mysql, SQL: insert into `local_drivers` (`user_id`, `photo_of_facial_id`, `proof_of_domicile`, `vehicle_make`, `vehicle_model`, 
+// `vehicle_year`, `vehicle_plate`, `vehicle_color`, `walk`, `mean_of_transport`, `address`, `city`, `availability_days`) values 
+// (41, https://wya.onlinedemolinks.com/wp-content/uploads/forminator/770_1515860c6cea87367b55ea7ef4b838b0/uploads/uxvrsJBrapLV-freepik__adjust__62564.png, 
+// https://wya.onlinedemolinks.com/wp-content/uploads/forminator/770_1515860c6cea87367b55ea7ef4b838b0/uploads/lnncY445gKiN-freepik__adjust__62565.png, 
+// 2023, 2023, 2023, 696, Gray, 1, two, Qui consectetur omn, Karachi, ["monday"," tuesday"," wednesday"," thursday"," friday"," saturday"," sunday"]))
