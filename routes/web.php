@@ -13,6 +13,8 @@ use App\Http\Controllers\Driver\DriverController;
 use App\Http\Controllers\Driver\ProfileController as DriverProfileController;
 use App\Http\Controllers\Driver\TripController;
 use App\Http\Controllers\GeneralController;
+use App\Http\Controllers\LocalDriver\DriverController as LocalDriverDriverController;
+use App\Http\Controllers\LocalDriver\ProfileController as LocalDriverProfileController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\Payment\StripeDeliveryController;
 use App\Http\Controllers\ProfileController;
@@ -70,6 +72,38 @@ Route::prefix('driver')->middleware(['auth', 'driver'])->group(function () {
     Route::get('/profile', [DriverProfileController::class, 'edit'])->name('driver.profile.edit');
     Route::post('/profile', [DriverProfileController::class, 'update'])->name('driver.profile.update');
     Route::delete('/profile', [DriverProfileController::class, 'destroy'])->name('driver.profile.destroy');
+});
+Route::prefix('local-driver')->middleware(['auth', 'localDriver'])->group(function () {
+    Route::get('/register', function () {
+        return view('localdrivers.auth.register');
+    })->name('localdriver.register');
+
+    Route::get('/dashboard', [LocalDriverDriverController::class, 'index'])->name('localdriver.dashboard');
+
+    Route::prefix('delivery')->group(function () {
+        Route::get('/distance', [DriverDeliveryController::class, 'distanceDelivery'])->name('driver.delivery.distance');
+        Route::get('/vicinity', [DriverDeliveryController::class, 'vicinityDelivery'])->name('driver.delivery.vicinity');
+        Route::get('/track', [DriverDeliveryController::class, 'trackDelivery'])->name('driver.delivery.track');
+
+        Route::get('/my/deliveries', [DriverDeliveryController::class, 'yourDelivery'])->name('driver.delivery.your');
+        Route::get('/my/distance', [DriverDeliveryController::class, 'yourDistanceDelivery'])->name('driver.delivery.distance.your');
+        Route::get('/my/vicinity', [DriverDeliveryController::class, 'yourVicinityDelivery'])->name('driver.delivery.vicinity.your');
+
+        Route::post('/distance/accept', [DriverDeliveryController::class, 'distaneDeliveryAccept'])->name('driver.delivery.distance.accept');
+        Route::post('/distance/status', [DriverDeliveryController::class, 'distaneDeliveryStatus'])->name('driver.delivery.distance.status');
+    
+        Route::post('/vicinity/accept', [DriverDeliveryController::class, 'vicinityDeliveryAccept'])->name('driver.delivery.vicinity.accept');
+        Route::post('/vicinity/status', [DriverDeliveryController::class, 'vicinityDeliveryStatus'])->name('driver.delivery.vicinity.status');
+    
+    });
+
+    Route::get('/notifications', function () {
+        return view('localdrivers.notifications.index');
+    })->name('localdriver.notifications');
+
+    Route::get('/profile', [LocalDriverProfileController::class, 'edit'])->name('localdriver.profile.edit');
+    Route::post('/profile', [LocalDriverProfileController::class, 'update'])->name('localdriver.profile.update');
+    Route::delete('/profile', [LocalDriverProfileController::class, 'destroy'])->name('localdriver.profile.destroy');
 });
 
 
