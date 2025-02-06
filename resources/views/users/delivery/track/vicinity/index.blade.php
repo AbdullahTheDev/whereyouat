@@ -30,35 +30,40 @@
                                             <td> {{ $key + 1 }} </td>
                                             <td> {{ $delivery->transaction_date }} </td>
                                             <td>
-                                                {{ $delivery->departure_address }}
+                                                <p style="white-space: normal">
+                                                    {{ $delivery->departure_address }}
+                                                </p>
                                             </td>
                                             <td>
-                                                {{ $delivery->arrival_address }}
+                                                <p style="white-space: normal">
+                                                    {{ $delivery->arrival_address }}
+                                                </p>
                                             </td>
                                             <td> $ {{ number_format($delivery->total_price, 2) }} </td>
                                             <td>
-                                                @if ($delivery->status == 1) 
-                                                <label class="badge badge-gradient-info">ON THE WAY</label>
-                                                @elseif ($delivery->status == 2) 
-                                                <label class="badge badge-gradient-success">DONE</label>
+                                                @if ($delivery->status == 1)
+                                                    <label class="badge badge-gradient-info">ON THE WAY</label>
+                                                @elseif ($delivery->status == 2)
+                                                    <label class="badge badge-gradient-success">DONE</label>
                                                 @else
-                                                <label class="badge badge-gradient-danger">REJECTED</label>
+                                                    <label class="badge badge-gradient-danger">REJECTED</label>
                                                 @endif
                                             </td>
                                             <td>
-                                                @if ($delivery->accepted == 1) 
-                                                <label class="badge badge-gradient-info">ACCEPTED</label>
-                                                @elseif ($delivery->status == 2) 
-                                                <label class="badge badge-gradient-success">DELIVERED</label>
+                                                @if ($delivery->accepted == 1)
+                                                    <label class="badge badge-gradient-info">ACCEPTED</label>
+                                                @elseif ($delivery->status == 2)
+                                                    <label class="badge badge-gradient-success">DELIVERED</label>
                                                 @else
-                                                <label class="badge badge-gradient-secondary">OPEN</label>
+                                                    <label class="badge badge-gradient-secondary">OPEN</label>
                                                 @endif
                                             </td>
                                             <td>
-                                                @if ($delivery->accepted == 1 || $delivery->status == 2) 
-                                                <a class="btn btn-sm btn-primary" href="{{ route('user.delivery.vicinity.driver', $delivery->id) }}">View</a>
+                                                @if ($delivery->accepted == 1 || $delivery->status == 2)
+                                                    <a class="btn btn-sm btn-primary"
+                                                        href="{{ route('user.delivery.vicinity.driver', $delivery->id) }}">View</a>
                                                 @else
-                                                - -
+                                                    - -
                                                 @endif
                                             </td>
                                         </tr>
@@ -74,6 +79,9 @@
 @endsection
 @section('script')
     <script>
-        let table = new DataTable('#myTable');
+        // let table = new DataTable('#myTable');
+        new DataTable('#myTable', {
+            responsive: true
+        });
     </script>
 @endsection
