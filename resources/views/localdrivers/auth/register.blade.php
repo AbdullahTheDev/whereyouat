@@ -70,7 +70,7 @@
                                         </span>
                                     @enderror
                                 </div>
-                                <div class="form-group">
+                                <div class="form-check">
                                     <label class="form-check-label text-muted">
                                         <input type="checkbox" class="form-check-input @error('walk') is-invalid @enderror"
                                             name="walk" id="walk" placeholder="Walk" value="1" required>
