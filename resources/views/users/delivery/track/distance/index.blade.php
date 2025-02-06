@@ -30,10 +30,14 @@
                                             <td> {{ $key + 1 }} </td>
                                             <td> {{ $delivery->transaction_date }} </td>
                                             <td>
-                                                {{ $delivery->departure_city }}
+                                                <p style="white-space: normal;">
+                                                    {{ $delivery->departure_city }}
+                                                </p>
                                             </td>
                                             <td>
-                                                {{ $delivery->arrival_city }}
+                                                <p style="white-space: normal;">
+                                                    {{ $delivery->arrival_city }}
+                                                </p>
                                             </td>
                                             <td> $ {{ number_format($delivery->total_price, 2) }} </td>
                                             <td>

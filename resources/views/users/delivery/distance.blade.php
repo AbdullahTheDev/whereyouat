@@ -37,7 +37,7 @@
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">Departure City</label>
                                             <div class="col-sm-9">
-                                                <input type="text" name="departure_city" class="form-control" required />
+                                                <input type="text" name="departure_city" class="form-control autocomplete-address" required />
                                             </div>
                                         </div>
                                     </div>
@@ -45,7 +45,7 @@
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">Arrival City</label>
                                             <div class="col-sm-9">
-                                                <input type="text" name="arrival_city" class="form-control" required />
+                                                <input type="text" name="arrival_city" class="form-control autocomplete-address" required />
                                             </div>
                                         </div>
                                     </div>
