@@ -166,6 +166,12 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
         Route::post('/import', [AdminDriverController::class, 'importDriversPost'])->name('admin.drivers.import.post');
     });
 
+    Route::prefix('local-drivers')->group(function () {
+        Route::get('/all', [AdminDriverController::class, 'allLocalDrivers'])->name('admin.local.drivers.all');
+        Route::get('/import', [AdminDriverController::class, 'importLocalDrivers'])->name('admin.local.drivers.import');
+        Route::post('/import', [AdminDriverController::class, 'importLocalDriversPost'])->name('admin.local.drivers.import.post');
+    });
+
 
     Route::get('/profile', [AdminProfileController::class, 'edit'])->name('admin.profile.edit');
     Route::post('/profile', [AdminProfileController::class, 'update'])->name('admin.profile.update');
