@@ -71,14 +71,16 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <input type="checkbox"
-                                        class="form-control form-control-lg @error('walk') is-invalid @enderror"
-                                        name="walk" id="walk" placeholder="Walk" value="1" required>
-                                    @error('walk')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
+                                    <label class="form-check-label text-muted">
+                                        <input type="checkbox" class="form-check-input @error('walk') is-invalid @enderror"
+                                            name="walk" id="walk" placeholder="Walk" value="1" required>
+                                        Deliver By Walk?
+                                        @error('walk')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </label>
                                 </div>
                                 <div class="form-group">
                                     <input type="text"
