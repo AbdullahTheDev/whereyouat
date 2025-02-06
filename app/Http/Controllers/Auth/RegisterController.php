@@ -160,8 +160,8 @@ class RegisterController extends Controller
             ]);
         }
 
-        $photoOfFacialIdPath = 'drivers/' . time() . '_proof.' . $request->file('photo_of_facial_id')->extension();
-        $request->file('photo_of_facial_id')->move(public_path('drivers'), $photoOfFacialIdPath);
+        $photoOfFacialIdPath = 'drivers/local/' . time() . '_proof.' . $request->file('photo_of_facial_id')->extension();
+        $request->file('photo_of_facial_id')->move(public_path('drivers/local'), $photoOfFacialIdPath);
 
         LocalDriver::create([
             'user_id' => $user->id,

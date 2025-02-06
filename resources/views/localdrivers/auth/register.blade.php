@@ -249,6 +249,27 @@
                                         </span>
                                     @enderror
                                 </div>
+
+                                <div class="form-group">
+                                    <label>Photo Of Facial ID</label>
+                                    <input type="file" class="form-control form-control-lg @error('photo_of_facial_id') is-invalid @enderror" name="photo_of_facial_id"
+                                        required>
+                                    @error('photo_of_facial_id')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label>Proof Of Domicile</label>
+                                    <input type="file" class="form-control form-control-lg @error('proof_of_domicile') is-invalid @enderror" name="proof_of_domicile"
+                                        required>
+                                    @error('proof_of_domicile')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
                                 
                                 <div class="mb-4">
                                     <div class="form-check">

@@ -15,6 +15,7 @@ class LocalDriver extends Model
     protected $fillable = [
         'user_id',
         'photo_of_facial_id',
+        'proof_of_domicile',
         'walk',
         'mean_of_transport',
         'vehicle_make',
