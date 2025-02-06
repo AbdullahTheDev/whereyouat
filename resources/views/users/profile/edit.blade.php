@@ -84,9 +84,9 @@
 
                                 <div class="form-group">
                                     <label for="address">Address</label>
-                                    <input class="form-control" type="text" name="address" id="address-input"
-                                        value="{{ $userProfile->address }}" placeholder="Start typing an address..."
-                                        autocomplete="off">
+                                    <input class="form-control autocomplete-address" type="text" name="address"
+                                        id="address-input" value="{{ $userProfile->address }}"
+                                        placeholder="Start typing an address..." autocomplete="off" autocomplete="new-password">
                                     <div id="autocomplete-list"></div>
                                 </div>
                                 <div class="form-group">
