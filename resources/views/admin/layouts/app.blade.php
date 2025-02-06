@@ -147,6 +147,8 @@
     @include('layouts.translation')
 
     @include('layouts.notifications')
+    
+    @include('layouts.autocomplete')
 </body>
 
 </html>

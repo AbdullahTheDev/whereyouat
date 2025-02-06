@@ -148,6 +148,7 @@
 
     @include('layouts.notifications')
 
+    @include('layouts.autocomplete')
 </body>
 
 </html>
