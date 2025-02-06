@@ -34,7 +34,7 @@ class RegisterController extends Controller
                 'phone' => 'required|string|max:20',
                 'date_of_birth' => 'required|date',
                 'password' => 'required|string|min:6|confirmed',
-                'role' => ['required', Rule::in(['driver', 'local_delivery', 'business', 'partner_home', 'user'])],
+                'role' => ['required', Rule::in(['driver', 'local_driver', 'business', 'partner_home', 'user'])],
                 'terms_approved' => 'required|boolean',
             ]);
 
@@ -141,10 +141,9 @@ class RegisterController extends Controller
     {
         $request->validate([
             'walk' => 'required|boolean',
-            'means_of_transport' => 'required|string|max:255',
             'availability_days' => 'required|array',
-            'time_from' => 'required|date',
-            'time_to' => 'required|date',
+            'time_from' => 'required|date_format:H:i',
+            'time_to' => 'required|date_format:H:i',
             'city' => 'required|string',
             'address' => 'required|string',
         ]);
@@ -162,7 +161,7 @@ class RegisterController extends Controller
 
         LocalDriver::create([
             'user_id' => $user->id,
-            'means_of_transport' => $request->means_of_transport,
+            'mean_of_transport' => $request->mean_of_transport,
             'availability_days' => json_encode($request->availability_days),
             'vehicle_make' => $request->vehicle_make,
             'vehicle_model' => $request->vehicle_model,

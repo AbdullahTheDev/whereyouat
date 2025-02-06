@@ -61,6 +61,15 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
+                                    <input type="date" class="form-control form-control-lg @error('date_of_birth') is-invalid @enderror" name="date_of_birth" id="date_of_birth"
+                                        placeholder="Date of Birth" value="{{ old('date_of_birth') }}" required>
+                                    @error('date_of_birth')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
                                     <input type="text" class="form-control form-control-lg @error('vehicle_make') is-invalid @enderror" name="vehicle_make" id="vehicle_make"
                                         placeholder="Vehicle Make" value="{{ old('vehicle_make') }}" required>
                                     @error('vehicle_make')
@@ -180,7 +189,7 @@
                                 <div class="mb-4">
                                     <div class="form-check">
                                         <label class="form-check-label text-muted">
-                                            <input type="checkbox" class="form-check-input" name="terms_approved" required> I agree to all Terms &
+                                            <input type="checkbox" class="form-check-input" value="1" name="terms_approved" required> I agree to all Terms &
                                             Conditions
                                         </label>
                                     </div>

@@ -37,19 +37,21 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [GeneralController::class, 'index'])->name('main');
 
-Route::get('driver/register', function () {
-    return view('drivers.auth.register');
-})->name('driver.register');
+Route::middleware(['guest'])->group(function () {
 
-Route::get('local-driver/register', function () {
-    return view('localdrivers.auth.register');
-})->name('localdriver.register');
+    Route::get('driver/register', function () {
+        return view('drivers.auth.register');
+    })->name('driver.register');
+
+    Route::get('local-driver/register', function () {
+        return view('localdrivers.auth.register');
+    })->name('localdriver.register');
 
 
-Route::get('user/register', function () {
-    return view('users.auth.register');
-})->name('user.register');
-
+    Route::get('user/register', function () {
+        return view('users.auth.register');
+    })->name('user.register');
+});
 
 Route::prefix('driver')->middleware(['auth', 'driver'])->group(function () {
 
@@ -71,10 +73,9 @@ Route::prefix('driver')->middleware(['auth', 'driver'])->group(function () {
 
         Route::post('/distance/accept', [DriverDeliveryController::class, 'distaneDeliveryAccept'])->name('driver.delivery.distance.accept');
         Route::post('/distance/status', [DriverDeliveryController::class, 'distaneDeliveryStatus'])->name('driver.delivery.distance.status');
-    
+
         Route::post('/vicinity/accept', [DriverDeliveryController::class, 'vicinityDeliveryAccept'])->name('driver.delivery.vicinity.accept');
         Route::post('/vicinity/status', [DriverDeliveryController::class, 'vicinityDeliveryStatus'])->name('driver.delivery.vicinity.status');
-    
     });
 
     Route::get('/notifications', function () {
@@ -88,7 +89,7 @@ Route::prefix('driver')->middleware(['auth', 'driver'])->group(function () {
 
 Route::prefix('local-driver')->middleware(['auth', 'localDriver'])->group(function () {
 
-    Route::get('/dashboard', [LocalDriverDriverController::class, 'index'])->name('localdriver.dashboard');
+    Route::get('/dashboard', [LocalDriverDriverController::class, 'index'])->name('local_driver.dashboard');
 
     Route::prefix('delivery')->group(function () {
         Route::get('/assigned', [LocalDriverDeliveryController::class, 'assignedDeliveries'])->name('local_driver.delivery.assigned');
@@ -97,18 +98,17 @@ Route::prefix('local-driver')->middleware(['auth', 'localDriver'])->group(functi
         Route::get('/my/deliveries', [LocalDriverDeliveryController::class, 'yourDelivery'])->name('local_driver.delivery.your');
 
         Route::post('/distance/accept', [LocalDriverDeliveryController::class, 'distaneDeliveryAccept'])->name('local_driver.delivery.distance.accept');
-    
-        Route::post('/vicinity/accept', [LocalDriverDeliveryController::class, 'vicinityDeliveryAccept'])->name('local_driver.delivery.vicinity.accept');
 
+        Route::post('/vicinity/accept', [LocalDriverDeliveryController::class, 'vicinityDeliveryAccept'])->name('local_driver.delivery.vicinity.accept');
     });
 
     Route::get('/notifications', function () {
         return view('localdrivers.notifications.index');
     })->name('localdriver.notifications');
 
-    Route::get('/profile', [LocalDriverProfileController::class, 'edit'])->name('localdriver.profile.edit');
-    Route::post('/profile', [LocalDriverProfileController::class, 'update'])->name('localdriver.profile.update');
-    Route::delete('/profile', [LocalDriverProfileController::class, 'destroy'])->name('localdriver.profile.destroy');
+    Route::get('/profile', [LocalDriverProfileController::class, 'edit'])->name('local_driver.profile.edit');
+    Route::post('/profile', [LocalDriverProfileController::class, 'update'])->name('local_driver.profile.update');
+    Route::delete('/profile', [LocalDriverProfileController::class, 'destroy'])->name('local_driver.profile.destroy');
 });
 
 
@@ -137,7 +137,6 @@ Route::prefix('user')->middleware(['auth', 'user'])->group(function () {
 
         Route::get('/distance/driver-info/{id}', [DeliveryController::class, 'distanceDriver'])->name('user.delivery.distance.driver');
         Route::get('/vicinity/driver-info/{id}', [DeliveryController::class, 'vicinityDriver'])->name('user.delivery.vicinity.driver');
-
     });
     Route::get('/notifications', function () {
         return view('users.notifications.index');
@@ -160,7 +159,6 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
 
     Route::prefix('users')->group(function () {
         Route::get('/all', [AdminUserController::class, 'allUsers'])->name('admin.users.all');
-        
     });
     Route::prefix('drivers')->group(function () {
         Route::get('/all', [AdminDriverController::class, 'allDrivers'])->name('admin.drivers.all');
@@ -168,7 +166,7 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
         Route::post('/import', [AdminDriverController::class, 'importDriversPost'])->name('admin.drivers.import.post');
     });
 
-    
+
     Route::get('/profile', [AdminProfileController::class, 'edit'])->name('admin.profile.edit');
     Route::post('/profile', [AdminProfileController::class, 'update'])->name('admin.profile.update');
     Route::delete('/profile', [AdminProfileController::class, 'destroy'])->name('admin.profile.destroy');

@@ -10,7 +10,7 @@ class DriverController extends Controller
 {
     function index()
     {
-        $deliveriesEarning = LocalDelivery::where('status', 'accepted')->sum('delivery_fee');
-        return view('localdrivers.index');
+        $deliveriesEarning = 12400;
+        return view('localdrivers.index', compact('deliveriesEarning'));
     }
 }

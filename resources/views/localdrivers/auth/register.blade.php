@@ -70,10 +70,22 @@
                                         </span>
                                     @enderror
                                 </div>
+                                <div class="form-group">
+                                    <input type="date" class="form-control form-control-lg @error('date_of_birth') is-invalid @enderror" name="date_of_birth" id="date_of_birth"
+                                        placeholder="Date of Birth" value="{{ old('date_of_birth') }}" required>
+                                    @error('date_of_birth')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
                                 <div class="form-check">
+                                    <!-- Hidden input to set default value -->
+                                    <input type="hidden" name="walk" value="0" checked>
+                                
                                     <label class="form-check-label text-muted">
                                         <input type="checkbox" class="form-check-input @error('walk') is-invalid @enderror"
-                                            name="walk" id="walk" placeholder="Walk" value="1" required>
+                                            name="walk" id="walk" value="1">
                                         Deliver By Walk?
                                         @error('walk')
                                             <span class="invalid-feedback" role="alert">
@@ -82,6 +94,7 @@
                                         @enderror
                                     </label>
                                 </div>
+                                
                                 <div class="form-group">
                                     <input type="text"
                                         class="form-control form-control-lg @error('mean_of_transport') is-invalid @enderror"
@@ -160,6 +173,16 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
+                                    <input type="text"
+                                        class="form-control autocomplete-address form-control-lg @error('address') is-invalid @enderror"
+                                        name="address" placeholder="Address" value="{{ old('address') }}">
+                                    @error('address')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
                                     <input type="time"
                                         class="form-control form-control-lg @error('time_from') is-invalid @enderror"
                                         name="time_from" placeholder="time_from" value="{{ old('time_from') }}">
@@ -179,10 +202,58 @@
                                         </span>
                                     @enderror
                                 </div>
+                                <div class="form-group">
+                                    <label class="form-label">Availability Days</label>
+                                    
+                                    <!-- Hidden input to ensure an empty array is sent when no checkboxes are selected -->
+                                    <input type="hidden" name="availability_days" value="">
+                                
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input" name="availability_days[]" value="Monday" id="monday">
+                                        <label class="form-check-label" for="monday">Monday</label>
+                                    </div>
+                                    
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input" name="availability_days[]" value="Tuesday" id="tuesday">
+                                        <label class="form-check-label" for="tuesday">Tuesday</label>
+                                    </div>
+                                
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input" name="availability_days[]" value="Wednesday" id="wednesday">
+                                        <label class="form-check-label" for="wednesday">Wednesday</label>
+                                    </div>
+                                
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input" name="availability_days[]" value="Thursday" id="thursday">
+                                        <label class="form-check-label" for="thursday">Thursday</label>
+                                    </div>
+                                
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input" name="availability_days[]" value="Friday" id="friday">
+                                        <label class="form-check-label" for="friday">Friday</label>
+                                    </div>
+                                
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input" name="availability_days[]" value="Saturday" id="saturday">
+                                        <label class="form-check-label" for="saturday">Saturday</label>
+                                    </div>
+                                
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input" name="availability_days[]" value="Sunday" id="sunday">
+                                        <label class="form-check-label" for="sunday">Sunday</label>
+                                    </div>
+                                
+                                    @error('availability_days')
+                                        <span class="invalid-feedback d-block" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                                
                                 <div class="mb-4">
                                     <div class="form-check">
                                         <label class="form-check-label text-muted">
-                                            <input type="checkbox" class="form-check-input" name="terms_approved"
+                                            <input type="checkbox" class="form-check-input" value="1" name="terms_approved"
                                                 required> I agree to all Terms &
                                             Conditions
                                         </label>

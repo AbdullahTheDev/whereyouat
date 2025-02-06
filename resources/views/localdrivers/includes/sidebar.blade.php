@@ -3,7 +3,7 @@
       <li class="nav-item nav-profile">
         <a href="#" class="nav-link">
           <div class="nav-profile-image">
-            <img src="{{ Auth::user()->driver->profile_photo ? asset('drivers_profile/' . Auth::user()->driver->profile_photo) : asset('users_profile/default-profile.png') }}" alt="profile" />
+            <img src="{{ Auth::user()->localDriver->profile_photo ? asset('drivers_profile/' . Auth::user()->localDriver->profile_photo) : asset('users_profile/default-profile.png') }}" alt="profile" />
             <span class="login-status online"></span>
             <!--change to offline or busy as needed-->
           </div>

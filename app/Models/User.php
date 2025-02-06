@@ -34,6 +34,10 @@ class User extends Authenticatable
     {
         return $this->hasOne(Driver::class);
     }
+    public function localDriver(): HasOne
+    {
+        return $this->hasOne(LocalDriver::class);
+    }
 
     public function localDelivery(): HasOne
     {

@@ -23,7 +23,7 @@ class LocalDriver extends Model
         'vehicle_color',
         'city',
         'address',
-        'availability',
+        'availability_days',
         'time_from',
         'time_to'
     ];
