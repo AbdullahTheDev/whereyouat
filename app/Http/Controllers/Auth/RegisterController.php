@@ -141,6 +141,7 @@ class RegisterController extends Controller
     {
         $request->validate([
             'photo_of_facial_id' => 'required|image|max:4048',
+            'proof_of_domicile' => 'required|image|max:4048',
             'walk' => 'required|boolean',
             'availability_days' => 'required|array',
             'time_from' => 'required|date_format:H:i',
@@ -162,10 +163,14 @@ class RegisterController extends Controller
 
         $photoOfFacialIdPath = 'drivers/local/' . time() . '_proof.' . $request->file('photo_of_facial_id')->extension();
         $request->file('photo_of_facial_id')->move(public_path('drivers/local'), $photoOfFacialIdPath);
+        
+        $proofOfDomicilePath = 'drivers/local/' . time() . '_domicile.' . $request->file('proof_of_domicile')->extension();
+        $request->file('proof_of_domicile')->move(public_path('drivers/local'), $proofOfDomicilePath);
 
         LocalDriver::create([
             'user_id' => $user->id,
             'photo_of_facial_id' => $photoOfFacialIdPath,
+            'proof_of_domicile' => $proofOfDomicilePath,
             'mean_of_transport' => $request->mean_of_transport,
             'availability_days' => json_encode($request->availability_days),
             'vehicle_make' => $request->vehicle_make,
