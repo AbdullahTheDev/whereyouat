@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Imports\DriversImport;
 use App\Imports\LocalDriversImport;
 use App\Models\Driver;
+use App\Models\LocalDriver;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -43,7 +44,7 @@ class DriverController extends Controller
 
     function allLocalDrivers()
     {
-        $drivers = Driver::all();
+        $drivers = LocalDriver::all();
         return view('admin.local_drivers.all_drivers', compact('drivers'));
     }
 

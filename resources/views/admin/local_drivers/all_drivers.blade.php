@@ -57,9 +57,9 @@
                                                         <p><strong>Date Of Birth:</strong>
                                                             {{ $driver->user->date_of_birth }}</p>
                                                         <hr>
-                                                        <p><strong>Walk: </strong> {{ $driver->walk ?: 'No' }}</p>
-                                                        <hr>
+                                                        <p><strong>Walk: </strong> {{ $driver->walk ? 'Yes' : 'No' }}</p>
                                                         @if (!$driver->walk)
+                                                        <hr>
                                                             <h6>Vehicle Info</h6>
                                                             <p><strong>Mean Of Transport:</strong>
                                                                 {{ $driver->mean_of_transport }}</p>

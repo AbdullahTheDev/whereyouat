@@ -38,12 +38,12 @@
         </div>
       </li>
       <li class="nav-item">
-        <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+        <a class="nav-link" data-bs-toggle="collapse" href="#local-drivers" aria-expanded="false" aria-controls="local-drivers">
           <span class="menu-title">Local Drivers</span>
           <i class="menu-arrow"></i>
           <i class="mdi mdi-crosshairs-gps menu-icon"></i>
         </a>
-        <div class="collapse" id="ui-basic">
+        <div class="collapse" id="local-drivers">
           <ul class="nav flex-column sub-menu">
             <li class="nav-item">
               <a class="nav-link" href="{{ route('admin.local.drivers.all') }}">All Drivers</a>
