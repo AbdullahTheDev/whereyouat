@@ -70,6 +70,15 @@
                                                             </p>
                                                             <p><strong>Color:</strong> {{ $driver->vehicle_color }}</p>
                                                         @endif
+                                                        <hr>
+                                                        <p><strong>Photo Facial ID:</strong></p>
+                                                        <a data-fancybox="gallery" href="{{ asset($driver->photo_of_facial_id) }}" >
+                                                            <img width="200" src="{{ asset($driver->photo_of_facial_id) }}" alt="">
+                                                        </a>
+                                                        <p><strong>Proof Of Domicile:</strong></p>
+                                                        <a data-fancybox="gallery" href="{{ asset($driver->proof_of_domicile) }}" >
+                                                            <img width="200" src="{{ asset($driver->proof_of_domicile) }}" alt="">
+                                                        </a>
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary"

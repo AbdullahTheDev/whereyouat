@@ -35,7 +35,7 @@ class LocalDriversImport implements ToModel, WithHeadingRow
             'name' => $row['name'] . " " . $row['surname'],
             'phone' => trim($row['telephone_number'], "'"),
             'date_of_birth' => $DOB,
-            'role' => 'driver',
+            'role' => 'local_driver',
             'terms_approved' => 1,
             'updated_at' => Carbon::createFromFormat('M j, Y @ h:i A', $row['submission_time']),
         ];
