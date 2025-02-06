@@ -1,9 +1,9 @@
 <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
     <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start">
-        <a class="navbar-brand brand-logo" href="{{ route('driver.dashboard') }}">
+        <a class="navbar-brand brand-logo" href="{{ route('local_driver.dashboard') }}">
             <img src="{{ asset('assets/images/logo.svg') }}" alt="logo" />
         </a>
-        <a class="navbar-brand brand-logo-mini" href="{{ route('driver.dashboard') }}">
+        <a class="navbar-brand brand-logo-mini" href="{{ route('local_driver.dashboard') }}">
             <img src="{{ asset('assets/images/logo-mini.svg') }}" alt="logo" />
         </a>
     </div>
@@ -27,7 +27,7 @@
                     </div>
                 </a>
                 <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
-                    <a class="dropdown-item" href="{{ route('driver.profile.edit') }}">
+                    <a class="dropdown-item" href="{{ route('local_driver.profile.edit') }}">
                         <i class="mdi mdi-cached me-2 text-success"></i> Profile </a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('logout-form-header').submit();">
@@ -67,7 +67,7 @@
                     @endforeach
                     @if ($notifications->count() > 0)
                         <h6 class="p-3 mb-0 text-center">
-                            <a href="{{ route('driver.notifications') }}">See all notifications</a>
+                            <a href="{{ route('local_driver.notifications') }}">See all notifications</a>
                         </h6>
                     @else
                         <h6 class="p-3 mb-0 text-center">No notifications</h6>

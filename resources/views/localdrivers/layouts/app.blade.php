@@ -79,11 +79,11 @@
 
 <body>
 
-    @include('drivers.includes.header')
+    @include('localdrivers.includes.header')
 
     <div class="container-fluid page-body-wrapper">
 
-        @include('drivers.includes.sidebar')
+        @include('localdrivers.includes.sidebar')
 
 
         @yield('content')

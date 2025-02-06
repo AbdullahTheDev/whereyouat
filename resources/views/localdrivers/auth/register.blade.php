@@ -160,7 +160,7 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <input type="date"
+                                    <input type="time"
                                         class="form-control form-control-lg @error('time_from') is-invalid @enderror"
                                         name="time_from" placeholder="time_from" value="{{ old('time_from') }}">
                                     @error('time_from')
@@ -170,7 +170,7 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <input type="date"
+                                    <input type="time"
                                         class="form-control form-control-lg @error('time_to') is-invalid @enderror"
                                         name="time_to" placeholder="time_to" value="{{ old('time_to') }}">
                                     @error('time_to')
@@ -205,7 +205,7 @@
         document.addEventListener("DOMContentLoaded", function() {
             let walkCheckbox = document.getElementById("walk");
             let vehicleFields = document.querySelectorAll(
-                "#vehicle_make, #vehicle_model, #vehicle_year, #vehicle_plate, #vehicle_color");
+                "#mean_of_transport, #vehicle_make, #vehicle_model, #vehicle_year, #vehicle_plate, #vehicle_color");
 
             function toggleVehicleFields() {
                 let isChecked = walkCheckbox.checked;
