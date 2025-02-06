@@ -36,10 +36,21 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [GeneralController::class, 'index'])->name('main');
 
+Route::get('driver/register', function () {
+    return view('drivers.auth.register');
+})->name('driver.register');
+
+Route::get('local-driver/register', function () {
+    return view('localdrivers.auth.register');
+})->name('localdriver.register');
+
+
+Route::get('user/register', function () {
+    return view('users.auth.register');
+})->name('user.register');
+
+
 Route::prefix('driver')->middleware(['auth', 'driver'])->group(function () {
-    Route::get('/register', function () {
-        return view('drivers.auth.register');
-    })->name('driver.register');
 
     Route::get('/dashboard', [DriverController::class, 'index'])->name('driver.dashboard');
 
@@ -73,10 +84,8 @@ Route::prefix('driver')->middleware(['auth', 'driver'])->group(function () {
     Route::post('/profile', [DriverProfileController::class, 'update'])->name('driver.profile.update');
     Route::delete('/profile', [DriverProfileController::class, 'destroy'])->name('driver.profile.destroy');
 });
+
 Route::prefix('local-driver')->middleware(['auth', 'localDriver'])->group(function () {
-    Route::get('/register', function () {
-        return view('localdrivers.auth.register');
-    })->name('localdriver.register');
 
     Route::get('/dashboard', [LocalDriverDriverController::class, 'index'])->name('localdriver.dashboard');
 
@@ -108,9 +117,6 @@ Route::prefix('local-driver')->middleware(['auth', 'localDriver'])->group(functi
 
 
 Route::prefix('user')->middleware(['auth', 'user'])->group(function () {
-    Route::get('/register', function () {
-        return view('users.auth.register');
-    })->name('user.register');
 
     Route::get('/dashboard', [UserController::class, 'index'])->name('user.dashboard');
 
