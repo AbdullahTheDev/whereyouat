@@ -24,7 +24,18 @@
                     <div class="col-12 col-md-6 grid-margin stretch-card">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">{{ $delivery->departure_address }} to {{ $delivery->arrival_address }}
+                                <h4 class="card-title">
+                                    <span class="text-muted">From: </span>
+                                    <span style="white-space: normal;">
+                                        {{ $delivery->departure_address }}
+                                    </span>
+                                    <br>
+                                    <br>
+                                     <span class="text-muted">To:</span>
+                                    <span style="white-space: normal;">
+                                        {{ $delivery->arrival_address }}
+                                    </span>
+
                                 </h4>
                                 <div class="d-flex">
                                     <div class="d-flex align-items-center me-4 text-muted font-weight-light">
