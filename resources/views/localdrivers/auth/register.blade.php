@@ -15,7 +15,7 @@
                             <form class="pt-3" enctype="multipart/form-data" method="POST"
                                 action="{{ route('register') }}">
                                 @csrf
-                                <input type="hidden" name="role" id="role" value="driver">
+                                <input type="hidden" name="role" id="role" value="local_driver">
                                 <div class="form-group">
                                     <input type="text"
                                         class="form-control form-control-lg @error('name') is-invalid @enderror"
@@ -81,6 +81,17 @@
                                             </span>
                                         @enderror
                                     </label>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text"
+                                        class="form-control form-control-lg @error('mean_of_transport') is-invalid @enderror"
+                                        name="mean_of_transport" id="mean_of_transport" placeholder="Mean of Transport"
+                                        value="{{ old('mean_of_transport') }}" required>
+                                    @error('mean_of_transport')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
                                     <input type="text"

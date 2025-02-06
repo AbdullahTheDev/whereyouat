@@ -10,6 +10,7 @@ use App\Models\LocalDelivery;
 use App\Models\Business;
 use App\Models\PartnerHome;
 use App\Models\Company;
+use App\Models\LocalDriver;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -61,9 +62,9 @@ class RegisterController extends Controller
                     $this->registerDriver($request, $user);
                     $route = 'driver.dashboard';
                     break;
-                case 'local_delivery':
-                    $this->registerLocalDelivery($request, $user);
-                    $route = 'local_delivery.dashboard';
+                case 'local_driver':
+                    $this->registerLocalDriver($request, $user);
+                    $route = 'local_driver.dashboard';
                     break;
                 case 'business':
                     $this->registerBusiness($request, $user);
@@ -136,31 +137,43 @@ class RegisterController extends Controller
         $driver->save();
     }
 
-    private function registerLocalDelivery(Request $request, User $user)
+    private function registerLocalDriver(Request $request, User $user)
     {
         $request->validate([
-            'id_photo' => 'required|image|max:2048',
-            'proof_of_domicile' => 'required|image|max:2048',
+            'walk' => 'required|boolean',
             'means_of_transport' => 'required|string|max:255',
-            'transport_details' => 'required|array',
             'availability_days' => 'required|array',
-            'availability_hours' => 'required|array',
+            'time_from' => 'required|date',
+            'time_to' => 'required|date',
+            'city' => 'required|string',
+            'address' => 'required|string',
         ]);
 
-        $idPhotoPath = 'local_delivery/' . time() . '_id.' . $request->file('id_photo')->extension();
-        $proofPath = 'local_delivery/' . time() . '_proof.' . $request->file('proof_of_domicile')->extension();
+        if (!$request->walk) {
+            $request->validate([
+                'vehicle_make' => 'required|string|max:255',
+                'vehicle_model' => 'required|string|max:255',
+                'vehicle_year' => 'required|string|max:255',
+                'vehicle_plate' => 'required|string|max:255',
+                'vehicle_color' => 'required|string|max:255',
+                'mean_of_transport' => 'required|string|max:255',
+            ]);
+        }
 
-        $request->file('id_photo')->move(public_path('local_delivery'), $idPhotoPath);
-        $request->file('proof_of_domicile')->move(public_path('local_delivery'), $proofPath);
-
-        LocalDelivery::create([
+        LocalDriver::create([
             'user_id' => $user->id,
-            'id_photo' => $idPhotoPath,
-            'proof_of_domicile' => $proofPath,
             'means_of_transport' => $request->means_of_transport,
-            'transport_details' => json_encode($request->transport_details),
             'availability_days' => json_encode($request->availability_days),
-            'availability_hours' => json_encode($request->availability_hours),
+            'vehicle_make' => $request->vehicle_make,
+            'vehicle_model' => $request->vehicle_model,
+            'vehicle_year' => $request->vehicle_year,
+            'vehicle_plate' => $request->vehicle_plate,
+            'vehicle_color' => $request->vehicle_color,
+            'walk' => $request->walk,
+            'city' => $request->city,
+            'address' => $request->address,
+            'time_from' => $request->time_from,
+            'time_to' => $request->time_to,
         ]);
     }
 
