@@ -8,7 +8,7 @@
             </div>
             <div class="row">
                 <div class="col-12">
-                    <form autocomplete="off" action="{{ route('admin.drivers.import.post') }}" method="POST"
+                    <form autocomplete="off" action="{{ route('admin.local.drivers.import.post') }}" method="POST"
                         class="forms-sample" enctype="multipart/form-data">
                         @csrf
                         <div class="card mt-4">
