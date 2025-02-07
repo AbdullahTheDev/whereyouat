@@ -14,14 +14,16 @@ class PartnerHome extends Model
         'user_id',
         'home_name',
         'home_address',
-        'managers',
-        'availability',
+        'manager',
+        'availability_days',
+        'time_from',
+        'time_to',
         'ownership_proof',
+        'terms_of_service'
     ];
 
     protected $casts = [
-        'managers' => 'array',
-        'availability' => 'array',
+        'managers' => 'array'
     ];
 
     public function user(): BelongsTo
