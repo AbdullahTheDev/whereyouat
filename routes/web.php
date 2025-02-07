@@ -177,6 +177,11 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
         Route::get('/import', [AdminDriverController::class, 'importBusinesses'])->name('admin.businesses.import');
         Route::post('/import', [AdminDriverController::class, 'importBusinessesPost'])->name('admin.businesses.import.post');
     });
+    Route::prefix('partner-homes')->group(function () {
+        Route::get('/all', [AdminDriverController::class, 'allPartners'])->name('admin.partners.all');
+        Route::get('/import', [AdminDriverController::class, 'importPartners'])->name('admin.partners.import');
+        Route::post('/import', [AdminDriverController::class, 'importPartnersPost'])->name('admin.partners.import.post');
+    });
 
 
     Route::get('/profile', [AdminProfileController::class, 'edit'])->name('admin.profile.edit');
