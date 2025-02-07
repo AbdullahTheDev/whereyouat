@@ -196,7 +196,6 @@ class RegisterController extends Controller
             'business_phone' => 'required|string|max:20',
             'business_email' => 'required|string|email|max:255',
             'business_number' => 'required|string',
-
             'manager_name' => 'required|string|max:255',
             'manager_phone' => 'required|string|max:20',
             'manager_email' => 'required|string|email|max:255',
@@ -210,14 +209,27 @@ class RegisterController extends Controller
         $ownershipProofPath = 'businesses/' . time() . '_proof.' . $request->file('ownership_proof')->extension();
         $request->file('ownership_proof')->move(public_path('businesses'), $ownershipProofPath);
 
+        $managers = [
+            'name' => $request->manager_name,
+            'phone' => $request->manager_phone,
+            'email' => $request->manager_email,
+            'date_of_birth' => $request->manager_date_of_birth,
+        ];
+
         Business::create([
             'user_id' => $user->id,
             'trade_name' => $request->trade_name,
+            'business_name' => $request->business_name,
+            'responsible_address' => $request->responsible_address,
+            'business_phone' => $request->business_phone,
+            'business_email' => $request->business_email,
             'business_address' => $request->business_address,
             'business_number' => $request->business_number,
-            'co_manager_details' => json_encode($request->co_manager_details),
+            'co_manager_details' => json_encode($managers),
             'ownership_proof' => $ownershipProofPath,
-            'availability' => json_encode($request->availability),
+            'availability_days' => json_encode($request->availability_days),
+            'time_from' => $request->time_from,
+            'time_to' => $request->time_to,
         ]);
     }
 
