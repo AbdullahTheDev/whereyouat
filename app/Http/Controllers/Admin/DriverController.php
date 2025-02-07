@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Imports\BusinessesImport;
 use App\Imports\DriversImport;
 use App\Imports\LocalDriversImport;
+use App\Models\Business;
 use App\Models\Driver;
 use App\Models\LocalDriver;
 use App\Models\User;
@@ -64,6 +66,35 @@ class DriverController extends Controller
             Excel::import(new LocalDriversImport, $request->file('file'));
 
             return redirect()->back()->with('success', 'Drivers imported successfully');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', $e->getMessage());
+        }
+    }
+
+
+
+    function allBusinesses()
+    {
+        $businesses = Business::all();
+        return view('admin.businesses.all_businesses', compact('businesses'));
+    }
+
+    function importBusinesses()
+    {
+        return view('admin.businesses.import.import');
+    }
+
+    function importBusinessesPost(Request $request)
+    {
+        // return  $request->file('file')->extension();
+        try {
+            $request->validate([
+                'file' => 'required|mimes:xls,xlsx,csv',
+            ]);
+
+            Excel::import(new BusinessesImport, $request->file('file'));
+
+            return redirect()->back()->with('success', 'Businesses imported successfully');
         } catch (\Exception $e) {
             return redirect()->back()->with('error', $e->getMessage());
         }

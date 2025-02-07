@@ -69,13 +69,16 @@
       </li>
       <li class="nav-item">
         <a class="nav-link" data-bs-toggle="collapse" href="#forms" aria-expanded="false" aria-controls="forms">
-          <span class="menu-title">Forms</span>
+          <span class="menu-title">Businesses</span>
           <i class="mdi mdi-format-list-bulleted menu-icon"></i>
         </a>
         <div class="collapse" id="forms">
           <ul class="nav flex-column sub-menu">
             <li class="nav-item">
-              <a class="nav-link" href="pages/forms/basic_elements.html">Form Elements</a>
+              <a class="nav-link" href="{{ route('admin.businesses.import') }}">Import Businesses</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ route('admin.businesses.all') }}">All Businesses</a>
             </li>
           </ul>
         </div>
