@@ -16,9 +16,8 @@
                                     <tr>
                                         <th> # </th>
                                         <th> Name </th>
-                                        {{-- <th> Phone </th>
-                                        <th> Email </th> --}}
-                                        {{-- <th> Services Offered </th> --}}
+                                        <th> Phone </th>
+                                        <th> Email </th>
                                         <th> Registered Date </th>
                                         <th> Business Info </th>
                                     </tr>
@@ -56,7 +55,7 @@
                                                         <p><strong>Phone:</strong> {{ $business->user->phone }}</p>
                                                         <p><strong>Date Of Birth:</strong>
                                                             {{ $business->user->date_of_birth }}</p>
-                                                        <p><strong>Address:</strong> {{ $business->address }}</p>
+                                                        <p><strong>Address:</strong> {{ $business->responsible_address }}</p>
                                                         <hr>
                                                         <h6>Business Info</h6>
                                                         <p><strong>Trade Name:</strong> {{ $business->trade_name }}</p>
@@ -75,12 +74,9 @@
                                                                 );
                                                             @endphp
                                                             <h6>Co-Manager Info</h6>
-                                                            <p><strong>Name:</strong> {{ $coOwner['name'] }}</p>
-                                                            <p><strong>Email:</strong> {{ $coOwner['email'] }}</p>
-                                                            <p><strong>Phone:</strong> {{ $coOwner['phone'] }}</p>
-                                                            <p><strong>Date Of Birth:</strong>
-                                                                {{ $coOwner['date_of_birth'] }}</p>
-                                                            <p><strong>Address:</strong> {{ $coOwner['address'] }}</p>
+                                                            <p><strong>Name:</strong> {{ $coOwner['name'] ?? '' }}</p>
+                                                            <p><strong>Email:</strong> {{ $coOwner['email'] ?? '' }}</p>
+                                                            <p><strong>Phone:</strong> {{ $coOwner['phone'] ?? '' }}</p>
                                                             <hr>
                                                         @endif
                                                         <p><strong>Ownership Proof:</strong></p>
