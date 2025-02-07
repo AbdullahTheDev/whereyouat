@@ -76,24 +76,25 @@ class BusinessesImport implements ToModel, WithHeadingRow
             'availability_days' => json_encode(explode(',', $row['availability_of_the_partner_space_opening_days'])),
             'time_from' => $timeFrom,
             'time_to' => $timeTo,
+            'co_manager_details' => json_encode($coOwnerDetails),
             'ownership_proof' => $row['proof_of_ownership_or_management_of_the_commercial_space'],
             'updated_at' => Carbon::createFromFormat('M j, Y @ h:i A', $row['submission_time']),
             'general_terms' => $row['general_terms'],
         ];
 
-        // if ($driver) {
-        //     // Update missing fields for Driver
-        //     foreach ($driverData as $key => $value) {
-        //         if (is_null($driver->$key) && !empty($value)) {
-        //             $driver->$key = $value;
-        //         }
-        //     }
-        //     $driver->save();
-        //     return $driver;
-        // } else {
-        //     // Create new driver record
-        //     $driverData['created_at'] = Carbon::createFromFormat('M j, Y @ h:i A', $row['submission_time']);
-        //     return new Business($driverData);
-        // }
+        if ($business) {
+            // Update missing fields for Business
+            foreach ($businessData as $key => $value) {
+                if (is_null($business->$key) && !empty($value)) {
+                    $business->$key = $value;
+                }
+            }
+            $business->save();
+            return $business;
+        } else {
+            // Create new business record
+            $businessData['created_at'] = Carbon::createFromFormat('M j, Y @ h:i A', $row['submission_time']);
+            return new Business($businessData);
+        }
     }
 }
