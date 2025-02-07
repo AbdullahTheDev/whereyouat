@@ -38,6 +38,9 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::get('local-driver/register', function () {
+    return view('localdrivers.auth.register');
+})->name('localdriver.register');
 
 Route::get('/', [GeneralController::class, 'index'])->name('main');
 
@@ -47,9 +50,7 @@ Route::middleware(['guest'])->group(function () {
         return view('drivers.auth.register');
     })->name('driver.register');
 
-    Route::get('local-driver/register', function () {
-        return view('localdrivers.auth.register');
-    })->name('localdriver.register');
+
 
     Route::get('business/register', function () {
         return view('businesses.auth.register');
