@@ -50,15 +50,18 @@
                                                             aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body">
+                                                        <h6>Business Information</h6>
+                                                        <p><strong>House Name:</strong> {{ $partner->house_name }}</p>
+                                                        <p><strong>House Address:</strong> {{ $partner->home_address }}</p>
+                                                        <hr>
+                                                        <h6>Manager Information</h6>
                                                         <p><strong>Name:</strong> {{ $partner->user->name }}</p>
                                                         <p><strong>Email:</strong> {{ $partner->user->email }}</p>
                                                         <p><strong>Phone:</strong> {{ $partner->user->phone }}</p>
                                                         <p><strong>Date Of Birth:</strong>
                                                             {{ $partner->user->date_of_birth }}</p>
-                                                        <p><strong>Address:</strong> {{ $partner->responsible_address }}
-                                                        </p>
                                                         <hr>
-                                                        @if ($partner->co_manager_details != null)
+                                                        @if ($partner->manager != null)
                                                             @php
                                                                 $coOwner = json_decode($partner->manager, true);
                                                             @endphp
