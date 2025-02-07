@@ -14,8 +14,9 @@ class ProfileController extends Controller
     function edit()
     {
         $user = Auth::user();
-        $partner_home = PartnerHome::where('user_id', $user->id)->first();
-        return view('partners.profile.edit', compact('user', 'partner_home'));
+        $partner = PartnerHome::where('user_id', $user->id)->first();
+        $manager = json_decode($partner->manager, true);
+        return view('partners.profile.edit', compact('user', 'partner', 'manager'));
     }
 
     function update(Request $request)
