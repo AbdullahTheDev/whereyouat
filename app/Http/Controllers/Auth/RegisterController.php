@@ -25,7 +25,7 @@ class RegisterController extends Controller
 
     public function register(Request $request)
     {
-        return $request->all();
+        // return $request->all();
         // return $request->all();
         try {
             // Validate common user fields
@@ -193,7 +193,7 @@ class RegisterController extends Controller
         $request->validate([
             'trade_name' => 'required|string|max:255',
             'responsible_address' => 'required|string',
-            'business_name' => 'required|string|max:255',
+            'business_address' => 'required|string',
             'business_phone' => 'required|string|max:20',
             'business_email' => 'required|string|email|max:255',
             'business_number' => 'required|string',
