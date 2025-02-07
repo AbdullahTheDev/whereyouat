@@ -15,26 +15,10 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{{ route('local_driver.dashboard') }}">
+        <a class="nav-link" href="{{ route('partner_home.dashboard') }}">
           <span class="menu-title">Dashboard</span>
           <i class="mdi mdi-home menu-icon"></i>
         </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" data-bs-toggle="collapse" href="#icons" aria-expanded="false" aria-controls="icons">
-          <span class="menu-title">Deliveries</span>
-          <i class="mdi mdi-contacts menu-icon"></i>
-        </a>
-        <div class="collapse" id="icons">
-          <ul class="nav flex-column sub-menu">
-            <li class="nav-item">
-              <a class="nav-link" href="{{ route('local_driver.delivery.assigned') }}">Assigned Deliveries</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{ route('local_driver.delivery.your') }}">My Deliveries</a>
-            </li>
-          </ul>
-        </div>
       </li>
       <li class="nav-item">
         <a class="nav-link" data-bs-toggle="collapse" href="#forms" aria-expanded="false" aria-controls="forms">

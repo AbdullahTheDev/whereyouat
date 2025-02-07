@@ -17,6 +17,8 @@ use App\Http\Controllers\LocalDriver\DeliveryController as LocalDriverDeliveryCo
 use App\Http\Controllers\LocalDriver\DriverController as LocalDriverDriverController;
 use App\Http\Controllers\LocalDriver\ProfileController as LocalDriverProfileController;
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\PartnerHome\PartnerHomeController;
+use App\Http\Controllers\PartnerHome\ProfileController as PartnerHomeProfileController;
 use App\Http\Controllers\Payment\StripeDeliveryController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\User\DeliveryController;
@@ -117,26 +119,15 @@ Route::prefix('local-driver')->middleware(['auth', 'localDriver'])->group(functi
 
 Route::prefix('partner-homes')->middleware(['auth', 'partnerHome'])->group(function () {
 
-    Route::get('/dashboard', [LocalDriverDriverController::class, 'index'])->name('local_driver.dashboard');
-
-    Route::prefix('delivery')->group(function () {
-        Route::get('/assigned', [LocalDriverDeliveryController::class, 'assignedDeliveries'])->name('local_driver.delivery.assigned');
-        Route::get('/assigned/{id}', [LocalDriverDeliveryController::class, 'assignedDelivery'])->name('local_driver.delivery.assigned.single');
-
-        Route::get('/my/deliveries', [LocalDriverDeliveryController::class, 'yourDelivery'])->name('local_driver.delivery.your');
-
-        Route::post('/distance/accept', [LocalDriverDeliveryController::class, 'distaneDeliveryAccept'])->name('local_driver.delivery.distance.accept');
-
-        Route::post('/vicinity/accept', [LocalDriverDeliveryController::class, 'vicinityDeliveryAccept'])->name('local_driver.delivery.vicinity.accept');
-    });
+    Route::get('/dashboard', [PartnerHomeController::class, 'index'])->name('partner_home.dashboard');
 
     Route::get('/notifications', function () {
-        return view('localdrivers.notifications.index');
-    })->name('localdriver.notifications');
+        return view('partners.notifications.index');
+    })->name('partner_home.notifications');
 
-    Route::get('/profile', [LocalDriverProfileController::class, 'edit'])->name('local_driver.profile.edit');
-    Route::post('/profile', [LocalDriverProfileController::class, 'update'])->name('local_driver.profile.update');
-    Route::delete('/profile', [LocalDriverProfileController::class, 'destroy'])->name('local_driver.profile.destroy');
+    Route::get('/profile', [PartnerHomeProfileController::class, 'edit'])->name('partner_home.profile.edit');
+    Route::post('/profile', [PartnerHomeProfileController::class, 'update'])->name('partner_home.profile.update');
+    Route::delete('/profile', [PartnerHomeProfileController::class, 'destroy'])->name('partner_home.profile.destroy');
 });
 
 
