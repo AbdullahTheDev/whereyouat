@@ -85,13 +85,16 @@
       </li>
       <li class="nav-item">
         <a class="nav-link" data-bs-toggle="collapse" href="#charts" aria-expanded="false" aria-controls="charts">
-          <span class="menu-title">Charts</span>
+          <span class="menu-title">Partner Homes</span>
           <i class="mdi mdi-chart-bar menu-icon"></i>
         </a>
         <div class="collapse" id="charts">
           <ul class="nav flex-column sub-menu">
             <li class="nav-item">
-              <a class="nav-link" href="pages/charts/chartjs.html">ChartJs</a>
+              <a class="nav-link" href="{{ route('admin.partners.import') }}">Import Partner Homes</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ route('admin.partners.all') }}">All Partner Homes</a>
             </li>
           </ul>
         </div>

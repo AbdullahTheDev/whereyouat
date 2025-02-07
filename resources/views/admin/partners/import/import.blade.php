@@ -8,12 +8,12 @@
             </div>
             <div class="row">
                 <div class="col-12">
-                    <form autocomplete="off" action="{{ route('admin.businesses.import.post') }}" method="POST"
+                    <form autocomplete="off" action="{{ route('admin.partners.import.post') }}" method="POST"
                         class="forms-sample" enctype="multipart/form-data">
                         @csrf
                         <div class="card mt-4">
                             <div class="card-body">
-                                <h4 class="card-title">Upload Businesses CSV File</h4>
+                                <h4 class="card-title">Upload Partners CSV File</h4>
 
                                 <div class="form-group text-center">
                                     <label for="file">CSV File</label>
