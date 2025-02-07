@@ -13,16 +13,26 @@ class Business extends Model
     protected $fillable = [
         'user_id',
         'trade_name',
+        'responsible_name',
+        'responsible_email',
+        'responsible_phone',
+        'responsible_dob',
+        'responsible_address',
+        'business_email',
+        'business_phone',
         'business_address',
         'business_number',
+        'availability_days',
+        'time_from',
+        'time_to',
         'co_manager_details',
         'ownership_proof',
-        'availability',
+        'general_terms',
+        'password',
     ];
 
     protected $casts = [
-        'co_manager_details' => 'array',
-        'availability' => 'array',
+        'co_manager_details' => 'array'
     ];
 
     public function user(): BelongsTo
