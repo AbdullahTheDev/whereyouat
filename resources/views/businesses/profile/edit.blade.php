@@ -17,19 +17,6 @@
                                     <div class="card-body">
                                         <h4 class="card-title">Basic Information</h4>
                                         <div class="form-group">
-                                            <label for="name">Home Name</label>
-                                            <input type="text" class="form-control" name="home_name"
-                                                value="{{ $partner->home_name }}" id="name" placeholder="Home name">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="name">Home Address</label>
-                                            <input type="text" class="form-control" name="home_address"
-                                                value="{{ $partner->home_address }}" id="name"
-                                                placeholder="Home address">
-                                        </div>
-
-
-                                        <div class="form-group">
                                             <label for="name">Name</label>
                                             <input type="text" class="form-control" name="name"
                                                 value="{{ $user->name }}" id="name" placeholder="Username">
@@ -43,6 +30,12 @@
                                             <label for="phone">Phone</label>
                                             <input type="text" class="form-control" name="phone"
                                                 value="{{ $user->phone }}" id="phone" placeholder="Phone">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="name">Address</label>
+                                            <input type="text" class="form-control" name="responsible_address"
+                                                value="{{ $business->responsible_address }}" id="name"
+                                                placeholder="Home address">
                                         </div>
                                         <div class="form-group">
                                             <label for="phone">Date Of Birth</label>
@@ -71,11 +64,50 @@
                                             <label for="profile_photo">Profile Photo</label>
                                             <div class="profile-photo-preview mb-2">
                                                 <img id="profileImage"
-                                                    src="{{ $partner->profile_photo ? asset($partner->profile_photo) : asset('users_profile/default-profile.png') }}"
+                                                    src="{{ $business->profile_photo ? asset($business->profile_photo) : asset('users_profile/default-profile.png') }}"
                                                     alt="Profile Photo" class="img-fluid rounded-circle" width="120">
                                             </div>
                                             <input type="file" class="form-control" id="profile_photo"
                                                 name="profile_photo" accept="image/*">
+                                        </div>
+                                        <button type="submit" class="btn btn-gradient-primary me-2">Update</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4 class="card-title">Business Information</h4>
+                                        <div class="form-group">
+                                            <label for="name">Trade Name</label>
+                                            <input type="text" class="form-control" name="trade_name"
+                                                value="{{ $business->trade_name }}" id="name" placeholder="Trade name">
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label for="name">Name</label>
+                                            <input type="text" class="form-control" name="business_name"
+                                                value="{{ $business->business_name }}" id="business_name" placeholder="Business Name">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="email">Email address</label>
+                                            <input type="email" class="form-control" name="business_email"
+                                                value="{{ $business->business_email }}" id="business_email" placeholder="Email">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="phone">Phone</label>
+                                            <input type="text" class="form-control" name="business_phone"
+                                                value="{{ $business->business_phone }}" id="business_phone" placeholder="Phone">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="phone">Address</label>
+                                            <input type="text" class="form-control" name="business_address"
+                                                value="{{ $business->business_address }}" id="business_address" placeholder="Address">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="phone">Business Number</label>
+                                            <input type="text" class="form-control" name="business_number"
+                                                value="{{ $business->business_number }}" id="business_number" placeholder="Business Number">
                                         </div>
                                         <button type="submit" class="btn btn-gradient-primary me-2">Update</button>
                                     </div>
@@ -114,7 +146,7 @@
 
                         <?php
                         // Decode the stored JSON availability days
-                        $availabilityDays = json_decode($partner->availability_days, true) ?? [];
+                        $availabilityDays = json_decode($business->availability_days, true) ?? [];
                         ?>
 
                         <div class="row mt-3">
@@ -154,14 +186,14 @@
                                             <input type="time"
                                                 class="form-control form-control-lg @error('time_from') is-invalid @enderror"
                                                 name="time_from" placeholder="time_from"
-                                                value="{{ old('time_from', \Carbon\Carbon::parse($partner->time_from)->format('H:i')) }}">
+                                                value="{{ old('time_from', \Carbon\Carbon::parse($business->time_from)->format('H:i')) }}">
                                         </div>
 
                                         <div class="form-group">
                                             <input type="time"
                                                 class="form-control form-control-lg @error('time_to') is-invalid @enderror"
                                                 name="time_to" placeholder="time_to"
-                                                value="{{ old('time_to', \Carbon\Carbon::parse($partner->time_to)->format('H:i')) }}">
+                                                value="{{ old('time_to', \Carbon\Carbon::parse($business->time_to)->format('H:i')) }}">
                                         </div>
 
                                     </div>
@@ -175,7 +207,7 @@
                                 <div class="card">
                                     <div class="card-body text-center">
                                         <h5 class="card-title">Ownership Proof</h5>
-                                        <img src="{{ asset($partner->ownership_proof) }}" class="img-fluid mb-2"
+                                        <img src="{{ asset($business->ownership_proof) }}" class="img-fluid mb-2"
                                             alt="Ownership Proof">
                                         <input type="file" name="ownership_proof" class="form-control">
                                     </div>
