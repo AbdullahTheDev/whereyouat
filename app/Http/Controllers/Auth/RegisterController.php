@@ -72,6 +72,7 @@ class RegisterController extends Controller
                     break;
                 case 'partner_home':
                     $this->registerPartnerHome($request, $user);
+                    $route = 'partner_home.dashboard';
                     break;
                 case 'user':
                     UserProfile::create([
@@ -216,8 +217,10 @@ class RegisterController extends Controller
         $request->validate([
             'home_name' => 'required|string|max:255',
             'home_address' => 'required|string|max:255',
-            'managers' => 'required|array',
-            'availability' => 'required|array',
+            'manager' => 'required|array',
+            'availability_days' => 'required|array',
+            'time_from' => 'required|date_format:H:i',
+            'time_to' => 'required|date_format:H:i',
             'ownership_proof' => 'required|image|max:2048',
         ]);
 
