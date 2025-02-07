@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class PartnerHomeController extends Controller
 {
-    function dashboard(){
+    function index(){
         return view('partners.index');
     }
 }

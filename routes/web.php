@@ -51,7 +51,7 @@ Route::middleware(['guest'])->group(function () {
 
     Route::get('partner-home/register', function () {
         return view('partners.auth.register');
-    })->name('partner.register');
+    })->name('partner_home.register');
 
 
     Route::get('user/register', function () {

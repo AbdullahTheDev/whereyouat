@@ -217,23 +217,35 @@ class RegisterController extends Controller
         $request->validate([
             'home_name' => 'required|string|max:255',
             'home_address' => 'required|string|max:255',
-            'manager' => 'required|array',
+            'manager_name' => 'required|string',
+            'manager_email' => 'required|email',
+            'manager_date_of_birth' => 'required|date',
             'availability_days' => 'required|array',
             'time_from' => 'required|date_format:H:i',
             'time_to' => 'required|date_format:H:i',
             'ownership_proof' => 'required|image|max:2048',
+            'terms_of_service' => 'required|boolean',
         ]);
 
         $ownershipProofPath = 'partner_homes/' . time() . '_proof.' . $request->file('ownership_proof')->extension();
         $request->file('ownership_proof')->move(public_path('partner_homes'), $ownershipProofPath);
 
+        $managers = [
+            'name' => $request->manager_name,
+            'email' => $request->manager_email,
+            'phone' => $request->manager_phone,
+            'date_of_birth' => $request->manager_date_of_birth,
+        ];
         PartnerHome::create([
             'user_id' => $user->id,
             'home_name' => $request->home_name,
             'home_address' => $request->home_address,
-            'managers' => json_encode($request->managers),
-            'availability' => json_encode($request->availability),
+            'manager' => json_encode($managers),
+            'availability_days' => json_encode($request->availability_days),
             'ownership_proof' => $ownershipProofPath,
+            'time_from' => $request->time_from,
+            'time_to' => $request->time_to,
+            'terms_of_service' => $request->terms_of_service,
         ]);
     }
 }

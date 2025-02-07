@@ -1,4 +1,4 @@
-@extends('localdrivers.layouts.app')
+@extends('partners.layouts.app')
 
 @section('content')
     <div class="main-panel">

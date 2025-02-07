@@ -19,7 +19,8 @@ class PartnerHome extends Model
         'time_from',
         'time_to',
         'ownership_proof',
-        'terms_of_service'
+        'terms_of_service',
+        'profile_photo'
     ];
 
     protected $casts = [
