@@ -27,7 +27,7 @@
                     </div>
                 </a>
                 <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
-                    <a class="dropdown-item" href="{{ route('local_driver.profile.edit') }}">
+                    <a class="dropdown-item" href="{{ route('partner_home.profile.edit') }}">
                         <i class="mdi mdi-cached me-2 text-success"></i> Profile </a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('logout-form-header').submit();">
