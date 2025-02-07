@@ -25,6 +25,7 @@ class RegisterController extends Controller
 
     public function register(Request $request)
     {
+        return $request->all();
         // return $request->all();
         try {
             // Validate common user fields

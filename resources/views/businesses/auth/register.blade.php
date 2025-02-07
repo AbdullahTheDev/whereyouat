@@ -16,6 +16,72 @@
                                 action="{{ route('register') }}">
                                 @csrf
                                 <input type="hidden" name="role" id="role" value="business">
+
+                                <h5>Business Information</h5>
+
+                                <div class="form-group">
+                                    <input type="text"
+                                        class="form-control form-control-lg @error('trade_name') is-invalid @enderror"
+                                        name="trade_name" id="trade_name" placeholder="Trade Name"
+                                        value="{{ old('trade_name') }}" required>
+                                    @error('trade_name')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+
+
+                                <div class="form-group">
+                                    <input type="email"
+                                        class="form-control form-control-lg @error('business_email') is-invalid @enderror"
+                                        name="business_email" id="business_email" placeholder="Business Email" value="{{ old('business_email') }}"
+                                        required>
+                                    @error('business_email')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+
+                                <div class="form-group">
+                                    <input type="text"
+                                        class="form-control form-control-lg @error('business_phone') is-invalid @enderror"
+                                        name="business_phone" id="business_phone" placeholder="BusinessPhone" value="{{ old('business_phone') }}"
+                                        required>
+                                    @error('business_phone')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+
+                                <div class="form-group">
+                                    <input type="text"
+                                        class="form-control form-control-lg @error('business_number') is-invalid @enderror"
+                                        name="business_number" id="business_number" placeholder="Business Number" value="{{ old('business_number') }}"
+                                        required>
+                                    @error('business_number')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+
+                                <div class="form-group">
+                                    <input type="text"
+                                        class="form-control form-control-lg @error('business_address') is-invalid @enderror"
+                                        name="business_address" id="business_address" placeholder="Business Address" value="{{ old('business_address') }}"
+                                        required>
+                                    @error('business_address')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                                <hr>
+                                <h5>Responsible Information</h5>
+
                                 <div class="form-group">
                                     <input type="text"
                                         class="form-control form-control-lg @error('name') is-invalid @enderror"
@@ -38,6 +104,42 @@
                                         </span>
                                     @enderror
                                 </div>
+
+                                <div class="form-group">
+                                    <input type="text"
+                                        class="form-control form-control-lg @error('phone') is-invalid @enderror"
+                                        name="phone" id="phone" placeholder="Phone" value="{{ old('phone') }}"
+                                        required>
+                                    @error('phone')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+
+                                <div class="form-group">
+                                    <input type="date" class="form-control form-control-lg @error('date_of_birth') is-invalid @enderror" name="date_of_birth" id="date_of_birth"
+                                        placeholder="Date of Birth" value="{{ old('date_of_birth') }}" required>
+                                    @error('date_of_birth')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                                
+                                
+                                <div class="form-group">
+                                    <input type="text"
+                                        class="form-control form-control-lg @error('responsible_address') is-invalid @enderror"
+                                        name="responsible_address" id="responsible_address" placeholder="Responsible Address"
+                                        value="{{ old('responsible_address') }}" required>
+                                    @error('responsible_address')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+
                                 <div class="form-group">
                                     <input type="password"
                                         class="form-control form-control-lg @error('password') is-invalid @enderror"
@@ -59,50 +161,9 @@
                                         </span>
                                     @enderror
                                 </div>
-                                <div class="form-group">
-                                    <input type="text"
-                                        class="form-control form-control-lg @error('phone') is-invalid @enderror"
-                                        name="phone" id="phone" placeholder="Phone" value="{{ old('phone') }}"
-                                        required>
-                                    @error('phone')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                                <div class="form-group">
-                                    <input type="date" class="form-control form-control-lg @error('date_of_birth') is-invalid @enderror" name="date_of_birth" id="date_of_birth"
-                                        placeholder="Date of Birth" value="{{ old('date_of_birth') }}" required>
-                                    @error('date_of_birth')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                                
-                                <div class="form-group">
-                                    <input type="text"
-                                        class="form-control form-control-lg @error('home_name') is-invalid @enderror"
-                                        name="home_name" id="home_name" placeholder="Home Name"
-                                        value="{{ old('home_name') }}" required>
-                                    @error('home_name')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                                <div class="form-group">
-                                    <input type="text"
-                                        class="form-control form-control-lg @error('home_address') is-invalid @enderror"
-                                        name="home_address" id="home_address" placeholder="Home Address"
-                                        value="{{ old('home_address') }}" required>
-                                    @error('home_address')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
 
+                                <hr>
+                                <h5>Manager Information</h5>
                                 <div class="form-group">
                                     <input type="text"
                                         class="form-control form-control-lg @error('manager_name') is-invalid @enderror"
