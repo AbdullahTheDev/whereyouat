@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
-class PartnerHomeMiddleware
+class BusinessesMiddleware
 {
     /**
      * Handle an incoming request.
@@ -16,10 +16,10 @@ class PartnerHomeMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (Auth::check() && Auth::user()->role === 'partner_home') {
+        if (Auth::check() && Auth::user()->role === 'business') {
             return $next($request);
         }
 
-        return redirect()->route('home')->with('error', 'Access Denied: Partner Home only.');
+        return redirect()->route('home')->with('error', 'Access Denied: Businesses only.');
     }
 }

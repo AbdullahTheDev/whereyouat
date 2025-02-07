@@ -8,6 +8,8 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Businesses\BusinessesController;
+use App\Http\Controllers\Businesses\ProfileController as BusinessesProfileController;
 use App\Http\Controllers\Driver\DeliveryController as DriverDeliveryController;
 use App\Http\Controllers\Driver\DriverController;
 use App\Http\Controllers\Driver\ProfileController as DriverProfileController;
@@ -128,6 +130,19 @@ Route::prefix('partner-homes')->middleware(['auth', 'partnerHome'])->group(funct
     Route::get('/profile', [PartnerHomeProfileController::class, 'edit'])->name('partner_home.profile.edit');
     Route::post('/profile', [PartnerHomeProfileController::class, 'update'])->name('partner_home.profile.update');
     Route::delete('/profile', [PartnerHomeProfileController::class, 'destroy'])->name('partner_home.profile.destroy');
+});
+
+Route::prefix('businesses')->middleware(['auth', 'businesses'])->group(function () {
+
+    Route::get('/dashboard', [BusinessesController::class, 'index'])->name('businesses.dashboard');
+
+    Route::get('/notifications', function () {
+        return view('businesses.notifications.index');
+    })->name('businesses.notifications');
+
+    Route::get('/profile', [BusinessesProfileController::class, 'edit'])->name('businesses.profile.edit');
+    Route::post('/profile', [BusinessesProfileController::class, 'update'])->name('businesses.profile.update');
+    Route::delete('/profile', [BusinessesProfileController::class, 'destroy'])->name('businesses.profile.destroy');
 });
 
 

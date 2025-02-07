@@ -69,5 +69,6 @@ class Kernel extends HttpKernel
         'driver' => \App\Http\Middleware\DriverMiddleware::class,
         'localDriver' => \App\Http\Middleware\LocalDriverMiddleware::class,
         'partnerHome' => \App\Http\Middleware\PartnerHomeMiddleware::class,
+        'businesses' => \App\Http\Middleware\BusinessesMiddleware::class,
     ];
 }
