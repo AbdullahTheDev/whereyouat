@@ -13,10 +13,6 @@ class Business extends Model
     protected $fillable = [
         'user_id',
         'trade_name',
-        'responsible_name',
-        'responsible_email',
-        'responsible_phone',
-        'responsible_dob',
         'responsible_address',
         'business_email',
         'business_phone',

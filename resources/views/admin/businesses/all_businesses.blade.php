@@ -28,8 +28,8 @@
                                         <tr>
                                             <td> {{ $key + 1 }} </td>
                                             <td> {{ $business->user->name }} </td>
-                                            {{-- <td> {{ $business->user->phone }} </td>
-                                            <td> {{ $business->user->email }} </td> --}}
+                                            <td> {{ $business->user->phone }} </td>
+                                            <td> {{ $business->user->email }} </td>
                                             <td> {{ \Carbon\Carbon::parse($business->user->created_at)->format('M j, Y | h:i A') }}
                                             </td>
                                             <td>
@@ -56,45 +56,49 @@
                                                         <p><strong>Phone:</strong> {{ $business->user->phone }}</p>
                                                         <p><strong>Date Of Birth:</strong>
                                                             {{ $business->user->date_of_birth }}</p>
+                                                        <p><strong>Address:</strong> {{ $business->address }}</p>
                                                         <hr>
-                                                        <p><strong>Walk: </strong> {{ $business->walk ? 'Yes' : 'No' }}</p>
-                                                        @if (!$business->walk)
-                                                        <hr>
-                                                            <h6>Vehicle Info</h6>
-                                                            <p><strong>Mean Of Transport:</strong>
-                                                                {{ $business->mean_of_transport }}</p>
-                                                            <p><strong>Make:</strong> {{ $business->vehicle_make }}</p>
-                                                            <p><strong>Model:</strong> {{ $business->vehicle_model }}</p>
-                                                            <p><strong>Year:</strong> {{ $business->vehicle_year }}</p>
-                                                            <p><strong>Plate Number:</strong> {{ $business->vehicle_plate }}
-                                                            </p>
-                                                            <p><strong>Color:</strong> {{ $business->vehicle_color }}</p>
-                                                        @endif
-                                                        <hr>
-                                                        <p><strong>Photo Facial ID:</strong></p>
-                                                        <a data-fancybox="gallery" href="{{ asset($business->photo_of_facial_id) }}" >
-                                                            <img width="200" src="{{ asset($business->photo_of_facial_id) }}" alt="">
-                                                        </a>
-                                                        <p><strong>Proof Of Domicile:</strong></p>
-                                                        <a data-fancybox="gallery" href="{{ asset($business->proof_of_domicile) }}" >
-                                                            <img width="200" src="{{ asset($business->proof_of_domicile) }}" alt="">
-                                                        </a>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary"
-                                                            data-bs-dismiss="modal">Close</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    @endforeach
-                                </tbody>
-                            </table>
+                                                        <h6>Business Info</h6>
+                                                        <p><strong>Trade Name:</strong> {{ $business->trade_name }}</p>
+
+                                                        <p><strong>Email:</strong> {{ $business->business_email }}</p>
+                                                        <p><strong>Phone:</strong> {{ $business->business_phone }}</p>
+                                                        <p><strong>Address:</strong> {{ $business->business_address }}</p>
+                                                        <p><strong>Business Number:</strong>
+                                                            {{ $business->business_number }}</p>
+                                    @endif
+                                    <hr>
+                                    @if ($business->co_manager_details != null)
+                                        @php
+                                            $coOwner = json_decode($business->co_manager_details, true);
+                                        @endphp
+                                        <h6>Co-Manager Info</h6>
+                                        <p><strong>Name:</strong> {{ $coOwner['name'] }}</p>
+                                        <p><strong>Email:</strong> {{ $coOwner['email'] }}</p>
+                                        <p><strong>Phone:</strong> {{ $coOwner['phone'] }}</p>
+                                        <p><strong>Date Of Birth:</strong> {{ $coOwner['date_of_birth'] }}</p>
+                                        <p><strong>Address:</strong> {{ $coOwner['address'] }}</p>
+                                        <hr>
+                                    @endif
+                                    <p><strong>Ownership Proof:</strong></p>
+                                    <a data-fancybox="gallery" href="{{ asset($business->ownership_proof) }}">
+                                        <img width="200" src="{{ asset($business->ownership_proof) }}" alt="">
+                                    </a>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                         </div>
                     </div>
                 </div>
             </div>
+            @endforeach
+            </tbody>
+            </table>
         </div>
+    </div>
+    </div>
+    </div>
+    </div>
     </div>
 @endsection
 @section('script')
