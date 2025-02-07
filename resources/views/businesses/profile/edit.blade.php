@@ -1,4 +1,4 @@
-@extends('partners.layouts.app')
+@extends('businesses.layouts.app')
 
 @section('content')
     <div class="main-panel">
@@ -8,7 +8,7 @@
             </div>
             <div class="row">
                 <div class="col-12">
-                    <form autocomplete="off" action="{{ route('partner_home.profile.update') }}" method="POST"
+                    <form autocomplete="off" action="{{ route('businesses.profile.update') }}" method="POST"
                         class="forms-sample" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
@@ -84,11 +84,6 @@
                                                 value="{{ $business->trade_name }}" id="name" placeholder="Trade name">
                                         </div>
                                         
-                                        <div class="form-group">
-                                            <label for="name">Name</label>
-                                            <input type="text" class="form-control" name="business_name"
-                                                value="{{ $business->business_name }}" id="business_name" placeholder="Business Name">
-                                        </div>
                                         <div class="form-group">
                                             <label for="email">Email address</label>
                                             <input type="email" class="form-control" name="business_email"

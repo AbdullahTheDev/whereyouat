@@ -1,9 +1,9 @@
 <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
     <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start">
-        <a class="navbar-brand brand-logo" href="{{ route('partner_home.dashboard') }}">
+        <a class="navbar-brand brand-logo" href="{{ route('businesses.dashboard') }}">
             <img src="{{ asset('assets/images/logo.svg') }}" alt="logo" />
         </a>
-        <a class="navbar-brand brand-logo-mini" href="{{ route('partner_home.dashboard') }}">
+        <a class="navbar-brand brand-logo-mini" href="{{ route('businesses.dashboard') }}">
             <img src="{{ asset('assets/images/logo-mini.svg') }}" alt="logo" />
         </a>
     </div>
@@ -19,7 +19,7 @@
                 <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-bs-toggle="dropdown"
                     aria-expanded="false">
                     <div class="nav-profile-img">
-                        <img src="{{ Auth::user()->partnerHome->profile_photo ? asset(Auth::user()->partnerHome->profile_photo) : asset('users_profile/default-profile.png') }}" alt="image">
+                        <img src="{{ Auth::user()->business->profile_photo ? asset(Auth::user()->business->profile_photo) : asset('users_profile/default-profile.png') }}" alt="image">
                         <span class="availability-status online"></span>
                     </div>
                     <div class="nav-profile-text">
@@ -27,7 +27,7 @@
                     </div>
                 </a>
                 <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
-                    <a class="dropdown-item" href="{{ route('partner_home.profile.edit') }}">
+                    <a class="dropdown-item" href="{{ route('businesses.profile.edit') }}">
                         <i class="mdi mdi-cached me-2 text-success"></i> Profile </a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('logout-form-header').submit();">

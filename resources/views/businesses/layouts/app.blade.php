@@ -79,11 +79,11 @@
 
 <body>
 
-    @include('partners.includes.header')
+    @include('businesses.includes.header')
 
     <div class="container-fluid page-body-wrapper">
 
-        @include('partners.includes.sidebar')
+        @include('businesses.includes.sidebar')
 
 
         @yield('content')

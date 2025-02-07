@@ -29,10 +29,10 @@ class ProfileController extends Controller
                 'email' => 'required|string|email|max:255',
                 'phone' => 'required|string|max:20',
                 'date_of_birth' => 'required|date',
-                'business_name' => 'required|string|max:255',
                 'business_phone' => 'required|string|max:20',
                 'business_email' => 'required|string|email|max:255',
                 'business_number' => 'required|string',
+                'business_address' => 'required|string',
 
                 'manager_name' => 'required|string|max:255',
                 'manager_phone' => 'required|string|max:20',
@@ -57,7 +57,7 @@ class ProfileController extends Controller
             $business->update([
                 'trade_name' => $request->trade_name,
                 'responsible_address' => $request->responsible_address,
-                'business_name' => $request->business_name,
+                'business_address' => $request->business_address,
                 'business_phone' => $request->business_phone,
                 'business_email' => $request->business_email,
                 'business_number' => $request->business_number,
