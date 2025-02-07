@@ -66,39 +66,46 @@
                                                         <p><strong>Address:</strong> {{ $business->business_address }}</p>
                                                         <p><strong>Business Number:</strong>
                                                             {{ $business->business_number }}</p>
-                                    @endif
-                                    <hr>
-                                    @if ($business->co_manager_details != null)
-                                        @php
-                                            $coOwner = json_decode($business->co_manager_details, true);
-                                        @endphp
-                                        <h6>Co-Manager Info</h6>
-                                        <p><strong>Name:</strong> {{ $coOwner['name'] }}</p>
-                                        <p><strong>Email:</strong> {{ $coOwner['email'] }}</p>
-                                        <p><strong>Phone:</strong> {{ $coOwner['phone'] }}</p>
-                                        <p><strong>Date Of Birth:</strong> {{ $coOwner['date_of_birth'] }}</p>
-                                        <p><strong>Address:</strong> {{ $coOwner['address'] }}</p>
-                                        <hr>
-                                    @endif
-                                    <p><strong>Ownership Proof:</strong></p>
-                                    <a data-fancybox="gallery" href="{{ asset($business->ownership_proof) }}">
-                                        <img width="200" src="{{ asset($business->ownership_proof) }}" alt="">
-                                    </a>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                        <hr>
+                                                        @if ($business->co_manager_details != null)
+                                                            @php
+                                                                $coOwner = json_decode(
+                                                                    $business->co_manager_details,
+                                                                    true,
+                                                                );
+                                                            @endphp
+                                                            <h6>Co-Manager Info</h6>
+                                                            <p><strong>Name:</strong> {{ $coOwner['name'] }}</p>
+                                                            <p><strong>Email:</strong> {{ $coOwner['email'] }}</p>
+                                                            <p><strong>Phone:</strong> {{ $coOwner['phone'] }}</p>
+                                                            <p><strong>Date Of Birth:</strong>
+                                                                {{ $coOwner['date_of_birth'] }}</p>
+                                                            <p><strong>Address:</strong> {{ $coOwner['address'] }}</p>
+                                                            <hr>
+                                                        @endif
+                                                        <p><strong>Ownership Proof:</strong></p>
+                                                        <a data-fancybox="gallery"
+                                                            href="{{ asset($business->ownership_proof) }}">
+                                                            <img width="200"
+                                                                src="{{ asset($business->ownership_proof) }}"
+                                                                alt="">
+                                                        </a>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-bs-dismiss="modal">Close</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
             </div>
-            @endforeach
-            </tbody>
-            </table>
         </div>
-    </div>
-    </div>
-    </div>
-    </div>
     </div>
 @endsection
 @section('script')
