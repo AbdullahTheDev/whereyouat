@@ -47,6 +47,10 @@ Route::middleware(['guest'])->group(function () {
         return view('localdrivers.auth.register');
     })->name('localdriver.register');
 
+    Route::get('partner-home/register', function () {
+        return view('partners.auth.register');
+    })->name('partner.register');
+
 
     Route::get('user/register', function () {
         return view('users.auth.register');
@@ -88,6 +92,30 @@ Route::prefix('driver')->middleware(['auth', 'driver'])->group(function () {
 });
 
 Route::prefix('local-driver')->middleware(['auth', 'localDriver'])->group(function () {
+
+    Route::get('/dashboard', [LocalDriverDriverController::class, 'index'])->name('local_driver.dashboard');
+
+    Route::prefix('delivery')->group(function () {
+        Route::get('/assigned', [LocalDriverDeliveryController::class, 'assignedDeliveries'])->name('local_driver.delivery.assigned');
+        Route::get('/assigned/{id}', [LocalDriverDeliveryController::class, 'assignedDelivery'])->name('local_driver.delivery.assigned.single');
+
+        Route::get('/my/deliveries', [LocalDriverDeliveryController::class, 'yourDelivery'])->name('local_driver.delivery.your');
+
+        Route::post('/distance/accept', [LocalDriverDeliveryController::class, 'distaneDeliveryAccept'])->name('local_driver.delivery.distance.accept');
+
+        Route::post('/vicinity/accept', [LocalDriverDeliveryController::class, 'vicinityDeliveryAccept'])->name('local_driver.delivery.vicinity.accept');
+    });
+
+    Route::get('/notifications', function () {
+        return view('localdrivers.notifications.index');
+    })->name('localdriver.notifications');
+
+    Route::get('/profile', [LocalDriverProfileController::class, 'edit'])->name('local_driver.profile.edit');
+    Route::post('/profile', [LocalDriverProfileController::class, 'update'])->name('local_driver.profile.update');
+    Route::delete('/profile', [LocalDriverProfileController::class, 'destroy'])->name('local_driver.profile.destroy');
+});
+
+Route::prefix('partner-homes')->middleware(['auth', 'partnerHome'])->group(function () {
 
     Route::get('/dashboard', [LocalDriverDriverController::class, 'index'])->name('local_driver.dashboard');
 
