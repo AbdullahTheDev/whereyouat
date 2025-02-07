@@ -30,6 +30,9 @@
                     <a class="dropdown-item" href="{{ route('localdriver.register') }}">
                         <i class="mdi mdi-cached me-2 text-success"></i> Register as Local Driver</a>
                     <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="{{ route('business.register') }}">
+                        <i class="mdi mdi-cached me-2 text-success"></i> Register as Business</a>
+                    <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="{{ route('partner_home.register') }}">
                         <i class="mdi mdi-cached me-2 text-success"></i> Register as Partner Home</a>
                     <div class="dropdown-divider"></div>

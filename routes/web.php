@@ -51,6 +51,11 @@ Route::middleware(['guest'])->group(function () {
         return view('localdrivers.auth.register');
     })->name('localdriver.register');
 
+    Route::get('business/register', function () {
+        return view('businesses.auth.register');
+    })->name('business.register');
+
+
     Route::get('partner-home/register', function () {
         return view('partners.auth.register');
     })->name('partner_home.register');
