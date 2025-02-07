@@ -68,7 +68,7 @@ class RegisterController extends Controller
                     break;
                 case 'business':
                     $this->registerBusiness($request, $user);
-                    $route = 'business.dashboard';
+                    $route = 'businesses.dashboard';
                     break;
                 case 'partner_home':
                     $this->registerPartnerHome($request, $user);
@@ -164,7 +164,7 @@ class RegisterController extends Controller
 
         $photoOfFacialIdPath = 'drivers/local/' . time() . '_proof.' . $request->file('photo_of_facial_id')->extension();
         $request->file('photo_of_facial_id')->move(public_path('drivers/local'), $photoOfFacialIdPath);
-        
+
         $proofOfDomicilePath = 'drivers/local/' . time() . '_domicile.' . $request->file('proof_of_domicile')->extension();
         $request->file('proof_of_domicile')->move(public_path('drivers/local'), $proofOfDomicilePath);
 
@@ -191,11 +191,20 @@ class RegisterController extends Controller
     {
         $request->validate([
             'trade_name' => 'required|string|max:255',
-            'business_address' => 'required|string|max:255',
-            'business_number' => 'required|string|max:255',
-            'co_manager_details' => 'required|array',
-            'ownership_proof' => 'required|image|max:2048',
-            'availability' => 'required|array',
+            'responsible_address' => 'required|string',
+            'business_name' => 'required|string|max:255',
+            'business_phone' => 'required|string|max:20',
+            'business_email' => 'required|string|email|max:255',
+            'business_number' => 'required|string',
+
+            'manager_name' => 'required|string|max:255',
+            'manager_phone' => 'required|string|max:20',
+            'manager_email' => 'required|string|email|max:255',
+            'manager_date_of_birth' => 'required|date',
+            'availability_days' => 'required|array',
+            'time_from' => 'required|date_format:H:i',
+            'time_to' => 'required|date_format:H:i',
+            'ownership_proof' => 'required|image|max:5048',
         ]);
 
         $ownershipProofPath = 'businesses/' . time() . '_proof.' . $request->file('ownership_proof')->extension();

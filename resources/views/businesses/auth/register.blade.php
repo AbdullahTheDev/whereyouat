@@ -15,7 +15,7 @@
                             <form class="pt-3" enctype="multipart/form-data" method="POST"
                                 action="{{ route('register') }}">
                                 @csrf
-                                <input type="hidden" name="role" id="role" value="partner_home">
+                                <input type="hidden" name="role" id="role" value="business">
                                 <div class="form-group">
                                     <input type="text"
                                         class="form-control form-control-lg @error('name') is-invalid @enderror"
