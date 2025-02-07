@@ -33,7 +33,7 @@ class PartnersImport implements ToModel, WithHeadingRow
             'name' => $row['name_first_name'] . " " . $row['name_surname'],
             'phone' => trim($row['telephone_number'], "'"),
             'date_of_birth' => $DOB,
-            'role' => 'business',
+            'role' => 'partner_home',
             'terms_approved' => 1,
             'updated_at' => Carbon::createFromFormat('M j, Y @ h:i A', $row['submission_time']),
         ];
