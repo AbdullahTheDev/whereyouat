@@ -21,7 +21,9 @@ class DistanceDelivery extends Model
         'payment_method',
         'payment_status',
         'accepted',
-        'driver_id'
+        'driver_id',
+        'relay_id',
+        'relay_type',
     ];
 
     public function user()

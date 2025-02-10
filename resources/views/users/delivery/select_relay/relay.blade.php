@@ -43,11 +43,8 @@
                                                     More Details
                                                 </button>
                                 </div>
-                                <form method="POST"
-                                    action="{{ route('user.delivery.distance.partner.post', $relay->id) }}">
-                                    @csrf
-                                    <button type="submit" class="btn btn-primary w-100 mt-3">Select</button>
-                                </form>
+                                <button type="button" class="btn btn-primary w-100 mt-3" data-bs-toggle="modal" data-bs-target="#confirmModal-{{ $relay->id }}">Select</button>
+
                                 @if($relay->user->role == 'partner_home')
                                 <div class="modal fade" id="businessInfoModal-{{ $relay->id }}" tabindex="-1"
                                     aria-labelledby="businessInfoModalLabel-{{ $relay->id }}" aria-hidden="true">
@@ -155,6 +152,29 @@
                                     </div>
                                 </div>
                                 @endif
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal fade" id="confirmModal-{{ $relay->id }}" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="confirmModalLabel">Confirm Selection</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    Are you sure you want to select this relay?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                    <form method="POST" action="{{ route('user.delivery.distance.partner.post') }}">
+                                        @csrf
+                                        <input type="hidden" name="delivery_id" value="{{ $delivery->id }}">
+                                        <input type="hidden" name="relay_id" value="{{ $relay->id }}">
+                                        <button type="submit" class="btn btn-primary">Confirm</button>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>

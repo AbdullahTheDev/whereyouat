@@ -107,10 +107,41 @@ class DeliveryController extends Controller
 
             $relays = $relayPartners->merge($relayBusinesses);
 
-            return view('users.delivery.select_relay.relay', compact('relays'));
+            return view('users.delivery.select_relay.relay', compact('relays', 'delivery'));
         } catch (Exception $e) {
             // return redirect()->back()->with('error', $e->getMessage());
             return $e->getMessage();
+        }
+    }
+    function distanceDeliveryPartnerPost(Request $request){
+        try {
+            $request->validate([
+                'delivery_id' => 'required|integer',
+                'relay_id' => 'required|integer',
+            ]);
+
+            $delivery = DistanceDelivery::findOrFail($request->delivery_id);
+            if (!$delivery) {
+                return redirect()->back()->with('error', 'Delivery not found');
+            }
+            if ($delivery->user_id != Auth::id()) {
+                return redirect()->back()->with('error', 'You do not have permission to access this delivery');
+            }
+
+            $relay = PartnerHome::findOrFail($request->relay_id);
+            if (!$relay) {
+                return redirect()->back()->with('error', 'Relay not found');
+            }
+
+            $delivery->update([
+                'relay_id' => $relay->id,
+                'driver_id' => $relay->user_id,
+                'relay_type' => $relay->user->role,
+            ]);
+
+            return redirect()->route('user.delivery.distance.stripe', $delivery->id);
+        } catch (Exception $e) {
+            return redirect()->back()->with('error', $e->getMessage());
         }
     }
 
