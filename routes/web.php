@@ -177,6 +177,9 @@ Route::prefix('user')->middleware(['auth', 'user', 'verified'])->group(function 
         Route::get('distance/stripe/{id?}', [StripeDeliveryController::class, 'distanceDeliveryStripe'])->name('user.delivery.distance.stripe');
         Route::post('distance/stripe', [StripeDeliveryController::class, 'distanceDeliveryStripePost'])->name('user.delivery.distance.stripe.post');
 
+        Route::get('distance/partner/{id?}', [DeliveryController::class, 'distanceDeliveryPartner'])->name('user.delivery.distance.partner');
+        Route::post('distance/partner', [DeliveryController::class, 'distanceDeliveryPartnerPost'])->name('user.delivery.distance.partner.post');
+
 
         Route::get('/vicinity', [DeliveryController::class, 'vicinityDelivery'])->name('user.delivery.vicinity');
         Route::post('/vicinity', [DeliveryController::class, 'vicinityDeliveryStore'])->name('user.delivery.vicinity.store');

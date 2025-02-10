@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\Business;
 use App\Models\DistanceDelivery;
 use App\Models\Driver;
 use App\Models\PackageDetail;
+use App\Models\PartnerHome;
 use App\Models\User;
 use App\Models\VicinityDelivery;
 use App\Models\VicinityPackageDetail;
@@ -15,37 +17,43 @@ use Illuminate\Support\Facades\Auth;
 
 class DeliveryController extends Controller
 {
-    function distanceDelivery() {
+    function distanceDelivery()
+    {
         return view('users.delivery.distance');
     }
 
-    function vicinityDelivery() {
+    function vicinityDelivery()
+    {
         return view('users.delivery.vicinity');
     }
 
-    function trackDelivery() {
+    function trackDelivery()
+    {
         return view('users.delivery.track.index');
     }
-    function distanceTrackDelivery() {
+    function distanceTrackDelivery()
+    {
         $deliveries = DistanceDelivery::where('user_id', Auth::id())->latest()->get();
 
         return view('users.delivery.track.distance.index', compact('deliveries'));
     }
 
-    function vicinityTrackDelivery() {
+    function vicinityTrackDelivery()
+    {
         $deliveries = VicinityDelivery::where('user_id', Auth::id())->latest()->get();
 
         return view('users.delivery.track.vicinity.index', compact('deliveries'));
     }
 
 
-    function distanceDeliveryStore(Request $request) {
-        try{
+    function distanceDeliveryStore(Request $request)
+    {
+        try {
             $request->validate([
                 'departure_city' => 'required|string|max:255',
                 'arrival_city' => 'required|string|max:255',
                 'transaction_date' => 'required|date',
-                'delivery_mode' => 'required|string',
+                'delivery_mode' => 'required|string|in:partner,direct',
                 'total_price' => 'required',
                 'package_type' => 'required',
                 'package_quantity' => 'required',
@@ -72,16 +80,44 @@ class DeliveryController extends Controller
 
             session()->put('distance_delivery', $delivery->id);
 
-            return redirect()->route('user.delivery.distance.stripe', $delivery->id);
+            if ($request->delivery_mode == 'partner') {
+                return redirect()->route('user.delivery.distance.partner', $delivery->id);
+            }
 
-        }catch(Exception $e) {
+            return redirect()->route('user.delivery.distance.stripe', $delivery->id);
+        } catch (Exception $e) {
             return redirect()->back()->with('error', $e->getMessage());
-        } 
+        }
+    }
+    function distanceDeliveryPartner($id)
+    {
+        try {
+            $delivery = DistanceDelivery::findOrFail($id);
+            if (!$delivery) {
+                return redirect()->back()->with('error', 'Delivery not found');
+            }
+            if ($delivery->user_id != Auth::id()) {
+                return redirect()->back()->with('error', 'You do not have permission to access this delivery');
+            }
+            $relayPartners = PartnerHome::where('city', $delivery->arrival_city)
+                ->orWhere('home_address', 'LIKE', '%' . $delivery->arrival_city . '%')
+                ->get();
+
+            $relayBusinesses = Business::where('city', $delivery->arrival_city)
+                ->orWhere('business_address', 'LIKE', '%' . $delivery->arrival_city . '%')
+                ->get();
+
+            $relay = $relayPartners->merge($relayBusinesses);
+
+            return view('users.delivery.select_relay.relay', compact('relay'));
+        } catch (Exception $e) {
+            return redirect()->back()->with('error', $e->getMessage());
+        }
     }
 
-
-    function vicinityDeliveryStore(Request $request) {
-        try{
+    function vicinityDeliveryStore(Request $request)
+    {
+        try {
             $request->validate([
                 'departure_address' => 'required|string|max:255',
                 'arrival_address' => 'required|string|max:255',
@@ -112,53 +148,54 @@ class DeliveryController extends Controller
             session()->put('vicinity_delivery', $delivery->id);
 
             return redirect()->route('user.delivery.vicinity.stripe', $delivery->id);
-
-        }catch(Exception $e) {
-            return redirect()->back()->with('error', $e->getMessage());
-        } 
-    }
-
-    function distanceDriver($id){
-        try{
-            $delivery = DistanceDelivery::findOrFail($id);
-            if(!$delivery){
-                return redirect()->back()->with('error', 'Delivery not found');
-            }
-            if($delivery->user_id != Auth::id()){
-                return redirect()->back()->with('error', 'You do not have permission to access this delivery');
-            }
-            $user = User::findOrFail($delivery->driver_id);
-            if(!$user){
-                return redirect()->back()->with('error', 'Driver not found');
-            }
-            $driver = Driver::where('user_id', $user->id)->first();
-            if(!$driver){
-                return redirect()->back()->with('error', 'Driver not found');
-            }
-            return view('users.delivery.drivers.driver_info', compact('driver'));
-        }catch(Exception $e){
+        } catch (Exception $e) {
             return redirect()->back()->with('error', $e->getMessage());
         }
     }
-    function vicinityDriver($id){
-        try{
-            $delivery = VicinityDelivery::findOrFail($id);
-            if(!$delivery){
+
+    function distanceDriver($id)
+    {
+        try {
+            $delivery = DistanceDelivery::findOrFail($id);
+            if (!$delivery) {
                 return redirect()->back()->with('error', 'Delivery not found');
             }
-            if($delivery->user_id != Auth::id()){
+            if ($delivery->user_id != Auth::id()) {
                 return redirect()->back()->with('error', 'You do not have permission to access this delivery');
             }
             $user = User::findOrFail($delivery->driver_id);
-            if(!$user){
+            if (!$user) {
                 return redirect()->back()->with('error', 'Driver not found');
             }
             $driver = Driver::where('user_id', $user->id)->first();
-            if(!$driver){
+            if (!$driver) {
                 return redirect()->back()->with('error', 'Driver not found');
             }
             return view('users.delivery.drivers.driver_info', compact('driver'));
-        }catch(Exception $e){
+        } catch (Exception $e) {
+            return redirect()->back()->with('error', $e->getMessage());
+        }
+    }
+    function vicinityDriver($id)
+    {
+        try {
+            $delivery = VicinityDelivery::findOrFail($id);
+            if (!$delivery) {
+                return redirect()->back()->with('error', 'Delivery not found');
+            }
+            if ($delivery->user_id != Auth::id()) {
+                return redirect()->back()->with('error', 'You do not have permission to access this delivery');
+            }
+            $user = User::findOrFail($delivery->driver_id);
+            if (!$user) {
+                return redirect()->back()->with('error', 'Driver not found');
+            }
+            $driver = Driver::where('user_id', $user->id)->first();
+            if (!$driver) {
+                return redirect()->back()->with('error', 'Driver not found');
+            }
+            return view('users.delivery.drivers.driver_info', compact('driver'));
+        } catch (Exception $e) {
             return redirect()->back()->with('error', $e->getMessage());
         }
     }
