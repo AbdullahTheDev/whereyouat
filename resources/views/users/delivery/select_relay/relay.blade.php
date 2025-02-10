@@ -59,7 +59,7 @@
                                             </div>
                                             <div class="modal-body">
                                                 <h6>Business Information</h6>
-                                                <p><strong>House Name:</strong> {{ $relay->house_name }}</p>
+                                                <p><strong>House Name:</strong> {{ $relay->home_name }}</p>
                                                 <p><strong>House Address:</strong> {{ $relay->home_address }}</p>
                                                 <hr>
                                                 <h6>Manager Information</h6>

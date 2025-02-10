@@ -60,7 +60,11 @@
                                             </td>
                                             <td>
                                                 @if ($delivery->accepted == 1 || $delivery->status == 2) 
-                                                <a class="btn btn-sm btn-primary" href="{{ route('user.delivery.distance.driver', $delivery->id) }}">View</a>
+                                                @if($delivery->relay_id != null)
+                                                    <a class="btn btn-sm btn-primary" href="{{ route('user.delivery.distance.partner', $delivery->id) }}">View</a>
+                                                @else
+                                                    <a class="btn btn-sm btn-primary" href="{{ route('user.delivery.distance.driver', $delivery->id) }}">View</a>
+                                                @endif
                                                 @else
                                                 - -
                                                 @endif

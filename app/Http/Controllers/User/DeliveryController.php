@@ -113,7 +113,8 @@ class DeliveryController extends Controller
             return $e->getMessage();
         }
     }
-    function distanceDeliveryPartnerPost(Request $request){
+    function distanceDeliveryPartnerPost(Request $request)
+    {
         try {
             $request->validate([
                 'delivery_id' => 'required|integer',
@@ -137,6 +138,7 @@ class DeliveryController extends Controller
                 'relay_id' => $relay->id,
                 'driver_id' => $relay->user_id,
                 'relay_type' => $relay->user->role,
+                'accepted' => 1
             ]);
 
             return redirect()->route('user.delivery.distance.stripe', $delivery->id);
@@ -225,6 +227,33 @@ class DeliveryController extends Controller
                 return redirect()->back()->with('error', 'Driver not found');
             }
             return view('users.delivery.drivers.driver_info', compact('driver'));
+        } catch (Exception $e) {
+            return redirect()->back()->with('error', $e->getMessage());
+        }
+    }
+    function distancePartner($id)
+    {
+        try {
+            $delivery = DistanceDelivery::findOrFail($id);
+            if (!$delivery) {
+                return redirect()->back()->with('error', 'Delivery not found');
+            }
+            if ($delivery->user_id != Auth::id()) {
+                return redirect()->back()->with('error', 'You do not have permission to access this delivery');
+            }
+            $user = User::findOrFail($delivery->driver_id);
+            if (!$user) {
+                return redirect()->back()->with('error', 'Driver not found');
+            }
+            if ($user->role == 'partner_home') {
+                $relay = PartnerHome::where('user_id', $user->id)->first();
+            } else {
+                $relay = Business::where('user_id', $user->id)->first();
+            }
+            if (!$relay) {
+                return redirect()->back()->with('error', 'Partner not found');
+            }
+            return view('users.delivery.partners.partner_info', compact('relay'));
         } catch (Exception $e) {
             return redirect()->back()->with('error', $e->getMessage());
         }

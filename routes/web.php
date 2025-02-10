@@ -194,6 +194,7 @@ Route::prefix('user')->middleware(['auth', 'user', 'verified'])->group(function 
 
         Route::get('/distance/driver-info/{id}', [DeliveryController::class, 'distanceDriver'])->name('user.delivery.distance.driver');
         Route::get('/vicinity/driver-info/{id}', [DeliveryController::class, 'vicinityDriver'])->name('user.delivery.vicinity.driver');
+        Route::get('/distance/partner-info/{id}', [DeliveryController::class, 'distancePartner'])->name('user.delivery.distance.partner');
     });
     Route::get('/notifications', function () {
         return view('users.notifications.index');

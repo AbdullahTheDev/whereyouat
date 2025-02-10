@@ -51,7 +51,7 @@
                                                     </div>
                                                     <div class="modal-body">
                                                         <h6>Business Information</h6>
-                                                        <p><strong>House Name:</strong> {{ $partner->house_name }}</p>
+                                                        <p><strong>House Name:</strong> {{ $partner->home_name }}</p>
                                                         <p><strong>House Address:</strong> {{ $partner->home_address }}</p>
                                                         <hr>
                                                         <h6>Manager Information</h6>
