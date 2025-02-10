@@ -131,7 +131,7 @@ Route::prefix('local-driver')->middleware(['auth', 'localDriver'])->group(functi
     Route::delete('/profile', [LocalDriverProfileController::class, 'destroy'])->name('local_driver.profile.destroy');
 });
 
-Route::prefix('partner-homes')->middleware(['auth', 'partnerHome'])->group(function () {
+Route::prefix('partner-homes')->middleware(['auth', 'partnerHome', 'verified'])->group(function () {
 
     Route::get('/dashboard', [PartnerHomeController::class, 'index'])->name('partner_home.dashboard');
 
