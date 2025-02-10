@@ -81,28 +81,33 @@
                                         <div class="form-group">
                                             <label for="name">Trade Name</label>
                                             <input type="text" class="form-control" name="trade_name"
-                                                value="{{ $business->trade_name }}" id="name" placeholder="Trade name">
+                                                value="{{ $business->trade_name }}" id="name"
+                                                placeholder="Trade name">
                                         </div>
-                                        
+
                                         <div class="form-group">
                                             <label for="email">Email address</label>
                                             <input type="email" class="form-control" name="business_email"
-                                                value="{{ $business->business_email }}" id="business_email" placeholder="Email">
+                                                value="{{ $business->business_email }}" id="business_email"
+                                                placeholder="Email">
                                         </div>
                                         <div class="form-group">
                                             <label for="phone">Phone</label>
                                             <input type="text" class="form-control" name="business_phone"
-                                                value="{{ $business->business_phone }}" id="business_phone" placeholder="Phone">
+                                                value="{{ $business->business_phone }}" id="business_phone"
+                                                placeholder="Phone">
                                         </div>
                                         <div class="form-group">
                                             <label for="phone">Address</label>
                                             <input type="text" class="form-control" name="business_address"
-                                                value="{{ $business->business_address }}" id="business_address" placeholder="Address">
+                                                value="{{ $business->business_address }}" id="business_address"
+                                                placeholder="Address">
                                         </div>
                                         <div class="form-group">
                                             <label for="phone">Business Number</label>
                                             <input type="text" class="form-control" name="business_number"
-                                                value="{{ $business->business_number }}" id="business_number" placeholder="Business Number">
+                                                value="{{ $business->business_number }}" id="business_number"
+                                                placeholder="Business Number">
                                         </div>
                                         <button type="submit" class="btn btn-gradient-primary me-2">Update</button>
                                     </div>
@@ -154,24 +159,24 @@
                                             <input type="hidden" name="availability_days" value="">
 
                                             <?php
-                                            $days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+                                            $days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
                                             foreach ($days as $day) {
                                                 $checked = in_array($day, $availabilityDays) ? 'checked' : '';
                                                 echo '
-                                                                                                                                        <div class="form-check">
-                                                                                                                                            <input type="checkbox" class="form-check-input" name="availability_days[]" value="' .
+                                                                                                                                                                                    <div class="form-check">
+                                                                                                                                                                                        <input type="checkbox" class="form-check-input" name="availability_days[]" value="' .
                                                     $day .
                                                     '" id="' .
                                                     strtolower($day) .
                                                     '" ' .
                                                     $checked .
                                                     '>
-                                                                                                                                            <label class="form-check-label" for="' .
+                                                                                                                                                                                        <label class="form-check-label" for="' .
                                                     strtolower($day) .
                                                     '">' .
                                                     $day .
                                                     '</label>
-                                                                                                                                        </div>';
+                                                                                                                                                                                    </div>';
                                             }
                                             ?>
 

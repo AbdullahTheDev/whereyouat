@@ -71,6 +71,14 @@ Route::middleware(['guest'])->group(function () {
     Route::get('user/register', function () {
         return view('users.auth.register');
     })->name('user.register');
+
+
+
+
+    Route::get('login', [AuthenticatedSessionController::class, 'create'])
+        ->name('login');
+
+    Route::post('login', [AuthenticatedSessionController::class, 'store']);
 });
 
 Route::prefix('driver')->middleware(['auth', 'driver', 'verified'])->group(function () {
@@ -238,12 +246,6 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
 
 Route::post('/notifications/mark-as-read', [NotificationController::class, 'markAsRead'])->name('notifications.markAsRead');
 
-
-
-Route::get('login', [AuthenticatedSessionController::class, 'create'])
-    ->name('login');
-
-Route::post('login', [AuthenticatedSessionController::class, 'store']);
 
 Route::get('forgot-password', [PasswordResetLinkController::class, 'create'])
     ->name('password.request');

@@ -93,7 +93,7 @@
                                 </div>
                                 <div class="form-group">
                                     <input type="text"
-                                        class="form-control form-control-lg @error('home_address') is-invalid @enderror"
+                                        class="form-control form-control-lg autocomplete-address @error('home_address') is-invalid @enderror"
                                         name="home_address" id="home_address" placeholder="Home Address"
                                         value="{{ old('home_address') }}" required>
                                     @error('home_address')

@@ -23,7 +23,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="name">Home Address</label>
-                                            <input type="text" class="form-control" name="home_address"
+                                            <input type="text" class="form-control autocomplete-address" name="home_address"
                                                 value="{{ $partner->home_address }}" id="name"
                                                 placeholder="Home address">
                                         </div>
@@ -127,7 +127,8 @@
                                             <input type="hidden" name="availability_days" value="">
 
                                             <?php
-                                            $days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+                                                                                        $days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
+
                                             foreach ($days as $day) {
                                                 $checked = in_array($day, $availabilityDays) ? 'checked' : '';
                                                 echo '
@@ -167,10 +168,6 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-
-
-                        <div class="row mt-3">
                             <div class="col-md-4">
                                 <div class="card">
                                     <div class="card-body text-center">
