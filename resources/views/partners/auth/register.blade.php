@@ -174,37 +174,37 @@
                                     <input type="hidden" name="availability_days" value="">
                                 
                                     <div class="form-check">
-                                        <input type="checkbox" class="form-check-input" name="availability_days[]" value="Monday" id="monday">
+                                        <input type="checkbox" class="form-check-input" name="availability_days[]" value="monday" id="monday">
                                         <label class="form-check-label" for="monday">Monday</label>
                                     </div>
                                     
                                     <div class="form-check">
-                                        <input type="checkbox" class="form-check-input" name="availability_days[]" value="Tuesday" id="tuesday">
+                                        <input type="checkbox" class="form-check-input" name="availability_days[]" value="tuesday" id="tuesday">
                                         <label class="form-check-label" for="tuesday">Tuesday</label>
                                     </div>
                                 
                                     <div class="form-check">
-                                        <input type="checkbox" class="form-check-input" name="availability_days[]" value="Wednesday" id="wednesday">
+                                        <input type="checkbox" class="form-check-input" name="availability_days[]" value="wednesday" id="wednesday">
                                         <label class="form-check-label" for="wednesday">Wednesday</label>
                                     </div>
                                 
                                     <div class="form-check">
-                                        <input type="checkbox" class="form-check-input" name="availability_days[]" value="Thursday" id="thursday">
+                                        <input type="checkbox" class="form-check-input" name="availability_days[]" value="thursday" id="thursday">
                                         <label class="form-check-label" for="thursday">Thursday</label>
                                     </div>
                                 
                                     <div class="form-check">
-                                        <input type="checkbox" class="form-check-input" name="availability_days[]" value="Friday" id="friday">
+                                        <input type="checkbox" class="form-check-input" name="availability_days[]" value="friday" id="friday">
                                         <label class="form-check-label" for="friday">Friday</label>
                                     </div>
                                 
                                     <div class="form-check">
-                                        <input type="checkbox" class="form-check-input" name="availability_days[]" value="Saturday" id="saturday">
+                                        <input type="checkbox" class="form-check-input" name="availability_days[]" value="saturday" id="saturday">
                                         <label class="form-check-label" for="saturday">Saturday</label>
                                     </div>
                                 
                                     <div class="form-check">
-                                        <input type="checkbox" class="form-check-input" name="availability_days[]" value="Sunday" id="sunday">
+                                        <input type="checkbox" class="form-check-input" name="availability_days[]" value="sunday" id="sunday">
                                         <label class="form-check-label" for="sunday">Sunday</label>
                                     </div>
                                 
