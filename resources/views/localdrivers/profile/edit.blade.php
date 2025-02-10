@@ -125,7 +125,7 @@
                                             <input type="time"
                                                 class="form-control form-control @error('time_from') is-invalid @enderror"
                                                 name="time_from" placeholder="time_from"
-                                                value="{{ old('time_from', $driver->time_from ?? '') }}">
+                                                value="{{ old('time_from', \Carbon\Carbon::parse($driver->time_from)->format('H:i')?? '') }}">
                                             @error('time_from')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
@@ -137,7 +137,7 @@
                                             <input type="time"
                                                 class="form-control form-control @error('time_to') is-invalid @enderror"
                                                 name="time_to" placeholder="time_to"
-                                                value="{{ old('time_to', $driver->time_to ?? '') }}">
+                                                value="{{ old('time_to', \Carbon\Carbon::parse($driver->time_to)->format('H:i') ?? '') }}">
                                             @error('time_to')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
@@ -168,9 +168,9 @@
                                             ?>
 
                                         </div>
+                                        
+                                        <button type="submit" class="btn btn-gradient-primary me-2">Update</button>
                                     </div>
-
-                                    <button type="submit" class="btn btn-gradient-primary me-2">Update</button>
                                 </div>
                             </div>
                         </div>

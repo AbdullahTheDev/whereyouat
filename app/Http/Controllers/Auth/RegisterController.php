@@ -11,6 +11,7 @@ use App\Models\Business;
 use App\Models\PartnerHome;
 use App\Models\Company;
 use App\Models\LocalDriver;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -269,5 +270,7 @@ class RegisterController extends Controller
             'time_to' => $request->time_to,
             'terms_of_service' => $request->terms_of_service,
         ]);
+
+        event(new Registered($user));
     }
 }
