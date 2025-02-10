@@ -22,8 +22,11 @@
                                     <span>{{ $relay->home_address ?? ($relay->business_name ?? 'N/A') }}</span>
                                 </p>
                                 <div class="mt-3">
-                                    <p class="mb-1"><strong>Availability Days:</strong>
-                                        {{ json_decode($relay->availibility_days) }}</p>
+                                    <p>
+                                        <strong>Availability Days:</strong> 
+                                        {{ strtoupper(implode(', ', json_decode($relay->availability_days))) }}
+                                    </p>
+                                    
                                     <p class="mb-1"><strong>Time From:</strong>
                                         {{ \Carbon\Carbon::parse($relay->time_from)->format('H:i') }}</p>
                                     <p><strong>Time To:</strong>
