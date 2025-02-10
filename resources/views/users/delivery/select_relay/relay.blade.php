@@ -28,15 +28,128 @@
                                     </p>
                                     
                                     <p class="mb-1"><strong>Time From:</strong>
-                                        {{ \Carbon\Carbon::parse($relay->time_from)->format('H:i') }}</p>
+                                        {{ \Carbon\Carbon::parse($relay->time_from)->format('H:i a') }}</p>
                                     <p><strong>Time To:</strong>
-                                        {{ \Carbon\Carbon::parse($relay->time_to)->format('H:i') }}</p>
+                                        {{ \Carbon\Carbon::parse($relay->time_to)->format('H:i a') }}</p>
+                                </div>
+                                <div>
+                                    <button type="button" class="btn btn-info btn-sm" data-bs-toggle="modal"
+                                                    data-bs-target="#businessInfoModal-{{ $relay->id }}">
+                                                    More Details
+                                                </button>
                                 </div>
                                 <form method="POST"
                                     action="{{ route('user.delivery.distance.partner.post', $relay->id) }}">
                                     @csrf
                                     <button type="submit" class="btn btn-primary w-100 mt-3">Select</button>
                                 </form>
+                                @if($relay->user->role == 'partner_home')
+                                <div class="modal fade" id="businessInfoModal-{{ $relay->id }}" tabindex="-1"
+                                    aria-labelledby="businessInfoModalLabel-{{ $relay->id }}" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title"
+                                                    id="businessInfoModalLabel-{{ $relay->id }}">Partner
+                                                    Information</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <h6>Business Information</h6>
+                                                <p><strong>House Name:</strong> {{ $relay->house_name }}</p>
+                                                <p><strong>House Address:</strong> {{ $relay->home_address }}</p>
+                                                <hr>
+                                                <h6>Manager Information</h6>
+                                                <p><strong>Name:</strong> {{ $relay->user->name }}</p>
+                                                <p><strong>Email:</strong> {{ $relay->user->email }}</p>
+                                                <p><strong>Phone:</strong> {{ $relay->user->phone }}</p>
+                                                <p><strong>Date Of Birth:</strong>
+                                                    {{ $relay->user->date_of_birth }}</p>
+                                                <hr>
+                                                @if ($relay->manager != null)
+                                                    @php
+                                                        $coOwner = json_decode($relay->manager, true);
+                                                    @endphp
+                                                    <h6>Co-Manager Info</h6>
+                                                    <p><strong>Name:</strong> {{ $coOwner['name'] ?? '' }}</p>
+                                                    <p><strong>Email:</strong> {{ $coOwner['email'] ?? '' }}</p>
+                                                    <p><strong>Phone:</strong> {{ $coOwner['phone'] ?? '' }}</p>
+                                                    <hr>
+                                                @endif
+                                                <p><strong>Ownership Proof:</strong></p>
+                                                <a data-fancybox="gallery"
+                                                    href="{{ asset($relay->ownership_proof) }}">
+                                                    <img width="200"
+                                                        src="{{ asset($relay->ownership_proof) }}"
+                                                        alt="">
+                                                </a>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-bs-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                @else
+                                <div class="modal fade" id="businessInfoModal-{{ $relay->id }}" tabindex="-1"
+                                    aria-labelledby="businessInfoModalLabel-{{ $relay->id }}" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title"
+                                                    id="businessInfoModalLabel-{{ $relay->id }}">Business
+                                                    Information</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p><strong>Name:</strong> {{ $relay->user->name }}</p>
+                                                <p><strong>Email:</strong> {{ $relay->user->email }}</p>
+                                                <p><strong>Phone:</strong> {{ $relay->user->phone }}</p>
+                                                <p><strong>Date Of Birth:</strong>
+                                                    {{ $relay->user->date_of_birth }}</p>
+                                                <p><strong>Address:</strong> {{ $relay->responsible_address }}</p>
+                                                <hr>
+                                                <h6>Business Info</h6>
+                                                <p><strong>Trade Name:</strong> {{ $relay->trade_name }}</p>
+
+                                                <p><strong>Email:</strong> {{ $relay->business_email }}</p>
+                                                <p><strong>Phone:</strong> {{ $relay->business_phone }}</p>
+                                                <p><strong>Address:</strong> {{ $relay->business_address }}</p>
+                                                <p><strong>Business Number:</strong>
+                                                    {{ $relay->business_number }}</p>
+                                                <hr>
+                                                @if ($relay->co_manager_details != null)
+                                                    @php
+                                                        $coOwner = json_decode(
+                                                            $relay->co_manager_details,
+                                                            true,
+                                                        );
+                                                    @endphp
+                                                    <h6>Co-Manager Info</h6>
+                                                    <p><strong>Name:</strong> {{ $coOwner['name'] ?? '' }}</p>
+                                                    <p><strong>Email:</strong> {{ $coOwner['email'] ?? '' }}</p>
+                                                    <p><strong>Phone:</strong> {{ $coOwner['phone'] ?? '' }}</p>
+                                                    <hr>
+                                                @endif
+                                                <p><strong>Ownership Proof:</strong></p>
+                                                <a data-fancybox="gallery"
+                                                    href="{{ asset($relay->ownership_proof) }}">
+                                                    <img width="200"
+                                                        src="{{ asset($relay->ownership_proof) }}"
+                                                        alt="">
+                                                </a>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-bs-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                @endif
                             </div>
                         </div>
                     </div>
