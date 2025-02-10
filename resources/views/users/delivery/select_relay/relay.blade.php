@@ -9,7 +9,12 @@
             <div class="row">
                 @foreach ($relays as $relay)
                     <div class="col-md-6 mb-4">
-                        <div class="card shadow-sm">
+                        <div class="card shadow-sm position-relative">
+                            @if($relay->user->role == 'partner_home')
+                                <span class="badge bg-primary position-absolute top-0 start-50 translate-middle px-3 py-2 shadow-sm rounded-pill">Partner Home</span>
+                            @else
+                                <span class="badge bg-success position-absolute top-0 start-50 translate-middle px-3 py-2 shadow-sm rounded-pill">Commercial Place</span>
+                            @endif
                             <div class="card-body">
                                 <h4 class="card-title">
                                     <span class="text-muted">Place Name: </span>
