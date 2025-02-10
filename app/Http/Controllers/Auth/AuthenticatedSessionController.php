@@ -37,7 +37,7 @@ class AuthenticatedSessionController extends Controller
         }else if(Auth::user()->role == 'local_driver'){
             $route = 'local_driver.dashboard';
         }else if(Auth::user()->role == 'business'){
-            $route = 'business.dashboard';
+            $route = 'businesses.dashboard';
         }else if(Auth::user()->role == 'partner_home'){
             $route = 'partner_home.dashboard';
         }else if(Auth::user()->role == 'company'){
