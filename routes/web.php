@@ -73,7 +73,7 @@ Route::middleware(['guest'])->group(function () {
     })->name('user.register');
 });
 
-Route::prefix('driver')->middleware(['auth', 'driver'])->group(function () {
+Route::prefix('driver')->middleware(['auth', 'driver', 'verified'])->group(function () {
 
     Route::get('/dashboard', [DriverController::class, 'index'])->name('driver.dashboard');
 
@@ -107,7 +107,7 @@ Route::prefix('driver')->middleware(['auth', 'driver'])->group(function () {
     Route::delete('/profile', [DriverProfileController::class, 'destroy'])->name('driver.profile.destroy');
 });
 
-Route::prefix('local-driver')->middleware(['auth', 'localDriver'])->group(function () {
+Route::prefix('local-driver')->middleware(['auth', 'localDriver', 'verified'])->group(function () {
 
     Route::get('/dashboard', [LocalDriverDriverController::class, 'index'])->name('local_driver.dashboard');
 
@@ -144,7 +144,7 @@ Route::prefix('partner-homes')->middleware(['auth', 'partnerHome', 'verified'])-
     Route::delete('/profile', [PartnerHomeProfileController::class, 'destroy'])->name('partner_home.profile.destroy');
 });
 
-Route::prefix('businesses')->middleware(['auth', 'businesses'])->group(function () {
+Route::prefix('businesses')->middleware(['auth', 'businesses', 'verified'])->group(function () {
 
     Route::get('/dashboard', [BusinessesController::class, 'index'])->name('businesses.dashboard');
 
@@ -158,7 +158,7 @@ Route::prefix('businesses')->middleware(['auth', 'businesses'])->group(function 
 });
 
 
-Route::prefix('user')->middleware(['auth', 'user'])->group(function () {
+Route::prefix('user')->middleware(['auth', 'user', 'verified'])->group(function () {
 
     Route::get('/dashboard', [UserController::class, 'index'])->name('user.dashboard');
 
