@@ -26,6 +26,9 @@
     <!-- Toastr CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
+    {{-- jQuery --}}
+    <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
+
 </head>
 
 <body>
@@ -84,6 +87,9 @@
     </script>
 
     @yield('script')
+
+    @include('layouts.autocomplete')
+
 </body>
 
 </html>

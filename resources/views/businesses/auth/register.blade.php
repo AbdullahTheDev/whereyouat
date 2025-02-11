@@ -1,4 +1,4 @@
-@extends('partners.auth.app')
+@extends('businesses.auth.app')
 
 @section('content')
     <div class="container-scroller">
