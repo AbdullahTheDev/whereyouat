@@ -21,7 +21,6 @@
                                         <th> Amount </th>
                                         <th> Status </th>
                                         <th> Rider Status </th>
-                                        <th> Rider Info </th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -58,17 +57,6 @@
                                                 <label class="badge badge-gradient-secondary">OPEN</label>
                                                 @endif
                                             </td>
-                                            <td>
-                                                @if ($delivery->accepted == 1 || $delivery->status == 2) 
-                                                @if($delivery->relay_id != null)
-                                                    <a class="btn btn-sm btn-primary" href="{{ route('user.delivery.distance.partner', $delivery->id) }}">View</a>
-                                                @else
-                                                    <a class="btn btn-sm btn-primary" href="{{ route('user.delivery.distance.driver', $delivery->id) }}">View</a>
-                                                @endif
-                                                @else
-                                                - -
-                                                @endif
-                                            </td>
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -82,7 +70,7 @@
                     <div class="card">
                         <div class="card-body">
                             <h4 class="card-title">Vicinity Deliveries</h4>
-                            <table class="table table-bordered" id="myTable">
+                            <table class="table table-bordered" id="myTable2">
                                 <thead>
                                     <tr>
                                         <th> # </th>
@@ -92,7 +80,6 @@
                                         <th> Amount </th>
                                         <th> Status </th>
                                         <th> Rider Status </th>
-                                        <th> Rider Info </th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -102,12 +89,12 @@
                                             <td> {{ $delivery->transaction_date }} </td>
                                             <td>
                                                 <p style="white-space: normal;">
-                                                    {{ $delivery->departure_city }}
+                                                    {{ $delivery->departure_address }}
                                                 </p>
                                             </td>
                                             <td>
                                                 <p style="white-space: normal;">
-                                                    {{ $delivery->arrival_city }}
+                                                    {{ $delivery->arrival_address }}
                                                 </p>
                                             </td>
                                             <td> $ {{ number_format($delivery->total_price, 2) }} </td>
@@ -129,17 +116,6 @@
                                                 <label class="badge badge-gradient-secondary">OPEN</label>
                                                 @endif
                                             </td>
-                                            <td>
-                                                @if ($delivery->accepted == 1 || $delivery->status == 2) 
-                                                @if($delivery->relay_id != null)
-                                                    <a class="btn btn-sm btn-primary" href="{{ route('user.delivery.distance.partner', $delivery->id) }}">View</a>
-                                                @else
-                                                    <a class="btn btn-sm btn-primary" href="{{ route('user.delivery.distance.driver', $delivery->id) }}">View</a>
-                                                @endif
-                                                @else
-                                                - -
-                                                @endif
-                                            </td>
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -154,5 +130,6 @@
 @section('script')
     <script>
         let table = new DataTable('#myTable');
+        let table2 = new DataTable('#myTable2');
     </script>
 @endsection

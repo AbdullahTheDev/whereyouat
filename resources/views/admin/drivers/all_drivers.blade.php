@@ -42,7 +42,7 @@
                                                 </button>
                                             </td>
                                             <td>
-                                                <a href="{{ route('admin.drivers.deliveries', $driver->id) }}" class="btn btn-info btn-sm">
+                                                <a href="{{ route('admin.drivers.deliveries', $driver->user_id) }}" class="btn btn-info btn-sm">
                                                     Deliveries
                                                 </a>
                                             </td>
