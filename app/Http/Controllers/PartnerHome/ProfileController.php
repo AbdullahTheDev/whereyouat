@@ -25,6 +25,8 @@ class ProfileController extends Controller
             $request->validate([
                 'home_name' => 'required|string|max:255',
                 'home_address' => 'required|string',
+                'city' => 'required|string',
+                'zipcode' => 'required|string',
                 'name' => 'required|string|max:255',
                 'email' => 'required|string|email|max:255',
                 'phone' => 'required|string|max:20',
@@ -52,6 +54,8 @@ class ProfileController extends Controller
             $partner_home->update([
                 'home_name' => $request->home_name,
                 'home_address' => $request->home_address,
+                'city' => $request->city,
+                'zipcode' => $request->zipcode,
                 'manager' => json_encode([
                     'name' => $request->manager_name,
                     'email' => $request->manager_email,

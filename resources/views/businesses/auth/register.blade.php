@@ -70,10 +70,33 @@
 
                                 <div class="form-group">
                                     <input type="text"
-                                        class="form-control form-control-lg @error('business_address') is-invalid @enderror"
+                                        class="form-control form-control-lg autocomplete-address @error('business_address') is-invalid @enderror"
                                         name="business_address" id="business_address" placeholder="Business Address" value="{{ old('business_address') }}"
                                         required>
                                     @error('business_address')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+
+                                <div class="form-group">
+                                    <input type="text"
+                                        class="form-control form-control-lg autocomplete-city @error('city') is-invalid @enderror"
+                                        name="city" id="city" placeholder="Business City"
+                                        value="{{ old('city') }}" required>
+                                    @error('city')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <input type="text"
+                                        class="form-control form-control-lg @error('zipcode') is-invalid @enderror"
+                                        name="zipcode" id="zipcode" placeholder="Business Zipcode"
+                                        value="{{ old('zipcode') }}" required>
+                                    @error('zipcode')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>

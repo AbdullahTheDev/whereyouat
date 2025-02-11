@@ -99,7 +99,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="phone">Address</label>
-                                            <input type="text" class="form-control" name="business_address"
+                                            <input type="text" class="form-control autocomplete-address" name="business_address"
                                                 value="{{ $business->business_address }}" id="business_address"
                                                 placeholder="Address">
                                         </div>
@@ -107,6 +107,20 @@
                                             <label for="phone">Business Number</label>
                                             <input type="text" class="form-control" name="business_number"
                                                 value="{{ $business->business_number }}" id="business_number"
+                                                placeholder="Business Number">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="phone">Business City</label>
+                                            <input type="text" class="form-control autocomplete-city" name="city"
+                                                value="{{ $business->city }}" id="city"
+                                                placeholder="Business Number">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="phone">Business Zipcode</label>
+                                            <input type="text" class="form-control" name="zipcode"
+                                                value="{{ $business->zipcode }}" id="zipcode"
                                                 placeholder="Business Number">
                                         </div>
                                         <button type="submit" class="btn btn-gradient-primary me-2">Update</button>
