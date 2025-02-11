@@ -136,9 +136,7 @@ class DeliveryController extends Controller
 
             $delivery->update([
                 'relay_id' => $relay->id,
-                'driver_id' => $relay->user_id,
                 'relay_type' => $relay->user->role,
-                'accepted' => 1
             ]);
 
             return redirect()->route('user.delivery.distance.stripe', $delivery->id);
