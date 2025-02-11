@@ -17,6 +17,8 @@ class Business extends Model
         'business_email',
         'business_phone',
         'business_address',
+        'zipcode',
+        'city',
         'business_number',
         'availability_days',
         'time_from',

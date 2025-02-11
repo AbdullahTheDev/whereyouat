@@ -14,6 +14,8 @@ class PartnerHome extends Model
         'user_id',
         'home_name',
         'home_address',
+        'zipcode',
+        'city',
         'manager',
         'availability_days',
         'time_from',
