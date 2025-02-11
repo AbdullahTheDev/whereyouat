@@ -27,6 +27,18 @@
                                                 value="{{ $partner->home_address }}" id="name"
                                                 placeholder="Home address">
                                         </div>
+                                        <div class="form-group">
+                                            <label for="city">Home City</label>
+                                            <input type="text" class="form-control autocomplete-city" name="city"
+                                                value="{{ $partner->city }}" id="name"
+                                                placeholder="Home city">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="zipcode">Home Zip Code</label>
+                                            <input type="text" class="form-control autocomplete-zipcode" name="zipcode"
+                                                value="{{ $partner->zipcode }}" id="name"
+                                                placeholder="Home zipcode">
+                                        </div>
 
 
                                         <div class="form-group">
