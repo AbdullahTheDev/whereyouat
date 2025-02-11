@@ -177,7 +177,7 @@ Route::prefix('user')->middleware(['auth', 'user', 'verified'])->group(function 
         Route::get('distance/stripe/{id?}', [StripeDeliveryController::class, 'distanceDeliveryStripe'])->name('user.delivery.distance.stripe');
         Route::post('distance/stripe', [StripeDeliveryController::class, 'distanceDeliveryStripePost'])->name('user.delivery.distance.stripe.post');
 
-        Route::get('distance/partner/{id?}', [DeliveryController::class, 'distanceDeliveryPartner'])->name('user.delivery.distance.partner');
+        Route::get('distance/partner/{id}', [DeliveryController::class, 'distanceDeliveryPartner'])->name('user.delivery.distance.partner');
         Route::post('distance/partner', [DeliveryController::class, 'distanceDeliveryPartnerPost'])->name('user.delivery.distance.partner.post');
 
 
@@ -194,7 +194,7 @@ Route::prefix('user')->middleware(['auth', 'user', 'verified'])->group(function 
 
         Route::get('/distance/driver-info/{id}', [DeliveryController::class, 'distanceDriver'])->name('user.delivery.distance.driver');
         Route::get('/vicinity/driver-info/{id}', [DeliveryController::class, 'vicinityDriver'])->name('user.delivery.vicinity.driver');
-        Route::get('/distance/partner-info/{id}', [DeliveryController::class, 'distancePartner'])->name('user.delivery.distance.partner');
+        Route::get('/distance/partner-info/{id}', [DeliveryController::class, 'distancePartner'])->name('user.delivery.distance.partner.info');
     });
     Route::get('/notifications', function () {
         return view('users.notifications.index');
