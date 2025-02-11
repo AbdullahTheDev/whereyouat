@@ -21,6 +21,7 @@
                                         <th> Services Offered </th>
                                         <th> Registered Date </th>
                                         <th> Rider Info </th>
+                                        <th> Deliveries </th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -39,6 +40,11 @@
                                                     data-bs-target="#driverInfoModal-{{ $driver->id }}">
                                                     View
                                                 </button>
+                                            </td>
+                                            <td>
+                                                <a href="{{ route('admin.drivers.deliveries', $driver->id) }}" class="btn btn-info btn-sm">
+                                                    Deliveries
+                                                </a>
                                             </td>
                                         </tr>
                                         <div class="modal fade" id="driverInfoModal-{{ $driver->id }}"

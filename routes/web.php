@@ -222,12 +222,16 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
         Route::get('/all', [AdminDriverController::class, 'allDrivers'])->name('admin.drivers.all');
         Route::get('/import', [AdminDriverController::class, 'importDrivers'])->name('admin.drivers.import');
         Route::post('/import', [AdminDriverController::class, 'importDriversPost'])->name('admin.drivers.import.post');
+
+        Route::get('/deliveries/{id}', [AdminDriverController::class, 'driverDeliveries'])->name('admin.drivers.deliveries');
     });
 
     Route::prefix('local-drivers')->group(function () {
         Route::get('/all', [AdminDriverController::class, 'allLocalDrivers'])->name('admin.local.drivers.all');
         Route::get('/import', [AdminDriverController::class, 'importLocalDrivers'])->name('admin.local.drivers.import');
         Route::post('/import', [AdminDriverController::class, 'importLocalDriversPost'])->name('admin.local.drivers.import.post');
+
+        Route::get('/deliveries', [AdminDriverController::class, 'localDriverDeliveries'])->name('admin.local.drivers.deliveries');
     });
 
     Route::prefix('businesses')->group(function () {

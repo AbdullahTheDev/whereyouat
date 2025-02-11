@@ -8,10 +8,12 @@ use App\Imports\DriversImport;
 use App\Imports\LocalDriversImport;
 use App\Imports\PartnersImport;
 use App\Models\Business;
+use App\Models\DistanceDelivery;
 use App\Models\Driver;
 use App\Models\LocalDriver;
 use App\Models\PartnerHome;
 use App\Models\User;
+use App\Models\VicinityDelivery;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Facades\Excel;
@@ -43,6 +45,13 @@ class DriverController extends Controller
         } catch (\Exception $e) {
             return redirect()->back()->with('error', $e->getMessage());
         }
+    }
+
+    function driverDeliveries($id)
+    {
+        $distanceDeliveries = DistanceDelivery::where('driver_id', $id)->get();
+        $vicinityDeliveries = VicinityDelivery::where('driver_id', $id)->get();
+        return view('admin.drivers.history.drivers', compact('distanceDeliveries', 'vicinityDeliveries'));
     }
 
 
