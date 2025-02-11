@@ -86,6 +86,7 @@ class DeliveryController extends Controller
 
             return redirect()->route('user.delivery.distance.stripe', $delivery->id);
         } catch (Exception $e) {
+            return $e->getMessage();
             return redirect()->back()->with('error', $e->getMessage());
         }
     }

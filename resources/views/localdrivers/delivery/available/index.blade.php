@@ -12,15 +12,15 @@
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="card-title">
-                                    <span class="text-muted">From: </span>
+                                    <span class="text-muted">Pick From: </span>
                                     <span style="white-space: normal;">
-                                        {{ $delivery->departure_city }}
+                                        {{ $delivery->departure_address }}
                                     </span>
                                     <br>
                                     <br>
                                      <span class="text-muted">To:</span>
                                     <span style="white-space: normal;">
-                                        {{ $delivery->arrival_city }}
+                                        {{ $delivery->relay->home_Addresss }}
                                     </span>
                                 </h4>
                                 <div class="d-flex">

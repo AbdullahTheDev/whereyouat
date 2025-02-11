@@ -82,6 +82,7 @@ class StripeDeliveryController extends Controller
 
             return redirect()->back()->with('error', 'Payment failed. Please try again.');
         } catch (Exception $e) {
+            return $e->getMessage();
             return redirect()->back()->with('error', $e->getMessage());
         }
     }
