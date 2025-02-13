@@ -37,7 +37,8 @@
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">Departure City</label>
                                             <div class="col-sm-9">
-                                                <input type="text" name="departure_city" class="form-control autocomplete-address" required />
+                                                <input type="text" name="departure_city"
+                                                    class="form-control autocomplete-address" required />
                                             </div>
                                         </div>
                                     </div>
@@ -45,7 +46,8 @@
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">Arrival City</label>
                                             <div class="col-sm-9">
-                                                <input type="text" name="arrival_city" class="form-control autocomplete-address" required />
+                                                <input type="text" name="arrival_city"
+                                                    class="form-control autocomplete-address" required />
                                             </div>
                                         </div>
                                     </div>
@@ -138,16 +140,17 @@
                             <div class="mt-3">
                                 <div class="alert alert-light border rounded p-4 shadow-sm">
                                     <h5 class="mb-3"><i class="fas fa-info-circle"></i> Delivery Pricing Details</h5>
-                                    <p class="mb-2"><strong>For mail/parcel-envelope delivery by partner space:</strong></p>
+                                    <p class="mb-2"><strong>For mail/parcel-envelope delivery by partner space:</strong>
+                                    </p>
                                     <ul class="mb-3">
                                         <li>10 CAD for online booking</li>
                                         <li>05 CAD for Departure and Arrival Partner Spaces</li>
                                         <li>20 CAD for the carrier driver</li>
                                     </ul>
                                     <p><strong>Total:</strong> 35 CAD + 13% tax</p>
-                            
+
                                     <hr>
-                            
+
                                     <p class="mb-2"><strong>For mini-carton/other delivery by partner space:</strong></p>
                                     <ul>
                                         <li>20 CAD for online booking</li>
@@ -158,15 +161,16 @@
 
                                     <hr>
 
-                                    <p class="mb-2"><strong>For mail/parcel-envelope delivery by direct driver:</strong></p>
+                                    <p class="mb-2"><strong>For mail/parcel-envelope delivery by direct driver:</strong>
+                                    </p>
                                     <ul class="mb-3">
                                         <li>15 CAD for online booking</li>
                                         <li>15 CAD for the carrier driver</li>
                                     </ul>
                                     <p><strong>Total:</strong> 30 CAD + 13% tax</p>
-                            
+
                                     <hr>
-                            
+
                                     <p class="mb-2"><strong>For mini-carton/other delivery by direct driver:</strong></p>
                                     <ul>
                                         <li>25 CAD for online booking</li>
@@ -238,22 +242,41 @@
                     }
                 };
                 let deliveryMode = document.querySelector("select[name='delivery_mode']").value;
+                let miniCartonTotal = 0;
+                
                 document.querySelectorAll(".package-type").forEach((type, index) => {
                     let quantity = document.querySelectorAll(".package-quantity")[index].value;
+
+                    quantity = parseFloat(quantity);
+
+                    if (type.value === "mini_carton") {
+                        miniCartonTotal += quantity; // Add to mini_carton total
+                    }
 
                     if (deliveryMode == 'partner') {
                         total += basePricesPartner[type.value]['total'] * quantity;
 
-                        document.getElementById("online-booking-price-show").innerHTML = "$" + (basePricesPartner[type.value]['online'] * quantity).toFixed(2);
-                        document.getElementById("fixed-price-show").innerHTML = "$" + (basePricesPartner[type.value]['fixed'] * quantity).toFixed(2);
-                        document.getElementById("carrier-booking-price-show").innerHTML = "$" + (basePricesPartner[type.value]['carrier'] * quantity).toFixed(2);
+                        document.getElementById("online-booking-price-show").innerHTML = "$" + (
+                            basePricesPartner[type.value]['online'] * quantity).toFixed(2);
+                        document.getElementById("fixed-price-show").innerHTML = "$" + (basePricesPartner[
+                            type.value]['fixed'] * quantity).toFixed(2);
+                        document.getElementById("carrier-booking-price-show").innerHTML = "$" + (
+                            basePricesPartner[type.value]['carrier'] * quantity).toFixed(2);
                     } else {
                         total += basePricesDirect[type.value]['total'] * quantity;
 
-                        document.getElementById("online-booking-price-show").innerHTML = "$" + (basePricesPartner[type.value]['online'] * quantity).toFixed(2);
-                        document.getElementById("carrier-booking-price-show").innerHTML = "$" + (basePricesPartner[type.value]['carrier'] * quantity).toFixed(2);
+                        document.getElementById("online-booking-price-show").innerHTML = "$" + (
+                            basePricesPartner[type.value]['online'] * quantity).toFixed(2);
+                        document.getElementById("carrier-booking-price-show").innerHTML = "$" + (
+                            basePricesPartner[type.value]['carrier'] * quantity).toFixed(2);
                     }
                 });
+
+                if (miniCartonTotal > 15) {
+                    toastr.error("The total weight of Mini Carton cannot exceed 15 kg!");
+                    return; // Stop further calculation
+                }
+
                 total += total * taxRate;
                 document.getElementById("total-price-show").value = total.toFixed(2) + " CAD";
                 document.getElementById("total-price").value = total.toFixed(2);

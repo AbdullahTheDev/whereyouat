@@ -59,7 +59,22 @@ class DeliveryController extends Controller
                 'package_quantity' => 'required',
                 'package_description' => 'required',
             ]);
-            
+
+            $packageTypes = $request->input('package_type');
+            $packageQuantities = $request->input('package_quantity');
+
+            // Recheck Mini Carton total quantity does not exceed 15kg
+            $miniCartonTotal = 0;
+            foreach ($packageTypes as $index => $type) {
+                if ($type === 'mini_carton') {
+                    $miniCartonTotal += $packageQuantities[$index];
+                }
+            }
+
+            if ($miniCartonTotal > 15) {
+                return redirect()->back()->with('error', 'The total weight of Mini Carton packages cannot exceed 15kg.');
+            }
+
             $delivery = DistanceDelivery::create([
                 'user_id' => Auth::id(),
                 'departure_city' => $request->departure_city,
@@ -68,7 +83,7 @@ class DeliveryController extends Controller
                 'delivery_mode' => $request->delivery_mode,
                 'total_price' => $request->total_price,
             ]);
-            
+
             foreach ($request->package_type as $key => $value) {
                 PackageDetail::create([
                     'delivery_id' => $delivery->id,
@@ -77,9 +92,9 @@ class DeliveryController extends Controller
                     'description' => $request->package_description[$key],
                 ]);
             }
-            
+
             session()->put('distance_delivery', $delivery->id);
-            
+
             if ($request->delivery_mode == 'partner') {
                 return redirect()->route('user.delivery.distance.partner', $delivery->id);
             }
