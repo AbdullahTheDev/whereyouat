@@ -19,6 +19,7 @@ use App\Http\Controllers\Driver\DeliveryController as DriverDeliveryController;
 use App\Http\Controllers\Driver\DriverController;
 use App\Http\Controllers\Driver\ProfileController as DriverProfileController;
 use App\Http\Controllers\Driver\TripController;
+use App\Http\Controllers\EmailTrackingController;
 use App\Http\Controllers\GeneralController;
 use App\Http\Controllers\LocalDriver\DeliveryController as LocalDriverDeliveryController;
 use App\Http\Controllers\LocalDriver\DriverController as LocalDriverDriverController;
@@ -165,6 +166,8 @@ Route::prefix('businesses')->middleware(['auth', 'businesses', 'verified'])->gro
     Route::delete('/profile', [BusinessesProfileController::class, 'destroy'])->name('businesses.profile.destroy');
 });
 
+Route::get('/send-email', [EmailTrackingController::class, 'sendEmail'])->name('send.email');
+Route::get('/email-tracking/{id}', [EmailTrackingController::class, 'trackEmail'])->name('email.tracking');
 
 Route::prefix('user')->middleware(['auth', 'user', 'verified'])->group(function () {
 
