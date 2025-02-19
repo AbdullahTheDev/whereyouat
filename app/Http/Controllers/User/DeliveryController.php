@@ -114,15 +114,23 @@ class DeliveryController extends Controller
             if ($delivery->user_id != Auth::id()) {
                 return redirect()->back()->with('error', 'You do not have permission to access this delivery');
             }
-            $relayPartners = PartnerHome::where('home_address', 'LIKE', '%' . $delivery->arrival_city . '%')
+            $relayArrivalPartners = PartnerHome::where('city', 'LIKE', '%' . $delivery->arrival_city . '%')
                 ->get();
 
-            $relayBusinesses = Business::where('business_address', 'LIKE', '%' . $delivery->arrival_city . '%')
+            $relayArrivalBusinesses = Business::where('city', 'LIKE', '%' . $delivery->arrival_city . '%')
                 ->get();
 
-            $relays = $relayPartners->merge($relayBusinesses);
+            $relays = $relayArrivalPartners->merge($relayArrivalBusinesses);
 
-            return view('users.delivery.select_relay.relay', compact('relays', 'delivery'));
+            $relayDeparturePartners = PartnerHome::where('city', 'LIKE', '%' . $delivery->arrival_city . '%')
+                ->get();
+
+            $relayDepartureBusinesses = Business::where('city', 'LIKE', '%' . $delivery->arrival_city . '%')
+                ->get();
+
+            $departureRelays = $relayDeparturePartners->merge($relayDepartureBusinesses);
+
+            return view('users.delivery.select_relay.relay', compact('relays', 'delivery', 'departureRelays'));
         } catch (Exception $e) {
             return redirect()->back()->with('error', $e->getMessage());
         }
