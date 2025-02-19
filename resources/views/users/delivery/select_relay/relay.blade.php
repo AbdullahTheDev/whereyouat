@@ -468,6 +468,8 @@
                     </div>
                 </div>
             </div>
+            @include('layouts.cities')
         </div>
     </div>
+
 @endsection

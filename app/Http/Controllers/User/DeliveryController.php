@@ -122,14 +122,15 @@ class DeliveryController extends Controller
 
             $relays = $relayArrivalPartners->merge($relayArrivalBusinesses);
 
-            $relayDeparturePartners = PartnerHome::where('city', 'LIKE', '%' . $delivery->arrival_city . '%')
+            $relayDeparturePartners = PartnerHome::where('city', 'LIKE', '%' . $delivery->departure_city . '%')
                 ->get();
 
-            $relayDepartureBusinesses = Business::where('city', 'LIKE', '%' . $delivery->arrival_city . '%')
+            $relayDepartureBusinesses = Business::where('city', 'LIKE', '%' . $delivery->departure_city . '%')
                 ->get();
 
             $departureRelays = $relayDeparturePartners->merge($relayDepartureBusinesses);
 
+            // return $delivery->arrival_city;
             return view('users.delivery.select_relay.relay', compact('relays', 'delivery', 'departureRelays'));
         } catch (Exception $e) {
             return redirect()->back()->with('error', $e->getMessage());
