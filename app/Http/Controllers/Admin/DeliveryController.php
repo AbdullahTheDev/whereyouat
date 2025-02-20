@@ -22,6 +22,6 @@ class DeliveryController extends Controller
     }
     function vicinityDelivery(){
         $deliveries = VicinityDelivery::all();
-        return view('admin.deliveries.vicinity.direct.index', compact('deliveries'));
+        return view('admin.deliveries.vicinity.index', compact('deliveries'));
     }
 }
