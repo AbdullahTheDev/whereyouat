@@ -130,7 +130,7 @@ class DeliveryController extends Controller
 
             $departureRelays = $relayDeparturePartners->merge($relayDepartureBusinesses);
 
-            // return $delivery->arrival_city;
+            // return $relayDeparturePartners;
             return view('users.delivery.select_relay.relay', compact('relays', 'delivery', 'departureRelays'));
         } catch (Exception $e) {
             return redirect()->back()->with('error', $e->getMessage());
