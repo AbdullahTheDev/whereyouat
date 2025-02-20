@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\DeliveryController as AdminDeliveryController;
 use App\Http\Controllers\Admin\DriverController as AdminDriverController;
 use App\Http\Controllers\Admin\ProfileController as AdminProfileController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
@@ -248,6 +249,15 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
         Route::post('/import', [AdminDriverController::class, 'importPartnersPost'])->name('admin.partners.import.post');
     });
 
+    Route::prefix('delivery')->group(function () {
+        Route::get('/distance/direct', [AdminDeliveryController::class, 'distanceDeliveryDirect'])->name('admin.delivery.distance.direct');
+        Route::get('/distance/partner', [AdminDeliveryController::class, 'distanceDeliveryPartner'])->name('admin.delivery.distance.partner');
+        Route::get('/vicinity', [AdminDeliveryController::class, 'vicinityDelivery'])->name('admin.delivery.vicinity');
+
+        Route::get('/distance/driver-info/{id}', [AdminDeliveryController::class, 'distanceDriver'])->name('admin.delivery.distance.driver');
+        Route::get('/vicinity/driver-info/{id}', [AdminDeliveryController::class, 'vicinityDriver'])->name('admin.delivery.vicinity.driver');
+        Route::get('/distance/partner-info/{id}', [AdminDeliveryController::class, 'distancePartner'])->name('admin.delivery.distance.partner.info');
+    });
 
     Route::get('/profile', [AdminProfileController::class, 'edit'])->name('admin.profile.edit');
     Route::post('/profile', [AdminProfileController::class, 'update'])->name('admin.profile.update');
