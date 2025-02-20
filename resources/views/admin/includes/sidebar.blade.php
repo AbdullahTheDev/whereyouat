@@ -70,8 +70,7 @@
             </div>
         </li>
         <li class="nav-item">
-            <a class="nav-link" data-bs-toggle="collapse" href="#deliveries" aria-expanded="false"
-                aria-controls="deliveries">
+            <a class="nav-link" data-bs-toggle="collapse" href="#deliveries" aria-expanded="false" aria-controls="deliveries">
                 <span class="menu-title">Deliveries</span>
                 <i class="mdi mdi-truck menu-icon"></i>
             </a>
