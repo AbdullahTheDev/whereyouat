@@ -277,7 +277,7 @@
                                             </div>
                                             <button type="button" class="btn btn-primary w-100 mt-3"
                                                 data-bs-toggle="modal"
-                                                data-bs-target="#confirmModal-{{ $relay->id }}">Select</button>
+                                                data-bs-target="#confirmDepartureModal-{{ $relay->id }}">Select</button>
 
                                             @if ($relay->user->role == 'partner_home')
                                                 <div class="modal fade" id="businessInfoModal-{{ $relay->id }}"
