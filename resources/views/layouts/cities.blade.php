@@ -3431,5 +3431,11 @@
 @endphp
 
 @foreach ($cities as $city)
-    <option value="{{ $city }}">{{ $city }}</option>
+    @php
+        [$cityName, $state] = explode(',', $city);
+    @endphp
+    <option value="{{ trim($cityName) }}">
+        {{ trim($cityName) }}
+    </option>
 @endforeach
+
