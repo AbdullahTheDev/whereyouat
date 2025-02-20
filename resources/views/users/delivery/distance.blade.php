@@ -37,17 +37,26 @@
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">Departure City</label>
                                             <div class="col-sm-9">
+                                                <select name="departure_city" id="" class="form-select">
+                                                    @include('layouts.cities')
+                                                </select>
+                                            </div>
+
+                                            {{-- 
                                                 <input type="text" name="departure_city"
                                                     class="form-control autocomplete-address" required />
-                                            </div>
+                                             --}}
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">Arrival City</label>
                                             <div class="col-sm-9">
-                                                <input type="text" name="arrival_city"
-                                                    class="form-control autocomplete-address" required />
+                                                <select name="arrival_city" id="" class="form-select">
+                                                    @include('layouts.cities')
+                                                </select>
+                                                {{-- <input type="text" name="arrival_city"
+                                                    class="form-control autocomplete-address" required /> --}}
                                             </div>
                                         </div>
                                     </div>
@@ -243,7 +252,7 @@
                 };
                 let deliveryMode = document.querySelector("select[name='delivery_mode']").value;
                 let miniCartonTotal = 0;
-                
+
                 document.querySelectorAll(".package-type").forEach((type, index) => {
                     let quantity = document.querySelectorAll(".package-quantity")[index].value;
 

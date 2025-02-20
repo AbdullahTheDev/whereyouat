@@ -3430,8 +3430,6 @@
     ];
 @endphp
 
-<select name="city" id="" class="form-select">
-    @foreach ($cities as $city)
-        <option value="{{ $city }}">{{ $city }}</option>
-    @endforeach
-</select>
+@foreach ($cities as $city)
+    <option value="{{ $city }}">{{ $city }}</option>
+@endforeach
