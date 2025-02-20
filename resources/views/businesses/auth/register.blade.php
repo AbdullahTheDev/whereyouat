@@ -81,10 +81,13 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <input type="text"
+                                    <select name="city" required id="" class="form-select @error('city') is-invalid @enderror">
+                                        @include('layouts.cities')
+                                    </select>
+                                    {{-- <input type="text"
                                         class="form-control form-control-lg autocomplete-city @error('city') is-invalid @enderror"
                                         name="city" id="city" placeholder="Business City"
-                                        value="{{ old('city') }}" required>
+                                        value="{{ old('city') }}" required> --}}
                                     @error('city')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>

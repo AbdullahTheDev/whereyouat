@@ -27,6 +27,8 @@ class Business extends Model
         'ownership_proof',
         'general_terms',
         'password',
+        'city',
+        'zipcode'
     ];
 
     protected $casts = [

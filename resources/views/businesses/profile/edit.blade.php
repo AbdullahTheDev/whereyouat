@@ -112,9 +112,13 @@
 
                                         <div class="form-group">
                                             <label for="phone">Business City</label>
-                                            <input type="text" class="form-control autocomplete-city" name="city"
+                                            <select name="city" id="" class="form-select">
+                                                <option value="{{ $business->city }}" selected>{{ $business->city }}</option>
+                                                @include('layouts.cities')
+                                            </select>
+                                            {{-- <input type="text" class="form-control autocomplete-city" name="city"
                                                 value="{{ $business->city }}" id="city"
-                                                placeholder="Business Number">
+                                                placeholder="Business Number"> --}}
                                         </div>
 
                                         <div class="form-group">

@@ -33,6 +33,8 @@ class ProfileController extends Controller
                 'business_email' => 'required|string|email|max:255',
                 'business_number' => 'required|string',
                 'business_address' => 'required|string',
+                'city' => 'required|string',
+                'zipcode' => 'required|string',
 
                 'manager_name' => 'required|string|max:255',
                 'manager_phone' => 'required|string|max:20',
@@ -61,6 +63,8 @@ class ProfileController extends Controller
                 'business_phone' => $request->business_phone,
                 'business_email' => $request->business_email,
                 'business_number' => $request->business_number,
+                'city' => $request->city,
+                'zipcode' => $request->zipcode,
                 'co_manager_details' => json_encode([
                     'name' => $request->manager_name,
                     'email' => $request->manager_email,
