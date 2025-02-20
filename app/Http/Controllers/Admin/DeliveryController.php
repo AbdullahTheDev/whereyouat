@@ -13,11 +13,11 @@ class DeliveryController extends Controller
         return view('admin.delivery.index');
     }
     function distanceDeliveryDirect(){
-        $deliveries = DistanceDelivery::where('type', 'direct')->get();
+        $deliveries = DistanceDelivery::where('delivery_mode', 'direct')->get();
         return view('admin.deliveries.distance.direct.index', compact('deliveries'));
     }
     function distanceDeliveryPartner(){
-        $deliveries = DistanceDelivery::where('type', 'partner')->get();
+        $deliveries = DistanceDelivery::where('delivery_mode', 'partner')->get();
         return view('admin.deliveries.distance.partner.index', compact('deliveries'));
     }
     function vicinityDelivery(){
