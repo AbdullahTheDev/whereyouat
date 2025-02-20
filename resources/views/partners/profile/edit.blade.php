@@ -29,9 +29,15 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="city">Home City</label>
-                                            <input type="text" class="form-control autocomplete-city" name="city"
+                                            <div class="col-12">
+                                                <select name="city" id="" class="form-select">
+                                                    <option value="{{ $partner->city }}" selected>{{ $partner->city }}</option>
+                                                    @include('layouts.cities')
+                                                </select>
+                                            </div>
+                                            {{-- <input type="text" class="form-control autocomplete-city" name="city"
                                                 value="{{ $partner->city }}" id="name"
-                                                placeholder="Home city">
+                                                placeholder="Home city"> --}}
                                         </div>
                                         <div class="form-group">
                                             <label for="zipcode">Home Zip Code</label>
