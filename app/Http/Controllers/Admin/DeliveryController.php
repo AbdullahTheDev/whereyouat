@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Business;
 use App\Models\DistanceDelivery;
 use App\Models\Driver;
+use App\Models\LocalDriver;
 use App\Models\PartnerHome;
 use App\Models\User;
 use App\Models\VicinityDelivery;
@@ -98,6 +99,18 @@ class DeliveryController extends Controller
     }
 
 
+    function assignDriver($id)
+    {
+        try{
+            $delivery = DistanceDelivery::find($id);
+            
+            $drivers = LocalDriver::all();
+
+            return view('admin.deliveries.distance.partner.assign', compact('delivery', 'drivers'));
+        }catch(Exception $e){
+            return redirect()->back()->with('error', $e->getMessage());
+        }
+    }
     function assignDriverDistance(Request $request)
     {
         try {

@@ -257,7 +257,8 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
         Route::get('/distance/driver-info/{id}', [AdminDeliveryController::class, 'distanceDriver'])->name('admin.delivery.distance.driver');
         Route::get('/vicinity/driver-info/{id}', [AdminDeliveryController::class, 'vicinityDriver'])->name('admin.delivery.vicinity.driver');
         Route::get('/distance/partner-info/{id}', [AdminDeliveryController::class, 'distancePartner'])->name('admin.delivery.distance.partner.info');
-        Route::get('/distance/assign/driver/{id}', [AdminDeliveryController::class, 'assignDriverDistance'])->name('admin.delivery.distance.assign.driver');
+        Route::get('/distance/assign/driver/{id}', [AdminDeliveryController::class, 'assignDriver'])->name('admin.delivery.distance.assign.driver');
+        Route::get('/distance/assign/driver/store', [AdminDeliveryController::class, 'assignDriverDistance'])->name('admin.delivery.distance.assign.driver.store');
     });
 
     Route::get('/profile', [AdminProfileController::class, 'edit'])->name('admin.profile.edit');
