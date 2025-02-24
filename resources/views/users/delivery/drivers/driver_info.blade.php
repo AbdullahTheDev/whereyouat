@@ -10,7 +10,28 @@
                 <div class="col-lg-12 grid-margin stretch-card">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title">Driver Details</h4>
+                            <div class="d-flex justify-content-between mb-2">
+                                <h4 class="card-title">Driver Details</h4>
+                                <a href="{{ url()->previous() }}" class="btn btn-secondary">Go Back</a>
+                            </div>
+                            @if($localDriver)
+                            <table class="table table-bordered">
+                                <tbody>
+                                    <tr>
+                                        <th>Name</th>
+                                        <td>{{ $driver->user->name }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Email</th>
+                                        <td>{{ $driver->user->email }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Phone</th>
+                                        <td>{{ $driver->user->phone }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            @else
                             <table class="table table-bordered">
                                 <tbody>
                                     <tr>
@@ -73,6 +94,7 @@
                                     </a>
                                 </div>
                             </div>
+                            @endif
                         </div>
                     </div>
                 </div>

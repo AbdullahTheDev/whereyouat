@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Business;
 use App\Models\DistanceDelivery;
 use App\Models\Driver;
+use App\Models\LocalDriver;
 use App\Models\PackageDetail;
 use App\Models\PartnerHome;
 use App\Models\User;
@@ -33,9 +34,10 @@ class DeliveryController extends Controller
     }
     function distanceTrackDelivery()
     {
-        $deliveries = DistanceDelivery::where('user_id', Auth::id())->latest()->get();
+        $deliveries = DistanceDelivery::where('delivery_mode', 'direct')->latest()->get();
+        $deliveriesPartners = DistanceDelivery::where('delivery_mode', 'partner')->latest()->get();
 
-        return view('users.delivery.track.distance.index', compact('deliveries'));
+        return view('users.delivery.track.distance.index', compact('deliveries', 'deliveriesPartners'));
     }
 
     function vicinityTrackDelivery()
@@ -209,14 +211,14 @@ class DeliveryController extends Controller
     function distanceDriver($id)
     {
         try {
-            $delivery = DistanceDelivery::findOrFail($id);
+            $delivery = DistanceDelivery::find($id);
             if (!$delivery) {
                 return redirect()->back()->with('error', 'Delivery not found');
             }
             if ($delivery->user_id != Auth::id()) {
                 return redirect()->back()->with('error', 'You do not have permission to access this delivery');
             }
-            $user = User::findOrFail($delivery->driver_id);
+            $user = User::find($delivery->driver_id);
             if (!$user) {
                 return redirect()->back()->with('error', 'Driver not found');
             }
@@ -224,7 +226,32 @@ class DeliveryController extends Controller
             if (!$driver) {
                 return redirect()->back()->with('error', 'Driver not found');
             }
-            return view('users.delivery.drivers.driver_info', compact('driver'));
+            $localDriver = 0;
+            return view('users.delivery.drivers.driver_info', compact('driver', 'localDriver'));
+        } catch (Exception $e) {
+            return redirect()->back()->with('error', $e->getMessage());
+        }
+    }
+    function distanceLocalDriver($id)
+    {
+        try {
+            $delivery = DistanceDelivery::find($id);
+            if (!$delivery) {
+                return redirect()->back()->with('error', 'Delivery not found');
+            }
+            if ($delivery->user_id != Auth::id()) {
+                return redirect()->back()->with('error', 'You do not have permission to access this delivery');
+            }
+            $user = User::find($delivery->driver_id);
+            if (!$user) {
+                return redirect()->back()->with('error', 'Driver not found');
+            }
+            $driver = LocalDriver::where('user_id', $user->id)->first();
+            if (!$driver) {
+                return redirect()->back()->with('error', 'Driver not found');
+            }
+            $localDriver = 1;
+            return view('users.delivery.drivers.driver_info', compact('driver', 'localDriver'));
         } catch (Exception $e) {
             return redirect()->back()->with('error', $e->getMessage());
         }

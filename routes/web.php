@@ -197,6 +197,7 @@ Route::prefix('user')->middleware(['auth', 'user', 'verified'])->group(function 
         Route::get('/track/vicinity', [DeliveryController::class, 'vicinityTrackDelivery'])->name('user.delivery.track.vicinity');
 
         Route::get('/distance/driver-info/{id}', [DeliveryController::class, 'distanceDriver'])->name('user.delivery.distance.driver');
+        Route::get('/distance/local-driver-info/{id}', [DeliveryController::class, 'distanceLocalDriver'])->name('user.delivery.distance.local.driver');
         Route::get('/vicinity/driver-info/{id}', [DeliveryController::class, 'vicinityDriver'])->name('user.delivery.vicinity.driver');
         Route::get('/distance/partner-info/{id}', [DeliveryController::class, 'distancePartner'])->name('user.delivery.distance.partner.info');
     });
