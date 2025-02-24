@@ -141,7 +141,7 @@
                                             <td>
                                                 @if ($delivery->relay_id != null)
                                                     <a class="btn btn-sm btn-primary"
-                                                        href="{{ route('user.delivery.distance.partner.info', $delivery->relay_id) }}">View</a>
+                                                        href="{{ route('user.delivery.distance.partner.info', $delivery->id) }}">View</a>
                                                 @else
                                                     <a class="btn btn-sm btn-primary"
                                                         href="{{ route('user.delivery.distance.partner', $delivery->id) }}">Select Relay</a>
