@@ -58,7 +58,7 @@
                                             </td>
                                             <td>
                                                 @if ($delivery->accepted == 1)
-                                                    <label class="badge badge-gradient-info">ACCEPTED</label>
+                                                    <label class="badge badge-gradient-info">ASSIGNED</label>
                                                 @elseif ($delivery->status == 2)
                                                     <label class="badge badge-gradient-success">DELIVERED</label>
                                                 @else

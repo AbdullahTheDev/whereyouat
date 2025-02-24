@@ -124,7 +124,7 @@ class DeliveryController extends Controller
             $delivery->driver_id = $request->driver_id;
             $delivery->save();
 
-            return redirect()->back()->with('success', 'Delivery assigned successfully');
+            return redirect()->route('admin.delivery.distance.partner')->with('success', 'Driver assigned successfully');
         } catch (Exception $e) {
             return redirect()->back()->with('error', $e->getMessage());
         }

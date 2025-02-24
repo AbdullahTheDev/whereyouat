@@ -63,7 +63,7 @@
                                             <input type="hidden" name="delivery_id" id=""
                                                 value="{{ $delivery->id }}">
                                             <input type="hidden" name="driver_id" id=""
-                                                value="{{ $driver->id }}">
+                                                value="{{ $driver->user_id }}">
                                             <button class="btn btn-primary">Assign This Driver</button>
                                         </form>
                                     </div>
