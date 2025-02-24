@@ -20,6 +20,7 @@
                                         <th> Arrival City </th>
                                         <th> Amount </th>
                                         <th> Status </th>
+                                        <th>Relay Point</th>
                                         <th> Rider Status </th>
                                         <th> Rider Info </th>
                                     </tr>
@@ -41,32 +42,36 @@
                                             </td>
                                             <td> $ {{ number_format($delivery->total_price, 2) }} </td>
                                             <td>
-                                                @if ($delivery->status == 1) 
-                                                <label class="badge badge-gradient-info">ON THE WAY</label>
-                                                @elseif ($delivery->status == 2) 
-                                                <label class="badge badge-gradient-success">DONE</label>
+                                                @if ($delivery->status == 1)
+                                                    <label class="badge badge-gradient-info">ON THE WAY</label>
+                                                @elseif ($delivery->status == 2)
+                                                    <label class="badge badge-gradient-success">DONE</label>
                                                 @else
-                                                <label class="badge badge-gradient-danger">REJECTED</label>
+                                                    <label class="badge badge-gradient-danger">REJECTED</label>
                                                 @endif
                                             </td>
                                             <td>
-                                                @if ($delivery->accepted == 1) 
-                                                <label class="badge badge-gradient-info">ACCEPTED</label>
-                                                @elseif ($delivery->status == 2) 
-                                                <label class="badge badge-gradient-success">DELIVERED</label>
-                                                @else
-                                                <label class="badge badge-gradient-secondary">OPEN</label>
+                                                @if ($delivery->relay_id != null)
+                                                    <a class="btn btn-sm btn-primary"
+                                                        href="{{ route('admin.delivery.distance.partner.info', $delivery->id) }}">View</a>
                                                 @endif
                                             </td>
                                             <td>
-                                                @if ($delivery->accepted == 1 || $delivery->status == 2) 
-                                                @if($delivery->relay_id != null)
-                                                    <a class="btn btn-sm btn-primary" href="{{ route('admin.delivery.distance.partner.info', $delivery->id) }}">View</a>
+                                                @if ($delivery->accepted == 1)
+                                                    <label class="badge badge-gradient-info">ACCEPTED</label>
+                                                @elseif ($delivery->status == 2)
+                                                    <label class="badge badge-gradient-success">DELIVERED</label>
                                                 @else
-                                                    <a class="btn btn-sm btn-primary" href="{{ route('admin.delivery.distance.driver', $delivery->id) }}">View</a>
+                                                    <label class="badge badge-gradient-secondary">OPEN</label>
                                                 @endif
+                                            </td>
+                                            <td>
+                                                @if ($delivery->accepted == 1 || $delivery->status == 2)
+                                                    @if ($delivery->driver_id != null)
+                                                        <a class="btn btn-sm btn-primary" href="{{ route('admin.delivery.distance.driver', $delivery->id) }}">View</a>
+                                                    @endif
                                                 @else
-                                                - -
+                                                <a class="btn btn-sm btn-primary" href="{{ route('admin.delivery.distance.assign.driver', $delivery->id) }}">Assign Driver</a>
                                                 @endif
                                             </td>
                                         </tr>

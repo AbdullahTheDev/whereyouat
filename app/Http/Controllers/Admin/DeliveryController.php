@@ -74,14 +74,14 @@ class DeliveryController extends Controller
     function distancePartner($id)
     {
         try {
-            $delivery = DistanceDelivery::findOrFail($id);
+            $delivery = DistanceDelivery::find($id);
             if (!$delivery) {
                 return redirect()->back()->with('error', 'Delivery not found');
             }
             
-            $user = User::findOrFail($delivery->driver_id);
+            $user = User::find($delivery->relay_id);
             if (!$user) {
-                return redirect()->back()->with('error', 'Driver not found');
+                return redirect()->back()->with('error', 'Partner not found');
             }
             if ($user->role == 'partner_home') {
                 $relay = PartnerHome::where('user_id', $user->id)->first();

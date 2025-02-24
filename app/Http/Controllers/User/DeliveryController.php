@@ -158,7 +158,7 @@ class DeliveryController extends Controller
             }
 
             $delivery->update([
-                'relay_id' => $relay->id,
+                'relay_id' => $relay->user_id,
                 'relay_type' => $relay->user->role,
             ]);
 
