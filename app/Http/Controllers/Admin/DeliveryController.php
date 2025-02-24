@@ -96,4 +96,25 @@ class DeliveryController extends Controller
             return redirect()->back()->with('error', $e->getMessage());
         }
     }
+
+
+    function assignDriverDistance(Request $request)
+    {
+        try {
+            $request->validate([
+                'delivery_id' => 'required|exists:distance_deliveries,id',
+                'driver_id' => 'required|exists:users,id',
+            ]);
+
+            $delivery = DistanceDelivery::findOrFail($request->delivery_id);
+            $delivery->accepted = 1;
+            $delivery->driver_id = $request->driver_id;
+            $delivery->save();
+
+            return redirect()->back()->with('success', 'Delivery assigned successfully');
+        } catch (Exception $e) {
+            return redirect()->back()->with('error', $e->getMessage());
+        }
+    }
+
 }
