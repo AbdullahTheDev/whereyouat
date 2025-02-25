@@ -14,8 +14,9 @@
     <label>Choose Book Format:</label>
     <select id="book_format" name="package_id" required>
         <option value="0600X0900BWSTDPB060UW444MXX">6x9" Paperback (B&W)</option>
-        <option value="0850X1100CFTDPB060UW444GXX">8.5x11" Paperback (Color)</option>
-        <option value="0850X1100BWSTDC060UW444MXX">8.5x11" Hardcover (B&W)</option>
+        <option value="0700X1000FCPRECO060UC444MXX">8.5x11</option>
+        <option value="0600X0900FCSTDPB080CW444GXX">8.5x9 </option>
+        <option value="0850X1100BWSTDLW060UW444MNG">IDK</option>
     </select>
 
     <h3>Shipping Details</h3>
