@@ -290,7 +290,7 @@ class DeliveryController extends Controller
                 return redirect()->back()->with('error', 'You do not have permission to access this delivery');
             }
             $user = User::find($delivery->relay_id);
-            if (!$user) {
+            if (!$user) { 
                 return redirect()->back()->with('error', 'Partner not found');
             }
             if ($user->role == 'partner_home') {
