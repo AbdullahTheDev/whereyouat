@@ -73,26 +73,33 @@
                                 </tbody>
                             </table>
                             <div class="mt-4 row">
-                                <div class="col-12 col-md-4">
-                                    <h5>License Front Photo</h5>
-                                    <a href="{{ asset($driver->license_photo_front) }}" data-fancybox="gallery" data-caption="License Front Photo">
-                                    <img src="{{ asset($driver->license_photo_front) }}" class="img-fluid" width="200">
-                                    </a>
-                                </div>
-                                <div class="col-12 col-md-4">
-            
-                                    <h5 class="mt-3">License Back Photo</h5>
-                                    <a href="{{ asset($driver->license_photo_back) }}" data-fancybox="gallery" data-caption="License Back Photo">
-                                    <img src="{{ asset($driver->license_photo_back) }}" class="img-fluid" width="200">
-                                    </a>
-                                </div>
-                                <div class="col-12 col-md-4">
-            
-                                    <h5 class="mt-3">Vehicle Photo</h5>
-                                    <a href="{{ asset($driver->vehicle_photo) }}" data-fancybox="gallery" data-caption="Vehicle Photo">
-                                    <img src="{{ asset($driver->vehicle_photo) }}" class="img-fluid" width="200">
-                                    </a>
-                                </div>
+                                @php
+                                function getImageUrl($path) {
+                                    return Str::startsWith($path, ['http://', 'https://']) ? $path : asset($path);
+                                }
+                            @endphp
+                            
+                            <div class="col-12 col-md-4">
+                                <h5>License Front Photo</h5>
+                                <a href="{{ getImageUrl($driver->license_photo_front) }}" data-fancybox="gallery" data-caption="License Front Photo">
+                                    <img src="{{ getImageUrl($driver->license_photo_front) }}" class="img-fluid" width="200">
+                                </a>
+                            </div>
+                            
+                            <div class="col-12 col-md-4">
+                                <h5 class="mt-3">License Back Photo</h5>
+                                <a href="{{ getImageUrl($driver->license_photo_back) }}" data-fancybox="gallery" data-caption="License Back Photo">
+                                    <img src="{{ getImageUrl($driver->license_photo_back) }}" class="img-fluid" width="200">
+                                </a>
+                            </div>
+                            
+                            <div class="col-12 col-md-4">
+                                <h5 class="mt-3">Vehicle Photo</h5>
+                                <a href="{{ getImageUrl($driver->vehicle_photo) }}" data-fancybox="gallery" data-caption="Vehicle Photo">
+                                    <img src="{{ getImageUrl($driver->vehicle_photo) }}" class="img-fluid" width="200">
+                                </a>
+                            </div>
+                            
                             </div>
                             @endif
                         </div>
