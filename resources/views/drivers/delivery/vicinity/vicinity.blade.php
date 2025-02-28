@@ -31,7 +31,7 @@
                                     </span>
                                     <br>
                                     <br>
-                                     <span class="text-muted">To:</span>
+                                    <span class="text-muted">To:</span>
                                     <span style="white-space: normal;">
                                         {{ $delivery->arrival_address }}
                                     </span>
@@ -76,7 +76,7 @@
                                         @csrf
                                         <input type="hidden" name="delivery_id" value="{{ $delivery->id }}">
                                         <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                            data-bs-target="#confirmModal">
+                                            data-bs-target="#confirmModal-{{ $delivery->id }}">
                                             Accept for ${{ number_format($delivery->total_price, 2) }}
                                         </button>
                                     </form>
@@ -85,12 +85,13 @@
                         </div>
                     </div>
                     <!-- Bootstrap Confirmation Modal -->
-                    <div class="modal fade" id="confirmModal-{{ $delivery->id }}" tabindex="-1" aria-labelledby="confirmModalLabel-{{ $delivery->id }}"
-                        aria-hidden="true">
+                    <div class="modal fade" id="confirmModal-{{ $delivery->id }}" tabindex="-1"
+                        aria-labelledby="confirmModalLabel-{{ $delivery->id }}" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="confirmModalLabel-{{ $delivery->id }}">Confirm Acceptance</h5>
+                                    <h5 class="modal-title" id="confirmModalLabel-{{ $delivery->id }}">Confirm Acceptance
+                                    </h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                         aria-label="Close"></button>
                                 </div>
@@ -100,7 +101,8 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                    <button type="button" class="btn btn-primary" id="confirmAccept-{{ $delivery->id }}">Yes, Accept</button>
+                                    <button type="button" class="btn btn-primary"
+                                        id="confirmAccept-{{ $delivery->id }}">Yes, Accept</button>
                                 </div>
                             </div>
                         </div>
@@ -120,8 +122,18 @@
 @endsection
 @section('script')
     <script>
-        document.getElementById('confirmAccept').addEventListener('click', function() {
-            document.getElementById('acceptDeliveryForm').submit();
+        document.addEventListener("DOMContentLoaded", function() {
+            document.querySelectorAll("[id^='confirmAccept-']").forEach(button => {
+                button.addEventListener("click", function() {
+                    let deliveryId = this.id.split("-")[1]; // Extract delivery ID
+                    let form = document.querySelector(`#confirmModal-${deliveryId}`)
+                        .previousElementSibling.querySelector("form");
+
+                    if (form) {
+                        form.submit(); // Submit the form
+                    }
+                });
+            });
         });
     </script>
 @endsection
