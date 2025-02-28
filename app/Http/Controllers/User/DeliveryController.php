@@ -274,7 +274,8 @@ class DeliveryController extends Controller
             if (!$driver) {
                 return redirect()->back()->with('error', 'Driver not found');
             }
-            return view('users.delivery.drivers.driver_info', compact('driver'));
+            $localDriver = 0;
+            return view('users.delivery.drivers.driver_info', compact('driver', 'localDriver'));
         } catch (Exception $e) {
             return redirect()->back()->with('error', $e->getMessage());
         }
